@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Westeros — Explore the Realm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body class="westeros-home">
+<div class="home-bg" aria-hidden="true"></div>
+<div class="home-vignette" aria-hidden="true"></div>
+<canvas id="embers" aria-hidden="true"></canvas>
+
+<header class="home-header">
+  <a class="home-logo" href="index.html" aria-label="Westeros home">
+    <span class="logo-sigil">♕</span>
+    <span>WESTEROS</span>
+  </a>
+
+  <nav class="home-nav" aria-label="Main navigation">
+    <a class="active" href="index.html">HOME</a>
+    <a href="got/houses.html" data-era-section="houses">HOUSES</a>
+    <a href="got/characters.html" data-era-section="characters">CHARACTERS</a>
+    <a href="got/dragons.html" data-era-section="dragons">DRAGONS</a>
+    <a href="got/cities.html" data-era-section="cities">CITIES</a>
+    <a href="got/chronicle.html" data-era-section="chronicle">CHRONICLE</a>
+    <a href="hotd/index.html">OTHER ERA</a>
+  </nav>
+
+  <div class="home-tools">
+    <button class="home-search-btn" type="button" aria-label="Open search"><span></span></button>
+    <button class="home-menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
+</header>
+<nav class="mobile-home-nav" aria-label="Mobile navigation">
+<a href="index.html">HOME</a><a href="got/houses.html" data-era-section="houses">HOUSES</a><a href="got/characters.html" data-era-section="characters">CHARACTERS</a><a href="got/dragons.html" data-era-section="dragons">DRAGONS</a><a href="got/cities.html" data-era-section="cities">CITIES</a><a href="got/chronicle.html" data-era-section="chronicle">CHRONICLE</a><a href="hotd/index.html">OTHER ERA</a>
+</nav>
+
+<main>
+  <section class="home-hero">
+    <div class="hero-copy">
+      <div class="hero-kicker"><span></span>TWO ERAS. ONE REALM.<span></span></div>
+      <h1>EXPLORE WESTEROS</h1>
+      <p>From the fall of the Mad King to the rise of the Targaryens —<br class="desktop-only"> discover the houses, dragons, characters and cities that shaped the realm.</p>
+      <div class="era-actions">
+        <a class="era-btn got" href="got/index.html">
+          <span class="era-icon">♛</span>
+          <span class="era-text"><strong>GAME OF THRONES</strong><small>THE ORIGINAL SAGA</small></span>
+          <span class="era-arrow">›</span>
+        </a>
+        <a class="era-btn hotd" href="hotd/index.html">
+          <span class="era-icon">◉</span>
+          <span class="era-text"><strong>HOUSE OF THE DRAGON</strong><small>THE TARGARYEN ERA</small></span>
+          <span class="era-arrow">›</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-featured">
+    <div class="ornate-heading"><span></span><h2>FEATURED</h2><span></span></div>
+    <div class="featured-grid">
+      <a class="featured-card" href="got/characters.html" data-era-section="characters">
+        <div class="featured-image featured-daenerys"></div><div class="featured-shade"></div>
+        <div class="featured-content"><h3>FEATURED CHARACTERS</h3><p>Kings, queens, warriors and more...</p><b>EXPLORE <em>→</em></b></div>
+      </a>
+      <a class="featured-card" href="got/houses.html" data-era-section="houses">
+        <div class="featured-image featured-houses"></div><div class="featured-shade"></div>
+        <div class="featured-content"><h3>FEATURED HOUSES</h3><p>Great houses. Greater ambitions.</p><b>EXPLORE <em>→</em></b></div>
+      </a>
+      <a class="featured-card" href="got/dragons.html" data-era-section="dragons">
+        <div class="featured-image featured-dragon"></div><div class="featured-shade"></div>
+        <div class="featured-content"><h3>FEATURED DRAGONS</h3><p>Power. Fire. Legacy.</p><b>EXPLORE <em>→</em></b></div>
+      </a>
+      <a class="featured-card" href="got/cities.html" data-era-section="cities">
+        <div class="featured-image featured-city"></div><div class="featured-shade"></div>
+        <div class="featured-content"><h3>FEATURED CITIES</h3><p>From Winterfell to King’s Landing.</p><b>EXPLORE <em>→</em></b></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-explore">
+    <div class="ornate-heading"><span></span><h2>WHERE TO EXPLORE</h2><span></span></div>
+    <div class="explore-grid">
+      <a href="got/houses.html" data-era-section="houses"><span class="explore-icon">♛</span><strong>HOUSES</strong><i>›</i></a>
+      <a href="got/dragons.html" data-era-section="dragons"><span class="explore-icon">◉</span><strong>DRAGONS</strong><i>›</i></a>
+      <a href="got/characters.html" data-era-section="characters"><span class="explore-icon">♕</span><strong>CHARACTERS</strong><i>›</i></a>
+      <a href="got/cities.html" data-era-section="cities"><span class="explore-icon">♜</span><strong>CITIES</strong><i>›</i></a>
+      <a href="got/chronicle.html" data-era-section="chronicle"><span class="explore-icon">▤</span><strong>CHRONICLE</strong><i>›</i></a>
+    </div>
+  </section>
+</main>
+
+<footer class="home-footer">
+  <a class="footer-logo" href="index.html"><span>♕</span> WESTEROS</a>
+  <div class="footer-links"><a href="index.html">HOME</a><b>|</b><a href="about.html">ABOUT</a><b>|</b><a href="about.html#faq">FAQ</a><b>|</b><a href="about.html#contact">CONTACT</a><b>|</b><a href="about.html#privacy">PRIVACY</a></div>
+  <div class="footer-social"><span>♥</span><span>◎</span><span>▶</span><span>◉</span><b></b><strong>WINTER IS COMING</strong></div>
+</footer>
+
+<div class="home-search-panel" hidden>
+  <div class="search-box"><button type="button" class="search-close" aria-label="Close search">×</button><label for="homeSearch">SEARCH WESTEROS</label><input id="homeSearch" type="search" placeholder="Search houses, characters, dragons..." autocomplete="off"><div id="homeSearchResults"></div></div>
+</div>
+
+
+<div class="era-chooser" id="eraChooser" hidden aria-hidden="true">
+  <div class="era-chooser-backdrop" data-close-era-chooser></div>
+  <div class="era-chooser-dialog" role="dialog" aria-modal="true" aria-labelledby="eraChooserTitle">
+    <button class="era-chooser-close" type="button" aria-label="Close" data-close-era-chooser>×</button>
+    <span class="era-chooser-kicker">CHOOSE YOUR ERA</span>
+    <h2 id="eraChooserTitle">Where would you like to explore?</h2>
+    <p>Select Game of Thrones or House of the Dragon to open the section you chose.</p>
+    <div class="era-chooser-actions">
+      <a class="era-choice got" id="chooseGot" href="got/index.html"><strong>GAME OF THRONES</strong><span>THE ORIGINAL SAGA</span></a>
+      <a class="era-choice hotd" id="chooseHotd" href="hotd/index.html"><strong>HOUSE OF THE DRAGON</strong><span>THE TARGARYEN ERA</span></a>
+    </div>
+  </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
