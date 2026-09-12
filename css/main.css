@@ -381,7 +381,7 @@ body.westeros-home{
 @media(max-width:1250px){.home-header{padding:0 55px;grid-template-columns:260px 1fr 120px}.home-nav{gap:25px}.home-nav a{font-size:11px}.home-footer{padding:0 55px;grid-template-columns:260px 1fr 300px}.featured-grid{gap:14px}.home-featured,.home-explore{padding-left:6vw;padding-right:6vw}}
 @media(max-width:900px){.home-header{grid-template-columns:1fr auto;height:64px;padding:0 24px}.home-nav{display:none}.home-logo{font-size:24px}.home-tools{gap:20px}.home-hero{height:auto;min-height:620px;padding:90px 20px 55px}.hero-copy h1{font-size:clamp(38px,8vw,57px)}.desktop-only{display:none}.era-actions{flex-direction:column;align-items:center}.home-featured{height:auto;padding:30px 24px}.featured-grid{grid-template-columns:repeat(2,1fr);gap:14px}.home-explore{height:auto;padding:35px 24px}.explore-grid{grid-template-columns:repeat(2,1fr)}.home-footer{height:auto;min-height:110px;padding:25px 24px;grid-template-columns:1fr;gap:18px;text-align:center}.footer-social{justify-content:center}.footer-logo{justify-content:center}}
 @media(max-width:560px){.home-logo{font-size:20px}.logo-sigil{font-size:24px}.hero-kicker{font-size:10px;letter-spacing:.18em}.hero-kicker span{width:12px}.hero-copy h1{font-size:34px}.hero-copy p{font-size:15px}.era-btn{width:min(100%,320px)}.featured-grid{grid-template-columns:1fr}.featured-card{height:205px}.explore-grid{grid-template-columns:1fr}.explore-grid a{height:82px}.home-footer{font-size:11px}.footer-links{flex-wrap:wrap}}
-.westeros-home .featured-daenerys{background-image:url("../assets/images/characters/featured-daenerys.jpg");background-position:center 34%}
+.westeros-home .featured-daenerys{background-image:url("../assets/images/characters/got/featured-daenerys.jpg");background-position:center 34%}
 .westeros-home .featured-houses{background-image:url("../assets/images/houses/featured-houses.jpg");background-position:center 42%}
 .westeros-home .featured-dragon{background-image:url("../assets/images/dragons/featured-dragon.jpg");background-position:center 38%}
 .westeros-home .featured-city{background-image:url("../assets/images/cities/featured-city.jpg");background-position:center 39%}
@@ -613,7 +613,7 @@ body.hotd-theme .era-home-hero{background:radial-gradient(circle at 32% 42%,rgba
    ========================================================= */
 .westeros-page::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:.42;filter:saturate(.9) contrast(1.02);}
 .westeros-page::before{z-index:0;}
-.westeros-page.page-index::after{background-image:url('../assets/images/backgrounds/got/index-bg.jpg');}
+.westeros-page.page-index::after{background-image:url('../assets/images/backgrounds/got/index-bg.png');}
 body.hotd-theme.westeros-page.page-index::after{background-image:url('../assets/images/backgrounds/hotd/index-bg.png');}
 body.got-theme.westeros-page.page-characters::after{background-image:url('../assets/images/backgrounds/got/characters-bg.png');}
 body.got-theme.westeros-page.page-houses::after{background-image:url('../assets/images/backgrounds/got/houses-bg.png');}
