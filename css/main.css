@@ -989,3 +989,39 @@ body.detail-open{overflow:hidden;}
 .westeros-map .map-marker-city .map-marker-core{r: .9;}
 .westeros-map .map-marker-stronghold .map-marker-ring{stroke-width:.75;}
 @media(max-width:620px){.westeros-map .map-marker-label{font-size:2.35px;}}
+
+/* Related Content — character archive connections */
+.related-content-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.14)}
+.related-content-intro{opacity:.78;margin:.35rem 0 1rem;max-width:62ch}
+.related-content-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.related-content-card{display:flex;flex-direction:column;gap:.22rem;padding:.9rem 1rem;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.035);text-decoration:none;color:inherit;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.related-content-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.07)}
+.related-content-card span{font-size:.62rem;letter-spacing:.16em;opacity:.55;text-transform:uppercase}
+.related-content-card b{font-size:.95rem}
+.related-content-card em{font-size:.62rem;letter-spacing:.13em;font-style:normal;opacity:.55;margin-top:.2rem}
+@media(max-width:620px){.related-content-grid{grid-template-columns:1fr}}
+
+/* Character Relationships — dedicated relationship network */
+.character-relationships-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(216,178,106,.2)}
+.character-relationships-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:.25rem}
+.character-relationships-head h3{margin:0!important}
+.character-relationships-count{font-size:.58rem;letter-spacing:.16em;opacity:.5;white-space:nowrap}
+.character-relationships-intro{opacity:.72;margin:.45rem 0 1rem;max-width:62ch;font-size:13px!important}
+.character-relationships-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.character-relationship-card{display:flex;flex-direction:column;gap:.24rem;padding:1rem;border:1px solid rgba(216,178,106,.18);background:linear-gradient(135deg,rgba(216,178,106,.055),rgba(255,255,255,.025));text-decoration:none;color:inherit;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.character-relationship-card:hover{transform:translateY(-2px);border-color:rgba(216,178,106,.48);background:rgba(216,178,106,.09)}
+.character-relationship-type{font-size:.58rem;letter-spacing:.13em;color:#d8b26a;text-transform:uppercase}
+.character-relationship-card b{font-size:1rem}
+.character-relationship-card em{font-size:.58rem;letter-spacing:.12em;font-style:normal;opacity:.48;margin-top:.18rem}
+@media(max-width:620px){.character-relationships-grid{grid-template-columns:1fr}.character-relationships-head{align-items:flex-start;flex-direction:column;gap:.35rem}}
+
+/* #4 — Storyline and Chronicle have distinct editorial identities. */
+.page-storyline .storyline-hero,
+.page-chronicle .chronicle-hero{position:relative;}
+.page-storyline .storyline-hero::after,
+.page-chronicle .chronicle-hero::after{content:"";display:block;width:min(760px,86%);height:1px;margin:24px auto 0;background:linear-gradient(90deg,transparent,rgba(216,178,106,.55),transparent);}
+.page-storyline .storyline-label{letter-spacing:.2em;}
+.page-storyline .storyline-view .timeline-card{border-left:2px solid rgba(216,178,106,.32);}
+.page-chronicle .chronicle-view .timeline-card{border-left:2px solid rgba(216,178,106,.68);}
+.page-storyline .storyline-view .timeline-year{font-size:10px;}
+.page-chronicle .chronicle-view .timeline-year{font-size:10px;}

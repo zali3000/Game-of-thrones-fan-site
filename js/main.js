@@ -7,6 +7,26 @@ document.addEventListener("DOMContentLoaded",()=>{
  attachReveal(".reveal");
  const theme=document.body.classList.contains("hotd-theme")?"rgba(138, 31, 31, ":"rgba(217, 98, 43, "; startEmbers(theme);
  initSearch(); initFilters(); initProfiles(); initDetailCards(); initWesterosMap();
+ // Final URL-driven card opener. It runs after initDetailCards has attached click handlers.
+ setTimeout(()=>{
+   const params=new URLSearchParams(location.search);
+   const requested=(params.get("open")||location.hash.replace(/^#/,"")).trim().toLowerCase();
+   if(!requested)return;
+   const target=document.getElementById(requested) || [...document.querySelectorAll("[data-search-item]")].find(card=>{
+     const id=(card.id||"").toLowerCase();
+     const title=(card.querySelector("h1,h2,h3,h4,.title,.name,.city-name,.dragon-name")?.textContent||"").trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+     const short=requested.replace(/^[^-]+-/,'');
+     return id===requested || title===requested || title===short;
+   });
+   if(target){
+     target.scrollIntoView({block:"center",behavior:"auto"});
+     target.click();
+     if(params.has("open")){
+       const clean=new URL(location.href); clean.searchParams.delete("open");
+       history.replaceState(null,"",clean.pathname+clean.hash);
+     }
+   }
+ },250);
 });
 function attachTilt(selector,innerSelector,maxTilt){document.querySelectorAll(selector).forEach(card=>{const inner=card.querySelector(innerSelector)||card;card.addEventListener("mousemove",e=>{if(window.matchMedia("(hover: none)").matches)return;const r=card.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;inner.style.transform=`rotateX(${-(y-r.height/2)/(r.height/2)*maxTilt}deg) rotateY(${(x-r.width/2)/(r.width/2)*maxTilt}deg) scale(1.02)`});card.addEventListener("mouseleave",()=>inner.style.transform="rotateX(0deg) rotateY(0deg) scale(1)")})}
 function attachFlip(selector){document.querySelectorAll(selector).forEach(card=>card.addEventListener("click",()=>{if(window.matchMedia("(hover: none)").matches)card.classList.toggle("flipped")}))}
@@ -500,7 +520,77 @@ function initDetailCards(){
   "hotd/characters/rhaenys-targaryen":{house:"Targaryen",role:"Princess / Dragonrider",known:"The Queen Who Never Was",faction:"BLACK",profile:"A Targaryen princess who was once passed over for the throne and carries a personal understanding of the uncertainty surrounding succession.",traits:"Pride • Wisdom • Restraint • Courage",importance:"Rhaenys represents the memory of an earlier succession decision and brings experience, caution and immense symbolic weight to Rhaenyra’s cause."},
   "hotd/characters/criston-cole":{house:"Cole",role:"Lord Commander of the Kingsguard",known:"Ser Criston Cole",faction:"GREEN",profile:"A skilled knight whose personal history with Rhaenyra becomes tangled with resentment, pride and political allegiance.",traits:"Swordsmanship • Pride • Loyalty • Resentment",importance:"Criston shows how personal conflict can become political fuel, eventually turning a private grievance into a major military commitment."}
 };
-const makeCharacterModal=(profile,detail,title,clone,img,section)=>{
+const CHARACTER_RELATIONS={
+ "got/characters/jon-snow":[['Arya Stark','Character','got/characters.html#arya-stark'],['Sansa Stark','Character','got/characters.html#sansa-stark'],['Bran Stark','Character','got/characters.html#bran-stark'],['Daenerys Targaryen','Character','got/characters.html#daenerys-targaryen'],['Rhaegal','Dragon','got/dragons.html#rhaegal'],['House Stark','House','got/houses.html#stark'],['Winterfell','Location','got/cities.html#winterfell']],
+ "got/characters/daenerys-targaryen":[['Jon Snow','Character','got/characters.html#jon-snow'],['Tyrion Lannister','Character','got/characters.html#tyrion-lannister'],['Cersei Lannister','Character','got/characters.html#cersei-lannister'],['Drogon','Dragon','got/dragons.html#drogon'],['Rhaegal','Dragon','got/dragons.html#rhaegal'],['Viserion','Dragon','got/dragons.html#viserion'],['House Targaryen','House','got/houses.html#targaryen'],['King’s Landing','Location','got/cities.html#kings-landing']],
+ "got/characters/tyrion-lannister":[['Cersei Lannister','Character','got/characters.html#cersei-lannister'],['Jaime Lannister','Character','got/characters.html#jaime-lannister'],['Daenerys Targaryen','Character','got/characters.html#daenerys-targaryen'],['Jon Snow','Character','got/characters.html#jon-snow'],['House Lannister','House','got/houses.html#lannister'],['King’s Landing','Location','got/cities.html#kings-landing']],
+ "got/characters/arya-stark":[['Jon Snow','Character','got/characters.html#jon-snow'],['Sansa Stark','Character','got/characters.html#sansa-stark'],['Bran Stark','Character','got/characters.html#bran-stark'],['Cersei Lannister','Character','got/characters.html#cersei-lannister'],['House Stark','House','got/houses.html#stark'],['Winterfell','Location','got/cities.html#winterfell']],
+ "got/characters/sansa-stark":[['Jon Snow','Character','got/characters.html#jon-snow'],['Arya Stark','Character','got/characters.html#arya-stark'],['Bran Stark','Character','got/characters.html#bran-stark'],['Petyr Baelish','Character','got/characters.html#petyr-baelish'],['House Stark','House','got/houses.html#stark'],['Winterfell','Location','got/cities.html#winterfell']],
+ "got/characters/cersei-lannister":[['Jaime Lannister','Character','got/characters.html#jaime-lannister'],['Tyrion Lannister','Character','got/characters.html#tyrion-lannister'],['Sansa Stark','Character','got/characters.html#sansa-stark'],['Daenerys Targaryen','Character','got/characters.html#daenerys-targaryen'],['House Lannister','House','got/houses.html#lannister'],['King’s Landing','Location','got/cities.html#kings-landing']],
+ "got/characters/jaime-lannister":[['Cersei Lannister','Character','got/characters.html#cersei-lannister'],['Tyrion Lannister','Character','got/characters.html#tyrion-lannister'],['Brienne of Tarth','Character','got/characters.html#brienne-of-tarth'],['Jon Snow','Character','got/characters.html#jon-snow'],['House Lannister','House','got/houses.html#lannister'],['King’s Landing','Location','got/cities.html#kings-landing']],
+ "got/characters/bran-stark":[['Jon Snow','Character','got/characters.html#jon-snow'],['Arya Stark','Character','got/characters.html#arya-stark'],['Sansa Stark','Character','got/characters.html#sansa-stark'],['Theon Greyjoy','Character','got/characters.html#theon-greyjoy'],['House Stark','House','got/houses.html#stark'],['Winterfell','Location','got/cities.html#winterfell']],
+ "hotd/characters/rhaenyra-targaryen":[['Daemon Targaryen','Character','characters.html#daemon-targaryen'],['King Viserys I','Character','characters.html#king-viserys-i'],['Alicent Hightower','Character','characters.html#alicent-hightower'],['Jacaerys Velaryon','Character','characters.html#jacaerys-velaryon'],['Rhaenys Targaryen','Character','characters.html#rhaenys-targaryen'],['Syrax','Dragon','dragons.html#syrax'],['House Targaryen','House','houses.html#targaryen']],
+ "hotd/characters/daemon-targaryen":[['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['King Viserys I','Character','characters.html#king-viserys-i'],['Alicent Hightower','Character','characters.html#alicent-hightower'],['Corlys Velaryon','Character','characters.html#corlys-velaryon'],['Aemond Targaryen','Character','characters.html#aemond-targaryen'],['Caraxes','Dragon','dragons.html#caraxes'],['House Targaryen','House','houses.html#targaryen']],
+ "hotd/characters/king-viserys-i":[['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['Daemon Targaryen','Character','characters.html#daemon-targaryen'],['Alicent Hightower','Character','characters.html#alicent-hightower'],['Aegon II Targaryen','Character','characters.html#aegon-ii-targaryen'],['Otto Hightower','Character','characters.html#otto-hightower'],['House Targaryen','House','houses.html#targaryen'],['King’s Landing','Location','cities.html#kings-landing']],
+ "hotd/characters/alicent-hightower":[['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['Otto Hightower','Character','characters.html#otto-hightower'],['Aegon II Targaryen','Character','characters.html#aegon-ii-targaryen'],['Aemond Targaryen','Character','characters.html#aemond-targaryen'],['Helaena Targaryen','Character','characters.html#helaena-targaryen'],['House Hightower','House','houses.html#hightower'],['Oldtown','Location','cities.html#oldtown']],
+ "hotd/characters/aegon-ii-targaryen":[['Alicent Hightower','Character','characters.html#alicent-hightower'],['Aemond Targaryen','Character','characters.html#aemond-targaryen'],['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['King Viserys I','Character','characters.html#king-viserys-i'],['Helaena Targaryen','Character','characters.html#helaena-targaryen'],['Sunfyre','Dragon','dragons.html#sunfyre'],['House Targaryen','House','houses.html#targaryen']],
+ "hotd/characters/aemond-targaryen":[['Aegon II Targaryen','Character','characters.html#aegon-ii-targaryen'],['Alicent Hightower','Character','characters.html#alicent-hightower'],['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['Daemon Targaryen','Character','characters.html#daemon-targaryen'],['Lucerys Velaryon','Character','characters.html#lucerys-velaryon'],['Vhagar','Dragon','dragons.html#vhagar'],['House Targaryen','House','houses.html#targaryen']],
+ "hotd/characters/otto-hightower":[['Alicent Hightower','Character','characters.html#alicent-hightower'],['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['King Viserys I','Character','characters.html#king-viserys-i'],['Aegon II Targaryen','Character','characters.html#aegon-ii-targaryen'],['Daemon Targaryen','Character','characters.html#daemon-targaryen'],['House Hightower','House','houses.html#hightower'],['Oldtown','Location','cities.html#oldtown']],
+ "hotd/characters/corlys-velaryon":[['Rhaenys Targaryen','Character','characters.html#rhaenys-targaryen'],['Laena Velaryon','Character','characters.html#laena-velaryon'],['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['Daemon Targaryen','Character','characters.html#daemon-targaryen'],['Jacaerys Velaryon','Character','characters.html#jacaerys-velaryon'],['House Velaryon','House','houses.html#velaryon'],['Driftmark','Location','cities.html#driftmark']],
+ "hotd/characters/rhaenys-targaryen":[['Corlys Velaryon','Character','characters.html#corlys-velaryon'],['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['Daemon Targaryen','Character','characters.html#daemon-targaryen'],['Laena Velaryon','Character','characters.html#laena-velaryon'],['House Velaryon','House','houses.html#velaryon'],['Meleys','Dragon','dragons.html#meleys'],['Driftmark','Location','cities.html#driftmark']],
+ "hotd/characters/criston-cole":[['Alicent Hightower','Character','characters.html#alicent-hightower'],['Rhaenyra Targaryen','Character','characters.html#rhaenyra-targaryen'],['Daemon Targaryen','Character','characters.html#daemon-targaryen'],['Aegon II Targaryen','Character','characters.html#aegon-ii-targaryen'],['Otto Hightower','Character','characters.html#otto-hightower'],['House Hightower','House','houses.html#hightower'],['King’s Landing','Location','cities.html#kings-landing']]
+};
+const CHARACTER_RELATIONSHIP_TYPES={
+ 'jon snow|arya stark':'SIBLINGS','jon snow|sansa stark':'SIBLINGS','jon snow|bran stark':'SIBLINGS','jon snow|daenerys targaryen':'ALLIES • ROMANCE',
+ 'daenerys targaryen|jon snow':'ALLIES • ROMANCE','daenerys targaryen|tyrion lannister':'ADVISOR • ALLY','daenerys targaryen|cersei lannister':'RIVALS',
+ 'tyrion lannister|cersei lannister':'SIBLINGS • RIVALS','tyrion lannister|jaime lannister':'SIBLINGS','tyrion lannister|daenerys targaryen':'ADVISOR • ALLY','tyrion lannister|jon snow':'ALLIES',
+ 'arya stark|sansa stark':'SIBLINGS','arya stark|bran stark':'SIBLINGS','sansa stark|bran stark':'SIBLINGS','sansa stark|jon snow':'SIBLINGS',
+ 'cersei lannister|jaime lannister':'TWINS • LOVERS','jaime lannister|cersei lannister':'TWINS • LOVERS','jaime lannister|tyrion lannister':'SIBLINGS',
+ 'bran stark|jon snow':'SIBLINGS','bran stark|arya stark':'SIBLINGS',
+ 'rhaenyra targaryen|daemon targaryen':'SPOUSES • ALLIES','rhaenyra targaryen|king viserys i':'FATHER • DAUGHTER','rhaenyra targaryen|alicent hightower':'FORMER FRIENDS • RIVALS','rhaenyra targaryen|aegon ii targaryen':'RIVAL CLAIMANTS','rhaenyra targaryen|aemond targaryen':'FAMILY • RIVALS',
+ 'daemon targaryen|king viserys i':'BROTHERS','daemon targaryen|rhaenyra targaryen':'SPOUSES • ALLIES','daemon targaryen|aemond targaryen':'FAMILY • ALLIES',
+ 'king viserys i|rhaenyra targaryen':'FATHER • DAUGHTER','king viserys i|daemon targaryen':'BROTHERS','king viserys i|alicent hightower':'SPOUSES',
+ 'alicent hightower|rhaenyra targaryen':'FORMER FRIENDS • RIVALS','alicent hightower|aegon ii targaryen':'MOTHER • SON','alicent hightower|otto hightower':'FATHER • DAUGHTER',
+ 'aegon ii targaryen|aemond targaryen':'BROTHERS','aegon ii targaryen|otto hightower':'GRANDFATHER • GRANDSON','aemond targaryen|rhaenyra targaryen':'FAMILY • RIVALS',
+ 'otto hightower|aegon ii targaryen':'GRANDFATHER • GRANDSON','otto hightower|rhaenyra targaryen':'POLITICAL RIVALS','otto hightower|alicent hightower':'FATHER • DAUGHTER',
+ 'corlys velaryon|rhaenys targaryen':'SPOUSES','corlys velaryon|rhaenyra targaryen':'ALLIES','rhaenys targaryen|rhaenyra targaryen':'FAMILY • ALLIES',
+ 'criston cole|alicent hightower':'ALLIES','criston cole|rhaenyra targaryen':'FORMER LOVERS • RIVALS','criston cole|daemon targaryen':'RIVALS','criston cole|aegon ii targaryen':'ALLIES'
+};
+const relationshipType=(from,to)=>{
+ const a=normalize(from),b=normalize(to);
+ return CHARACTER_RELATIONSHIP_TYPES[`${a}|${b}`] || CHARACTER_RELATIONSHIP_TYPES[`${b}|${a}`] || 'CONNECTED';
+};
+const characterRelationshipsHTML=(key,currentEra)=>{
+ const eraPrefix=currentEra==='hotd'?'hotd':'got';
+ const items=(CHARACTER_RELATIONS[key]||[]).filter(([name,type])=>type==='Character' && !!CHARACTER_PROFILES[`${eraPrefix}/characters/${normalize(name)}`]);
+ if(!items.length)return '';
+ const slug=s=>normalize(s);
+ const file='characters.html';
+ return `<section class="detail-section character-relationships-section"><div class="character-relationships-head"><div><span class="detail-section-label">Character Network</span><h3>Character Relationships</h3></div><span class="character-relationships-count">${items.length} CONNECTION${items.length===1?'':'S'}</span></div><p class="character-relationships-intro">Key personal, family, political, and rival connections for ${escapeHTML(key.split('/').pop().replace(/-/g,' '))}.</p><div class="character-relationships-grid">${items.map(([name])=>{const target=`character-${slug(name)}`;const href=`${file}?open=${encodeURIComponent(target)}`;return `<a class="character-relationship-card" href="${escapeHTML(href)}"><span class="character-relationship-type">${escapeHTML(relationshipType(key.split('/').pop(),name))}</span><b>${escapeHTML(name)}</b><em>VIEW CHARACTER →</em></a>`;}).join('')}</div></section>`;
+};
+const relatedHTML=(key,currentEra)=>{
+ const allItems=CHARACTER_RELATIONS[key]||[];
+ if(!allItems.length)return '';
+ const slug=s=>normalize(s);
+ const relationshipNames=new Set(allItems.filter(([,type])=>type==='Character').map(([name])=>slug(name)));
+ const items=allItems.filter(([name,type])=>type!=='Character' || !relationshipNames.has(slug(name)));
+ if(!items.length)return '';
+ const localUrl=(name,type)=>{
+   const era=currentEra==='hotd'?'hotd':'got';
+   const file=type==='Character'?'characters.html':type==='House'?'houses.html':type==='Dragon'?'dragons.html':type==='Location'?'cities.html':'';
+   if(!file)return '#';
+   const prefix=type==='Character'?'character-':type==='House'?'house-house-':type==='Dragon'?'dragon-':'city-';
+   const targetId=`${prefix}${slug(name)}`;
+   return `${file}?open=${encodeURIComponent(targetId)}`;
+ };
+ const validItems=items.filter(([name,type])=>{
+   if(type!=='Character') return true;
+   return !!CHARACTER_PROFILES[`${currentEra==='hotd'?'hotd':'got'}/characters/${slug(name)}`];
+ });
+ if(!validItems.length)return '';
+ return `<section class="detail-section related-content-section"><h3>Related Content</h3><p class="related-content-intro">Explore houses, dragons, places, and other archive connections to ${escapeHTML(key.split('/').pop().replace(/-/g,' '))}. Character-to-character connections are shown separately above.</p><div class="related-content-grid">${validItems.map(([name,type])=>`<a class="related-content-card" href="${escapeHTML(localUrl(name,type))}"><span>${escapeHTML(type)}</span><b>${escapeHTML(name)}</b><em>EXPLORE →</em></a>`).join('')}</div></section>`;
+};
+const makeCharacterModal=(profile,detail,title,clone,img,section,era)=>{
   const role=profile?.role || clone.querySelector('.char-title')?.textContent?.trim() || 'Character';
   const house=profile?.house || 'Westeros';
   const faction=profile?.faction || '';
@@ -508,7 +598,7 @@ const makeCharacterModal=(profile,detail,title,clone,img,section)=>{
   const traits=profile?.traits || 'Leadership • Loyalty • Strategy • Survival';
   const importance=profile?.importance || description;
   const imageHTML=img ? `<div class="detail-image-wrap"><img src="${escapeHTML(img.getAttribute('src'))}" alt="${escapeHTML(img.getAttribute('alt')||title)}" loading="lazy" decoding="async"></div>` : '';
-  return `<div class="detail-layout character-detail-layout"><div class="detail-media-column character-detail-media">${imageHTML}<div class="detail-media-caption"><span>${escapeHTML(house)}</span><b>CHARACTER ARCHIVE</b></div></div><div class="detail-info character-detail-info"><div class="character-detail-scroll"><div class="character-profile-head"><span class="detail-kicker">${escapeHTML(section)}${faction?` · ${escapeHTML(faction)}`:''}</span><h2>${escapeHTML(title)}</h2><p class="character-role">${escapeHTML(role)}</p><div class="detail-divider"></div><div class="character-meta"><div><b>HOUSE</b><span>${escapeHTML(house)}</span></div><div><b>KNOWN AS</b><span>${escapeHTML(profile?.known||title)}</span></div><div><b>ROLE</b><span>${escapeHTML(role)}</span></div>${faction?`<div><b>FACTION</b><span>${escapeHTML(faction)}</span></div>`:''}</div></div><div class="character-detail-sections"><section class="detail-section"><h3>Biography</h3><p>${escapeHTML(description)}</p></section><section class="detail-section"><h3>Key Characteristics</h3><p>${escapeHTML(traits)}</p></section><section class="detail-section"><h3>Story Importance</h3><p>${escapeHTML(importance)}</p></section></div></div></div></div>`;
+  return `<div class="detail-layout character-detail-layout"><div class="detail-media-column character-detail-media">${imageHTML}<div class="detail-media-caption"><span>${escapeHTML(house)}</span><b>CHARACTER ARCHIVE</b></div></div><div class="detail-info character-detail-info"><div class="character-detail-scroll"><div class="character-profile-head"><span class="detail-kicker">${escapeHTML(section)}${faction?` · ${escapeHTML(faction)}`:''}</span><h2>${escapeHTML(title)}</h2><p class="character-role">${escapeHTML(role)}</p><div class="detail-divider"></div><div class="character-meta"><div><b>HOUSE</b><span>${escapeHTML(house)}</span></div><div><b>KNOWN AS</b><span>${escapeHTML(profile?.known||title)}</span></div><div><b>ROLE</b><span>${escapeHTML(role)}</span></div>${faction?`<div><b>FACTION</b><span>${escapeHTML(faction)}</span></div>`:''}</div></div><div class="character-detail-sections"><section class="detail-section"><h3>Biography</h3><p>${escapeHTML(description)}</p></section><section class="detail-section"><h3>Key Characteristics</h3><p>${escapeHTML(traits)}</p></section><section class="detail-section"><h3>Story Importance</h3><p>${escapeHTML(importance)}</p></section>${characterRelationshipsHTML(`${era}/characters/${normalize(title)}`,era)}${relatedHTML(`${era}/characters/${normalize(title)}`,era)}</div></div></div></div>`;
 };
 const makeSections=(detail,page,title,clone)=>{
    const raw=detail?.description || clone.querySelector('p,.lore,.city-card-content')?.innerText?.trim() || clone.innerText.trim();
@@ -537,7 +627,7 @@ const makeSections=(detail,page,title,clone)=>{
    const section=detail?.section || (page==='chronicle'?'Chronicle':page==='storyline'?'Storyline':'Westeros Archive');
    const image=img ? `<div class="detail-image-wrap"><img src="${escapeHTML(img.getAttribute('src'))}" alt="${escapeHTML(img.getAttribute('alt')||finalTitle)}" loading="lazy" decoding="async"></div>` : '';
    const characterProfile=page==='characters' ? CHARACTER_PROFILES[`${era}/${page}/${normalize(title)}`] : null;
-   content.innerHTML=characterProfile ? makeCharacterModal(characterProfile,detail,finalTitle,clone,img,section) : `<div class="detail-layout"><div class="detail-media-column">${image}<div class="detail-media-caption"><span>${escapeHTML(section)}</span><b>ARCHIVE ENTRY</b></div></div><div class="detail-info"><span class="detail-kicker">${escapeHTML(section)}</span><h2 id="detailModalTitle">${escapeHTML(finalTitle)}</h2><div class="detail-divider"></div><div class="detail-copy">${makeSections(detail,page,finalTitle,clone)}</div></div></div>`;
+   content.innerHTML=characterProfile ? makeCharacterModal(characterProfile,detail,finalTitle,clone,img,section,era) : `<div class="detail-layout"><div class="detail-media-column">${image}<div class="detail-media-caption"><span>${escapeHTML(section)}</span><b>ARCHIVE ENTRY</b></div></div><div class="detail-info"><span class="detail-kicker">${escapeHTML(section)}</span><h2 id="detailModalTitle">${escapeHTML(finalTitle)}</h2><div class="detail-divider"></div><div class="detail-copy">${makeSections(detail,page,finalTitle,clone)}</div></div></div>`;
    const heading=content.querySelector('h2,h1,h3'); if(heading){heading.id='detailModalTitle';modal.querySelector('.detail-dialog')?.setAttribute('aria-labelledby','detailModalTitle');}
    // Reset every relevant scroll container so each archive entry opens from the top.
    content.scrollTop=0;
@@ -556,12 +646,89 @@ const makeSections=(detail,page,title,clone)=>{
  modal.querySelector('.detail-close')?.addEventListener('click',close);
  modal.querySelector('.detail-backdrop')?.addEventListener('click',close);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();trapDetailFocus(e);});
+ const openTargetById=id=>{
+   if(!id)return false;
+   const clean=decodeURIComponent(String(id).replace(/^#/,'')).toLowerCase();
+   const target=document.getElementById(clean);
+   if(target && cards.includes(target)){openCard(target);return true;}
+   const wanted=clean.replace(/^[^-]+-/,'');
+   const fallback=cards.find(c=>normalize(c.id||'')===clean || normalize(cardTitle(c))===wanted);
+   if(fallback){openCard(fallback);return true;}
+   return false;
+ };
  const hash=decodeURIComponent(location.hash.replace(/^#/,'')).toLowerCase();
- if(hash){
-   const wanted=hash.replace(/^[^-]+-/,'');
+ const openHashTarget=()=>{
+   const raw=decodeURIComponent(location.hash.replace(/^#/,'')).toLowerCase();
+   if(!raw)return false;
+   const targetId=raw;
+   const byId=document.getElementById(targetId);
+   if(byId && cards.includes(byId)){
+     openCard(byId);
+     return true;
+   }
+   const wanted=raw.replace(/^[^-]+-/,'');
    const target=cards.find(c=>normalize(cardTitle(c))===wanted || normalize(c.innerText).includes(wanted));
-   if(target)setTimeout(()=>openCard(target),120);
- }
+   if(target){openCard(target);return true;}
+   return false;
+ };
+ if(location.hash)setTimeout(openHashTarget,120);
+ window.addEventListener('hashchange',()=>setTimeout(openHashTarget,40));
+ document.addEventListener('click',e=>{
+   const link=e.target.closest('.related-content-card');
+   if(!link)return;
+   const href=link.getAttribute('href');
+   if(!href || href==='#')return;
+   const url=new URL(href,location.href);
+   const id=decodeURIComponent(url.hash.replace(/^#/,'')).toLowerCase();
+   if(!id)return;
+
+   // Same-page related content: open the requested card immediately.
+   if(url.pathname===location.pathname){
+     const target=document.getElementById(id);
+     if(target && cards.includes(target)){
+       e.preventDefault();
+       history.pushState(null,'',url.hash);
+       openCard(target);
+     }
+     return;
+   }
+
+   // Cross-page related content: save the exact destination, stop the browser's
+   // default anchor navigation, then navigate explicitly. This guarantees the
+   // destination page has the pending target before it reloads.
+   e.preventDefault();
+   url.searchParams.set('open',id);
+   window.location.assign(url.href);
+ });
+
+ // Restore a cross-page Related Content click after navigation. Works for
+ // Character, House, Dragon and Location cards.
+ const openPendingRelatedTarget=()=>{
+   let pending=null;
+   try{pending=JSON.parse(sessionStorage.getItem('westerosRelatedTarget')||'null');}catch(err){}
+   if(!pending || !pending.path || !pending.hash)return;
+   const samePath=pending.path===location.pathname || pending.path.replace(/\/$/,'')===location.pathname.replace(/\/$/,'');
+   if(!samePath)return;
+   try{sessionStorage.removeItem('westerosRelatedTarget');}catch(err){}
+   const id=decodeURIComponent(pending.hash.replace(/^#/,'')).toLowerCase();
+   const target=document.getElementById(id);
+   if(target && cards.includes(target)){
+     setTimeout(()=>openCard(target),60);
+     return;
+   }
+   // Fallback for file:// paths or minor ID differences.
+   const wanted=id.replace(/^[^-]+-/,'');
+   const fallback=cards.find(c=>normalize(c.id||'')===id || normalize(cardTitle(c))===wanted);
+   if(fallback)setTimeout(()=>openCard(fallback),60);
+ };
+ setTimeout(()=>{
+   const openParam=new URLSearchParams(location.search).get('open');
+   if(openParam && openTargetById(openParam)){
+     const clean=new URL(location.href); clean.searchParams.delete('open');
+     history.replaceState(null,'',clean.pathname+clean.hash);
+   }
+   openPendingRelatedTarget();
+ },120);
 }
 
 
