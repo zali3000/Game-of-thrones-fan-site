@@ -11,19 +11,21 @@ document.addEventListener("DOMContentLoaded",()=>{
 function attachTilt(selector,innerSelector,maxTilt){document.querySelectorAll(selector).forEach(card=>{const inner=card.querySelector(innerSelector)||card;card.addEventListener("mousemove",e=>{if(window.matchMedia("(hover: none)").matches)return;const r=card.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;inner.style.transform=`rotateX(${-(y-r.height/2)/(r.height/2)*maxTilt}deg) rotateY(${(x-r.width/2)/(r.width/2)*maxTilt}deg) scale(1.02)`});card.addEventListener("mouseleave",()=>inner.style.transform="rotateX(0deg) rotateY(0deg) scale(1)")})}
 function attachFlip(selector){document.querySelectorAll(selector).forEach(card=>card.addEventListener("click",()=>{if(window.matchMedia("(hover: none)").matches)card.classList.toggle("flipped")}))}
 function attachReveal(selector){const items=document.querySelectorAll(selector);if(!items.length)return;const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target)}}),{threshold:.15});items.forEach(i=>obs.observe(i))}
-function startEmbers(color){const canvas=document.getElementById("embers");if(!canvas)return;const ctx=canvas.getContext("2d");let w,h,particles=[];const resize=()=>{w=canvas.width=innerWidth;h=canvas.height=innerHeight};addEventListener("resize",resize);resize();const count=matchMedia("(max-width:720px)").matches?18:42;for(let i=0;i<count;i++)particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+.5,speed:Math.random()*.6+.2,drift:(Math.random()-.5)*.4,a:Math.random()*.5+.2});if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;function loop(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.y-=p.speed;p.x+=p.drift;if(p.y<-10){p.y=h+20;p.x=Math.random()*w}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`${color}${p.a})`;ctx.fill()});requestAnimationFrame(loop)}loop()}
+function startEmbers(color){const canvas=document.getElementById("embers");if(!canvas||matchMedia("(prefers-reduced-motion: reduce)").matches)return;const ctx=canvas.getContext("2d");let w,h,particles=[];const resize=()=>{w=canvas.width=innerWidth;h=canvas.height=innerHeight};addEventListener("resize",resize);resize();const count=matchMedia("(max-width:720px)").matches?18:42;for(let i=0;i<count;i++)particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+.5,speed:Math.random()*.6+.2,drift:(Math.random()-.5)*.4,a:Math.random()*.5+.2});function loop(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.y-=p.speed;p.x+=p.drift;if(p.y<-10){p.y=h+20;p.x=Math.random()*w}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`${color}${p.a})`;ctx.fill()});requestAnimationFrame(loop)}loop()}
 function initSearch(){const input=document.querySelector("[data-search]");if(!input)return;const items=[...document.querySelectorAll("[data-search-item]")],empty=document.querySelector(".filter-empty");input.addEventListener("input",()=>{const q=input.value.toLowerCase().trim();let shown=0;items.forEach(i=>{const ok=!q||i.innerText.toLowerCase().includes(q);i.style.display=ok?"":"none";if(ok)shown++});if(empty)empty.style.display=shown?"none":"block"})}
 function initFilters(){document.querySelectorAll("[data-filter-group]").forEach(group=>{const buttons=group.querySelectorAll("[data-filter]"), target=group.dataset.filterGroup;const items=document.querySelectorAll(`[data-filter-item="${target}"]`);buttons.forEach(b=>b.addEventListener("click",()=>{buttons.forEach(x=>x.classList.remove("active"));b.classList.add("active");const val=b.dataset.filter;items.forEach(i=>i.style.display=val==="all"||i.dataset.category===val?"":"none")}))})}
 function initProfiles(){
  const modal=document.querySelector('.profile-modal');
  if(!modal)return;
  const title=modal.querySelector('[data-profile-title]'), role=modal.querySelector('[data-profile-role]'), text=modal.querySelector('[data-profile-text]');
- const close=()=>modal.classList.remove('open');
+ let lastTrigger=null;
+ const close=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');lastTrigger?.focus();lastTrigger=null;};
+ const trapFocus=e=>{if(e.key!=='Tab'||!modal.classList.contains('open'))return;const focusables=[...modal.querySelectorAll('button,a,input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled);if(!focusables.length)return;const first=focusables[0],last=focusables[focusables.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}};
  document.querySelectorAll('.profile-trigger').forEach(btn=>btn.addEventListener('click',e=>{
    e.stopPropagation(); const card=btn.closest('.character-card');
-   if(!card)return; title.textContent=card.querySelector('.flip-face.back h3')?.textContent||''; role.textContent=card.querySelector('.flip-face.back .char-title')?.textContent||''; text.textContent=card.querySelector('.flip-face.back p')?.textContent||''; modal.classList.add('open');
+   if(!card)return; lastTrigger=btn; title.textContent=card.querySelector('.flip-face.back h3')?.textContent||''; role.textContent=card.querySelector('.flip-face.back .char-title')?.textContent||''; text.textContent=card.querySelector('.flip-face.back p')?.textContent||''; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); requestAnimationFrame(()=>modal.querySelector('.profile-close')?.focus());
  }));
- modal.querySelector('.profile-close')?.addEventListener('click',close); modal.addEventListener('click',e=>{if(e.target===modal)close()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ modal.querySelector('.profile-close')?.addEventListener('click',close); modal.addEventListener('click',e=>{if(e.target===modal)close()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')close();trapFocus(e)});
 }
 
 // Unified Westeros navigation, era-aware search and mobile menu
@@ -77,7 +79,7 @@ function initProfiles(){
      const slug=item[0].toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
      let target=item[2];
      if(!isMainHome) target=target.replace(/^got\//,'').replace(/^hotd\//,'');
-     return `<a class="home-search-result" href="${target}#${item[1].toLowerCase()}-${slug}"><span><strong>${item[0]}</strong>${badge}</span><em>${item[1]}</em></a>`;
+     const hashable=!['chronicle','storyline'].includes(item[1].toLowerCase()); const href=hashable?`${target}#${item[1].toLowerCase()}-${slug}`:target; return `<a class="home-search-result" href="${href}"><span><strong>${item[0]}</strong>${badge}</span><em>${item[1]}</em></a>`;
    }).join(''):'<div class="home-search-result no-result">No matching result found.</div>';
  });
 })();
@@ -462,11 +464,13 @@ function initDetailCards(){
  let modal=document.querySelector('.detail-modal');
  if(!modal){
    modal=document.createElement('div'); modal.className='detail-modal'; modal.hidden=true;
-   modal.innerHTML='<div class="detail-backdrop"></div><div class="detail-dialog" role="dialog" aria-modal="true" aria-label="Details"><button class="detail-close" type="button" aria-label="Close">×</button><div class="detail-content"></div></div>';
+   modal.innerHTML='<div class="detail-backdrop"></div><div class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle"><button class="detail-close" type="button" aria-label="Close">×</button><div class="detail-content"></div></div>'; modal.setAttribute('aria-hidden','true');
    document.body.appendChild(modal);
  }
  const content=modal.querySelector('.detail-content');
- const close=()=>{modal.classList.remove('open');document.body.classList.remove('detail-open');setTimeout(()=>modal.hidden=true,180);};
+ let detailTrigger=null;
+ const close=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('detail-open');detailTrigger?.focus();detailTrigger=null;setTimeout(()=>modal.hidden=true,180);};
+ const trapDetailFocus=e=>{if(e.key!=='Tab'||!modal.classList.contains('open'))return;const f=[...modal.querySelectorAll('button,a,input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled);if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}};
  const normalize=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
  const cardTitle=card=>card.querySelector('h1,h2,h3,h4,.title,.name,.city-name,.dragon-name')?.textContent?.trim() || card.innerText.trim().split('\n')[0] || '';
  const pageInfo=()=>{
@@ -503,7 +507,7 @@ const makeCharacterModal=(profile,detail,title,clone,img,section)=>{
   const description=profile?.profile || detail?.description || '';
   const traits=profile?.traits || 'Leadership • Loyalty • Strategy • Survival';
   const importance=profile?.importance || description;
-  const imageHTML=img ? `<div class="detail-image-wrap"><img src="${escapeHTML(img.getAttribute('src'))}" alt="${escapeHTML(img.getAttribute('alt')||title)}"></div>` : '';
+  const imageHTML=img ? `<div class="detail-image-wrap"><img src="${escapeHTML(img.getAttribute('src'))}" alt="${escapeHTML(img.getAttribute('alt')||title)}" loading="lazy" decoding="async"></div>` : '';
   return `<div class="detail-layout character-detail-layout"><div class="detail-media-column character-detail-media">${imageHTML}<div class="detail-media-caption"><span>${escapeHTML(house)}</span><b>CHARACTER ARCHIVE</b></div></div><div class="detail-info character-detail-info"><div class="character-detail-scroll"><div class="character-profile-head"><span class="detail-kicker">${escapeHTML(section)}${faction?` · ${escapeHTML(faction)}`:''}</span><h2>${escapeHTML(title)}</h2><p class="character-role">${escapeHTML(role)}</p><div class="detail-divider"></div><div class="character-meta"><div><b>HOUSE</b><span>${escapeHTML(house)}</span></div><div><b>KNOWN AS</b><span>${escapeHTML(profile?.known||title)}</span></div><div><b>ROLE</b><span>${escapeHTML(role)}</span></div>${faction?`<div><b>FACTION</b><span>${escapeHTML(faction)}</span></div>`:''}</div></div><div class="character-detail-sections"><section class="detail-section"><h3>Biography</h3><p>${escapeHTML(description)}</p></section><section class="detail-section"><h3>Key Characteristics</h3><p>${escapeHTML(traits)}</p></section><section class="detail-section"><h3>Story Importance</h3><p>${escapeHTML(importance)}</p></section></div></div></div></div>`;
 };
 const makeSections=(detail,page,title,clone)=>{
@@ -519,6 +523,7 @@ const makeSections=(detail,page,title,clone)=>{
    return `<section class="detail-section"><h3>${labels[0]}</h3><p>${escapeHTML(story)}</p></section><section class="detail-section"><h3>${labels[1]}</h3><p>${escapeHTML(impact)}</p></section>${extra?`<section class="detail-section detail-takeaway"><h3>Remember This</h3><p>${escapeHTML(extra)}</p></section>`:''}`;
  };
  const openCard=card=>{
+   detailTrigger=card;
    const {era,page}=pageInfo();
    const title=cardTitle(card);
    const detail=DETAILS[`${era}/${page}/${normalize(title)}`] || STORYLINE_DETAILS[`${era}/${page}/${normalize(title)}`];
@@ -530,17 +535,18 @@ const makeSections=(detail,page,title,clone)=>{
    const img=clone.querySelector('img');
    const finalTitle=detail ? title : (clone.querySelector('h1,h2,h3,h4')?.textContent?.trim() || title);
    const section=detail?.section || (page==='chronicle'?'Chronicle':page==='storyline'?'Storyline':'Westeros Archive');
-   const image=img ? `<div class="detail-image-wrap"><img src="${escapeHTML(img.getAttribute('src'))}" alt="${escapeHTML(img.getAttribute('alt')||finalTitle)}"></div>` : '';
+   const image=img ? `<div class="detail-image-wrap"><img src="${escapeHTML(img.getAttribute('src'))}" alt="${escapeHTML(img.getAttribute('alt')||finalTitle)}" loading="lazy" decoding="async"></div>` : '';
    const characterProfile=page==='characters' ? CHARACTER_PROFILES[`${era}/${page}/${normalize(title)}`] : null;
-   content.innerHTML=characterProfile ? makeCharacterModal(characterProfile,detail,finalTitle,clone,img,section) : `<div class="detail-layout"><div class="detail-media-column">${image}<div class="detail-media-caption"><span>${escapeHTML(section)}</span><b>ARCHIVE ENTRY</b></div></div><div class="detail-info"><span class="detail-kicker">${escapeHTML(section)}</span><h2>${escapeHTML(finalTitle)}</h2><div class="detail-divider"></div><div class="detail-copy">${makeSections(detail,page,finalTitle,clone)}</div></div></div>`;
+   content.innerHTML=characterProfile ? makeCharacterModal(characterProfile,detail,finalTitle,clone,img,section) : `<div class="detail-layout"><div class="detail-media-column">${image}<div class="detail-media-caption"><span>${escapeHTML(section)}</span><b>ARCHIVE ENTRY</b></div></div><div class="detail-info"><span class="detail-kicker">${escapeHTML(section)}</span><h2 id="detailModalTitle">${escapeHTML(finalTitle)}</h2><div class="detail-divider"></div><div class="detail-copy">${makeSections(detail,page,finalTitle,clone)}</div></div></div>`;
+   const heading=content.querySelector('h2,h1,h3'); if(heading){heading.id='detailModalTitle';modal.querySelector('.detail-dialog')?.setAttribute('aria-labelledby','detailModalTitle');}
    // Reset every relevant scroll container so each archive entry opens from the top.
    content.scrollTop=0;
    modal.scrollTop=0;
    const dialog=modal.querySelector('.detail-dialog');
    if(dialog) dialog.scrollTop=0;
-   modal.hidden=false;
+   modal.hidden=false; modal.setAttribute('aria-hidden','false');
    document.body.classList.add('detail-open');
-   requestAnimationFrame(()=>{ content.scrollTop=0; modal.scrollTop=0; if(dialog) dialog.scrollTop=0; modal.classList.add('open'); });
+   requestAnimationFrame(()=>{ content.scrollTop=0; modal.scrollTop=0; if(dialog) dialog.scrollTop=0; modal.classList.add('open'); modal.querySelector('.detail-close')?.focus(); });
  };
  cards.forEach(card=>card.addEventListener('click',e=>{
    if(e.target.closest('a,button'))return;
@@ -548,7 +554,7 @@ const makeSections=(detail,page,title,clone)=>{
  }));
  modal.querySelector('.detail-close')?.addEventListener('click',close);
  modal.querySelector('.detail-backdrop')?.addEventListener('click',close);
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();trapDetailFocus(e);});
  const hash=decodeURIComponent(location.hash.replace(/^#/,'')).toLowerCase();
  if(hash){
    const wanted=hash.replace(/^[^-]+-/,'');
