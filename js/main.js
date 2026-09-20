@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  attachFlip(".flip-card");
  attachReveal(".reveal");
  const theme=document.body.classList.contains("hotd-theme")?"rgba(138, 31, 31, ":"rgba(217, 98, 43, "; startEmbers(theme);
- initSearch(); initFilters(); initProfiles(); initDetailCards(); initWesterosMap();
+ initSearch(); initFilters(); initProfiles(); initFavorites(); initDetailCards(); initWesterosMap();
  // Final URL-driven card opener. It runs after initDetailCards has attached click handlers.
  setTimeout(()=>{
    const params=new URLSearchParams(location.search);
@@ -32,8 +32,41 @@ function attachTilt(selector,innerSelector,maxTilt){document.querySelectorAll(se
 function attachFlip(selector){document.querySelectorAll(selector).forEach(card=>card.addEventListener("click",()=>{if(window.matchMedia("(hover: none)").matches)card.classList.toggle("flipped")}))}
 function attachReveal(selector){const items=document.querySelectorAll(selector);if(!items.length)return;const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target)}}),{threshold:.15});items.forEach(i=>obs.observe(i))}
 function startEmbers(color){const canvas=document.getElementById("embers");if(!canvas||matchMedia("(prefers-reduced-motion: reduce)").matches)return;const ctx=canvas.getContext("2d");let w,h,particles=[];const resize=()=>{w=canvas.width=innerWidth;h=canvas.height=innerHeight};addEventListener("resize",resize);resize();const count=matchMedia("(max-width:720px)").matches?18:42;for(let i=0;i<count;i++)particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+.5,speed:Math.random()*.6+.2,drift:(Math.random()-.5)*.4,a:Math.random()*.5+.2});function loop(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.y-=p.speed;p.x+=p.drift;if(p.y<-10){p.y=h+20;p.x=Math.random()*w}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`${color}${p.a})`;ctx.fill()});requestAnimationFrame(loop)}loop()}
-function initSearch(){const input=document.querySelector("[data-search]");if(!input)return;const items=[...document.querySelectorAll("[data-search-item]")],empty=document.querySelector(".filter-empty");input.addEventListener("input",()=>{const q=input.value.toLowerCase().trim();let shown=0;items.forEach(i=>{const ok=!q||i.innerText.toLowerCase().includes(q);i.style.display=ok?"":"none";if(ok)shown++});if(empty)empty.style.display=shown?"none":"block"})}
-function initFilters(){document.querySelectorAll("[data-filter-group]").forEach(group=>{const buttons=group.querySelectorAll("[data-filter]"), target=group.dataset.filterGroup;const items=document.querySelectorAll(`[data-filter-item="${target}"]`);buttons.forEach(b=>b.addEventListener("click",()=>{buttons.forEach(x=>x.classList.remove("active"));b.classList.add("active");const val=b.dataset.filter;items.forEach(i=>i.style.display=val==="all"||i.dataset.category===val?"":"none")}))})}
+function initArchiveFiltering(){
+ const inputs=[...document.querySelectorAll("[data-search]")];
+ const groups=[...document.querySelectorAll("[data-filter-group]")];
+ const items=[...document.querySelectorAll("[data-search-item]")];
+ if(!items.length)return;
+ const empty=document.querySelector(".filter-empty");
+ const state={query:"",filters:{}};
+ const categoryFor=(item,target)=>{
+   const direct=item.dataset.category||item.dataset[target]||item.dataset.faction||item.dataset.color;
+   if(direct)return direct.toLowerCase();
+   if(target==="house")return (item.querySelector(".region")?.textContent||"").trim().toLowerCase().replace(/\s+/g,"-");
+   return "";
+ };
+ const apply=()=>{
+   const q=state.query.toLowerCase(); let shown=0;
+   items.forEach(item=>{
+     let ok=!q||item.innerText.toLowerCase().includes(q);
+     for(const [target,val] of Object.entries(state.filters)){if(val!=="all"&&categoryFor(item,target)!==val){ok=false;break;}}
+     item.style.display=ok?"":"none"; if(ok)shown++;
+   });
+   if(empty)empty.style.display=shown?"none":"block";
+   groups.forEach(g=>{const c=g.querySelector("[data-filter-count]");if(c)c.textContent=`${shown} ${shown===1?"result":"results"}`;});
+ };
+ inputs.forEach(input=>input.addEventListener("input",()=>{state.query=input.value.trim();apply();}));
+ groups.forEach(group=>{
+   const target=group.dataset.filterGroup; state.filters[target]="all";
+   group.querySelectorAll("[data-filter]").forEach(button=>button.addEventListener("click",()=>{
+     group.querySelectorAll("[data-filter]").forEach(x=>x.classList.remove("active")); button.classList.add("active");
+     state.filters[target]=button.dataset.filter.toLowerCase(); apply();
+   }));
+ });
+ apply();
+}
+function initSearch(){initArchiveFiltering()}
+function initFilters(){}
 function initProfiles(){
  const modal=document.querySelector('.profile-modal');
  if(!modal)return;
@@ -106,6 +139,37 @@ function initProfiles(){
 
 
 /* Universal card detail viewer + richer archive details. */
+function initFavorites(){
+ const items=[...document.querySelectorAll('[data-search-item]')];
+ if(!items.length)return;
+ const KEY='westeros-favorites-v1';
+ let saved={};
+ try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){saved={}};
+ const pageKey=()=>{
+   const path=location.pathname.replace(/\\/g,'/');
+   const parts=path.split('/').filter(Boolean);
+   const era=parts.includes('hotd')?'hotd':'got';
+   return era+'|'+(parts[parts.length-1]||'index.html');
+ };
+ const keyFor=item=>pageKey()+'|'+(item.id||item.dataset.searchItemId||item.querySelector('h1,h2,h3,h4,.title,.name')?.textContent||'item').trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
+ const isFav=item=>!!saved[keyFor(item)];
+ const write=()=>{try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}};
+ const updateButtons=()=>items.forEach(item=>{const b=item.querySelector('[data-favorite-button]');if(!b)return;const on=isFav(item);b.classList.toggle('is-favorite',on);b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'Remove from favorites':'Add to favorites');b.title=on?'Remove from favorites':'Add to favorites';b.textContent=on?'★':'☆';});
+ items.forEach(item=>{
+   if(item.querySelector('[data-favorite-button]'))return;
+   const b=document.createElement('button'); b.type='button'; b.className='favorite-button'; b.dataset.favoriteButton=''; b.textContent='☆'; b.title='Add to favorites'; b.setAttribute('aria-pressed','false');
+   b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const k=keyFor(item);if(saved[k])delete saved[k];else saved[k]=true;write();updateButtons();item.classList.toggle('is-favorite-card',!!saved[k]);});
+   item.appendChild(b);
+ });
+ const filterHost=document.querySelector('.archive-filters');
+ if(filterHost && !filterHost.querySelector('[data-favorites-filter]')){
+   const b=document.createElement('button');b.type='button';b.className='filter-btn favorites-filter';b.dataset.favoritesFilter='';b.setAttribute('aria-pressed','false');b.textContent='☆ FAVORITES';
+   filterHost.appendChild(b);
+   let active=false;
+   b.addEventListener('click',()=>{active=!active;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));items.forEach(item=>{item.style.display=active&&!isFav(item)?'none':''});const empty=document.querySelector('.filter-empty');if(empty){const visible=items.some(i=>i.style.display!=='none');empty.style.display=visible?'none':'';}});
+ }
+ updateButtons();
+}
 function initDetailCards(){
  const cards=[...document.querySelectorAll('.westeros-page [data-search-item]')];
  if(!cards.length)return;

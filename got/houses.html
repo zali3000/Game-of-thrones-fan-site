@@ -110,9 +110,22 @@
     No matching entries found.
    </div>
 </section>
+<div class="search-panel archive-filters" data-filter-group="house">
+<button class="filter-btn active" data-filter="all" type="button">All</button>
+<button class="filter-btn" data-filter="north" type="button">North</button>
+<button class="filter-btn" data-filter="westerlands" type="button">Westerlands</button>
+<button class="filter-btn" data-filter="crownlands" type="button">Crownlands</button>
+<button class="filter-btn" data-filter="reach" type="button">Reach</button>
+<button class="filter-btn" data-filter="riverlands" type="button">Riverlands</button>
+<button class="filter-btn" data-filter="vale" type="button">Vale</button>
+<button class="filter-btn" data-filter="stormlands" type="button">Stormlands</button>
+<button class="filter-btn" data-filter="iron-islands" type="button">Iron Islands</button>
+<button class="filter-btn" data-filter="dorne" type="button">Dorne</button>
+<span class="filter-count" data-filter-count></span>
+</div>
 <section style="padding-top:0;">
 <div class="house-grid">
-<article class="house-card tilt-card" data-house="stark" data-search-item="" id="house-house-stark">
+<article class="house-card tilt-card" data-house="stark" data-category="north" data-search-item="" id="house-house-stark">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Stark" decoding="async" height="335" loading="lazy" src="../assets/images/houses/got/got-house-stark.webp" width="597"/>
@@ -138,7 +151,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="lannister" data-search-item="" id="house-house-lannister">
+<article class="house-card tilt-card" data-house="lannister" data-category="westerlands" data-search-item="" id="house-house-lannister">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Lannister" decoding="async" height="414" loading="lazy" src="../assets/images/houses/got/got-house-lannister.webp" width="738"/>
@@ -168,7 +181,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="targaryen" data-search-item="" id="house-house-targaryen">
+<article class="house-card tilt-card" data-house="targaryen" data-category="crownlands" data-search-item="" id="house-house-targaryen">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Targaryen" decoding="async" height="336" loading="lazy" src="../assets/images/houses/got/got-house-targaryen.webp" width="595"/>
@@ -194,7 +207,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="baratheon" data-search-item="" id="house-house-baratheon">
+<article class="house-card tilt-card" data-house="baratheon" data-category="stormlands" data-search-item="" id="house-house-baratheon">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Baratheon" decoding="async" height="414" loading="lazy" src="../assets/images/houses/got/got-house-baratheon.webp" width="738"/>
@@ -220,7 +233,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="greyjoy" data-search-item="" id="house-house-greyjoy">
+<article class="house-card tilt-card" data-house="greyjoy" data-category="iron-islands" data-search-item="" id="house-house-greyjoy">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Greyjoy" decoding="async" height="413" loading="lazy" src="../assets/images/houses/got/got-house-greyjoy.webp" width="736"/>
@@ -248,7 +261,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="tyrell" data-search-item="" id="house-house-tyrell">
+<article class="house-card tilt-card" data-house="tyrell" data-category="reach" data-search-item="" id="house-house-tyrell">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Tyrell" decoding="async" height="336" loading="lazy" src="../assets/images/houses/got/got-house-tyrell.webp" width="595"/>
@@ -276,7 +289,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="martell" data-search-item="" id="house-house-martell">
+<article class="house-card tilt-card" data-house="martell" data-category="dorne" data-search-item="" id="house-house-martell">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Martell" decoding="async" height="336" loading="lazy" src="../assets/images/houses/got/got-house-martell.webp" width="595"/>
@@ -304,7 +317,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="arryn" data-search-item="" id="house-house-arryn">
+<article class="house-card tilt-card" data-house="arryn" data-category="vale" data-search-item="" id="house-house-arryn">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Arryn" decoding="async" height="414" loading="lazy" src="../assets/images/houses/got/got-house-arryn.webp" width="738"/>
@@ -332,7 +345,7 @@
       </span>
 </div>
 </article>
-<article class="house-card tilt-card" data-house="tully" data-search-item="" id="house-house-tully">
+<article class="house-card tilt-card" data-house="tully" data-category="riverlands" data-search-item="" id="house-house-tully">
 <div class="house-card-inner tilt-card-inner">
 <div class="house-photo image-slot">
 <img alt="House Tully" decoding="async" height="335" loading="lazy" src="../assets/images/houses/got/got-house-tully.webp" width="597"/>

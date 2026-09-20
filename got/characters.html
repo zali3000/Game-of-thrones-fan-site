@@ -115,8 +115,16 @@
 <div class="search-panel">
 <input aria-label="Search characters…" class="search-input" data-search="" placeholder="Search characters…" type="search"/>
 </div>
+<div class="search-panel archive-filters" data-filter-group="character">
+<button class="filter-btn active" data-filter="all" type="button">All</button>
+<button class="filter-btn" data-filter="stark" type="button">House Stark</button>
+<button class="filter-btn" data-filter="targaryen" type="button">House Targaryen</button>
+<button class="filter-btn" data-filter="lannister" type="button">House Lannister</button>
+<button class="filter-btn" data-filter="other" type="button">Other</button>
+<span class="filter-count" data-filter-count></span>
+</div>
 <div class="character-grid">
-<article class="character-card flip-card unified-card" data-search-item="" id="character-jon-snow">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="stark" id="character-jon-snow">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
@@ -154,7 +162,7 @@
        </span>
 </span>
 </article>
-<article class="character-card flip-card unified-card" data-search-item="" id="character-daenerys-targaryen">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="targaryen" id="character-daenerys-targaryen">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
@@ -192,7 +200,7 @@
        </span>
 </span>
 </article>
-<article class="character-card flip-card unified-card" data-search-item="" id="character-tyrion-lannister">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="lannister" id="character-tyrion-lannister">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
@@ -230,7 +238,7 @@
        </span>
 </span>
 </article>
-<article class="character-card flip-card unified-card" data-search-item="" id="character-arya-stark">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="stark" id="character-arya-stark">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
@@ -268,7 +276,7 @@
        </span>
 </span>
 </article>
-<article class="character-card flip-card unified-card" data-search-item="" id="character-sansa-stark">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="stark" id="character-sansa-stark">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
@@ -306,7 +314,7 @@
        </span>
 </span>
 </article>
-<article class="character-card flip-card unified-card" data-search-item="" id="character-cersei-lannister">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="lannister" id="character-cersei-lannister">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
@@ -344,7 +352,7 @@
        </span>
 </span>
 </article>
-<article class="character-card flip-card unified-card" data-search-item="" id="character-jaime-lannister">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="lannister" id="character-jaime-lannister">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
@@ -382,7 +390,7 @@
        </span>
 </span>
 </article>
-<article class="character-card flip-card unified-card" data-search-item="" id="character-bran-stark">
+<article class="character-card flip-card unified-card" data-search-item="" data-category="stark" id="character-bran-stark">
 <div class="flip-card-inner">
 <div class="flip-face front">
 <div class="character-photo">
