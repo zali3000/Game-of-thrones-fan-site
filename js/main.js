@@ -90,8 +90,9 @@ function initProfiles(){
    mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobile.classList.remove('open');menu.setAttribute('aria-expanded','false');}));
  }
  const searchBtn=document.querySelector('.home-search-btn');
- if(!searchBtn)return;
  let panel=document.querySelector('.home-search-panel');
+ if(!searchBtn)return;
+
  if(!panel){
    panel=document.createElement('div'); panel.className='home-search-panel'; panel.hidden=true;
    panel.innerHTML='<div class="search-box"><button type="button" class="search-close" aria-label="Close search">×</button><label for="homeSearch">SEARCH WESTEROS</label><input id="homeSearch" type="search" placeholder="Search houses, characters, dragons, cities..." autocomplete="off"><div id="homeSearchResults"></div></div>';
