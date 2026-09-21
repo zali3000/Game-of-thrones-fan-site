@@ -619,13 +619,12 @@ body.got-theme.westeros-page.page-characters::after{background-image:url('../ass
 body.got-theme.westeros-page.page-houses::after{background-image:url('../assets/images/backgrounds/got/houses-bg.webp');}
 body.got-theme.westeros-page.page-dragons::after{background-image:url('../assets/images/backgrounds/got/dragons-bg.webp');}
 body.got-theme.westeros-page.page-cities::after{background-image:url('../assets/images/backgrounds/got/cities-bg.webp');}
-body.got-theme.westeros-page.page-chronicle::after{background-image:url('../assets/images/backgrounds/got/chronicle-bg.webp');}
+body.got-theme.westeros-page.page-chronicle::after,body.got-theme.westeros-page.page-storyline::after{background-image:url('../assets/images/backgrounds/got/chronicle-bg.webp');}
 body.hotd-theme.westeros-page.page-characters::after{background-image:url('../assets/images/backgrounds/hotd/characters-bg.webp');}
 body.hotd-theme.westeros-page.page-houses::after{background-image:url('../assets/images/backgrounds/hotd/houses-bg.webp');}
 body.hotd-theme.westeros-page.page-dragons::after{background-image:url('../assets/images/backgrounds/hotd/dragons-bg.webp');}
 body.hotd-theme.westeros-page.page-cities::after{background-image:url('../assets/images/backgrounds/hotd/cities-bg.webp');}
-body.hotd-theme.westeros-page.page-chronicle::after{background-image:url('../assets/images/backgrounds/hotd/chronicle-bg.webp');}
-body.hotd-theme.westeros-page.page-storyline::after{background-image:url('../assets/images/backgrounds/hotd/storyline-bg.webp');}
+body.hotd-theme.westeros-page.page-chronicle::after,body.hotd-theme.westeros-page.page-storyline::after{background-image:url('../assets/images/backgrounds/hotd/chronicle-bg.webp');}
 .unified-page,.site-footer-unified,.site-header,.mobile-home-nav{z-index:2;}
 .page-background-slot,.era-background-slot{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .page-background-slot::after,.era-background-slot::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,9,14,.92),rgba(3,9,14,.42),rgba(3,9,14,.82)),linear-gradient(180deg,rgba(3,9,14,.18),rgba(3,9,14,.9));}
@@ -669,13 +668,13 @@ body.got-theme.page-characters .page-background-slot{background-image:url("../as
 body.got-theme.page-dragons .page-background-slot{background-image:url("../assets/images/backgrounds/got/dragons-bg.webp");}
 body.got-theme.page-cities .page-background-slot{background-image:url("../assets/images/backgrounds/got/cities-bg.webp");}
 body.got-theme.page-chronicle .page-background-slot{background-image:url("../assets/images/backgrounds/got/chronicle-bg.webp");}
-body.got-theme.page-storyline .page-background-slot{background-image:url("../assets/images/backgrounds/got/storyline-bg.webp");}
+body.got-theme.page-storyline .page-background-slot{background-image:url("../assets/images/backgrounds/got/chronicle-bg.webp");}
 body.hotd-theme.page-houses .page-background-slot{background-image:url("../assets/images/backgrounds/hotd/houses-bg.webp");}
 body.hotd-theme.page-characters .page-background-slot{background-image:url("../assets/images/backgrounds/hotd/characters-bg.webp");}
 body.hotd-theme.page-dragons .page-background-slot{background-image:url("../assets/images/backgrounds/hotd/dragons-bg.webp");}
 body.hotd-theme.page-cities .page-background-slot{background-image:url("../assets/images/backgrounds/hotd/cities-bg.webp");}
 body.hotd-theme.page-chronicle .page-background-slot{background-image:url("../assets/images/backgrounds/hotd/chronicle-bg.webp");}
-body.hotd-theme.page-storyline .page-background-slot{background-image:url("../assets/images/backgrounds/hotd/storyline-bg.webp");}
+body.hotd-theme.page-storyline .page-background-slot{background-image:url("../assets/images/backgrounds/hotd/chronicle-bg.webp");}
 .westeros-page .house-grid{grid-auto-rows:1fr;align-items:stretch;}
 .westeros-page .house-card{height:auto;min-height:500px;display:flex;}
 .westeros-page .house-card-inner{height:auto;min-height:100%;box-sizing:border-box;display:flex;flex-direction:column;position:relative;}
@@ -1146,8 +1145,3 @@ body.detail-open{overflow:hidden;}
   .home-header .home-tools{gap:12px}
   .home-header .random-discovery-btn{min-width:90px;width:90px}
 }
-/* Expanded House archive details */
-.house-detail-layout .character-meta{grid-template-columns:repeat(3,minmax(0,1fr));}
-.house-members-list{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.75rem}
-.house-member-chip{display:inline-flex;align-items:center;padding:.45rem .7rem;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.05em}
-@media (max-width:700px){.house-detail-layout .character-meta{grid-template-columns:1fr}.house-member-chip{font-size:.68rem}}
