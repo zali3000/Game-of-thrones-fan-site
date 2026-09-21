@@ -138,6 +138,59 @@ function initProfiles(){
 })();
 
 
+/* Random Discovery — choose a real archive entry and open it. */
+function initRandomDiscovery(){
+ const tools=document.querySelector('.home-tools');
+ if(!tools || tools.querySelector('[data-random-discovery]'))return;
+ const button=document.createElement('button');
+ button.type='button';
+ button.className='random-discovery-btn';
+ button.dataset.randomDiscovery='';
+ button.setAttribute('aria-label','Discover something random');
+ button.title='Discover something random';
+ button.innerHTML='<span aria-hidden="true">⚔</span><b>RANDOM</b>';
+ const slug=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ const targetId=(name,type)=>{
+   if(type==='House') return 'house-house-'+slug(String(name).replace(/^house\s+/i,''));
+   const prefix={Character:'character-',Dragon:'dragon-',City:'city-'}[type];
+   return prefix ? prefix+slug(name) : '';
+ };
+ const archiveIndex={
+   got:[
+    ['House Stark','House','got/houses.html'],['House Lannister','House','got/houses.html'],['House Targaryen','House','got/houses.html'],['House Baratheon','House','got/houses.html'],['House Greyjoy','House','got/houses.html'],['House Tyrell','House','got/houses.html'],['House Martell','House','got/houses.html'],['House Arryn','House','got/houses.html'],['House Tully','House','got/houses.html'],
+    ['Jon Snow','Character','got/characters.html'],['Daenerys Targaryen','Character','got/characters.html'],['Tyrion Lannister','Character','got/characters.html'],['Arya Stark','Character','got/characters.html'],['Sansa Stark','Character','got/characters.html'],['Cersei Lannister','Character','got/characters.html'],['Jaime Lannister','Character','got/characters.html'],['Bran Stark','Character','got/characters.html'],
+    ['Drogon','Dragon','got/dragons.html'],['Rhaegal','Dragon','got/dragons.html'],['Viserion','Dragon','got/dragons.html'],
+    ["King's Landing",'City','got/cities.html'],['Winterfell','City','got/cities.html'],['Braavos','City','got/cities.html'],['Dragonstone','City','got/cities.html'],['Highgarden','City','got/cities.html'],['Castle Black','City','got/cities.html'],['Meereen','City','got/cities.html'],['Sunspear','City','got/cities.html']
+   ],
+   hotd:[
+    ['House Targaryen','House','hotd/houses.html'],['House Hightower','House','hotd/houses.html'],['House Velaryon','House','hotd/houses.html'],['House Strong','House','hotd/houses.html'],
+    ['Rhaenyra Targaryen','Character','hotd/characters.html'],['Daemon Targaryen','Character','hotd/characters.html'],['King Viserys I','Character','hotd/characters.html'],['Alicent Hightower','Character','hotd/characters.html'],['Aegon II Targaryen','Character','hotd/characters.html'],['Aemond Targaryen','Character','hotd/characters.html'],['Otto Hightower','Character','hotd/characters.html'],['Corlys Velaryon','Character','hotd/characters.html'],['Rhaenys Targaryen','Character','hotd/characters.html'],['Criston Cole','Character','hotd/characters.html'],
+    ['Syrax','Dragon','hotd/dragons.html'],['Caraxes','Dragon','hotd/dragons.html'],['Vhagar','Dragon','hotd/dragons.html'],['Meleys','Dragon','hotd/dragons.html'],['Sunfyre','Dragon','hotd/dragons.html'],['Dreamfyre','Dragon','hotd/dragons.html'],
+    ["King's Landing",'City','hotd/cities.html'],['Dragonstone','City','hotd/cities.html'],['Driftmark','City','hotd/cities.html'],['Oldtown','City','hotd/cities.html'],['Harrenhal','City','hotd/cities.html'],["Storm's End",'City','hotd/cities.html']
+   ]
+ };
+ const currentEra=document.body.classList.contains('hotd-theme')?'hotd':document.body.classList.contains('got-theme')?'got':null;
+ const currentPage=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+ button.addEventListener('click',()=>{
+   const pool=currentEra ? archiveIndex[currentEra] : [...archiveIndex.got,...archiveIndex.hotd];
+   if(!pool.length)return;
+   const [name,type,path]=pool[Math.floor(Math.random()*pool.length)];
+   const id=targetId(name,type);
+   // Same-page result: open the card directly on the first click.
+   if(id && currentEra && path.startsWith(currentEra+'/') && path.slice(currentEra.length+1).toLowerCase()===currentPage){
+     const target=document.getElementById(id);
+     if(target){ target.scrollIntoView({block:'center',behavior:'auto'}); target.click(); return; }
+   }
+   // Cross-page result: construct the destination from the site root.
+   const root=new URL(currentEra ? '../' : './',location.href);
+   const destination=new URL(path,root);
+   if(id) destination.searchParams.set('open',id);
+   window.location.assign(destination.href);
+ });
+ tools.insertBefore(button,tools.firstChild);
+}
+document.addEventListener('DOMContentLoaded',initRandomDiscovery);
+
 /* Universal card detail viewer + richer archive details. */
 function initFavorites(){
  const items=[...document.querySelectorAll('[data-search-item]')];
@@ -171,7 +224,7 @@ function initFavorites(){
  updateButtons();
 }
 function initDetailCards(){
- const cards=[...document.querySelectorAll('.westeros-page [data-search-item]')];
+ const cards=[...document.querySelectorAll('.westeros-page [data-search-item], [data-search-item]')];
  if(!cards.length)return;
  const DETAILS={
   "got/houses/house-stark": {
@@ -643,8 +696,9 @@ const relatedHTML=(key,currentEra)=>{
    const era=currentEra==='hotd'?'hotd':'got';
    const file=type==='Character'?'characters.html':type==='House'?'houses.html':type==='Dragon'?'dragons.html':type==='Location'?'cities.html':'';
    if(!file)return '#';
-   const prefix=type==='Character'?'character-':type==='House'?'house-house-':type==='Dragon'?'dragon-':'city-';
-   const targetId=`${prefix}${slug(name)}`;
+   const targetId=type==='House'
+     ? `house-house-${slug(String(name).replace(/^house\s+/i,''))}`
+     : `${type==='Character'?'character-':type==='Dragon'?'dragon-':'city-'}${slug(name)}`;
    return `${file}?open=${encodeURIComponent(targetId)}`;
  };
  const validItems=items.filter(([name,type])=>{
@@ -745,22 +799,16 @@ const makeSections=(detail,page,title,clone)=>{
    const url=new URL(href,location.href);
    const id=decodeURIComponent(url.hash.replace(/^#/,'')).toLowerCase();
    if(!id)return;
-
-   // Same-page related content: open the requested card immediately.
+   e.preventDefault();
+   e.stopPropagation();
    if(url.pathname===location.pathname){
      const target=document.getElementById(id);
      if(target && cards.includes(target)){
-       e.preventDefault();
        history.pushState(null,'',url.hash);
        openCard(target);
      }
      return;
    }
-
-   // Cross-page related content: save the exact destination, stop the browser's
-   // default anchor navigation, then navigate explicitly. This guarantees the
-   // destination page has the pending target before it reloads.
-   e.preventDefault();
    url.searchParams.set('open',id);
    window.location.assign(url.href);
  });
