@@ -758,10 +758,19 @@ const makeSections=(detail,page,title,clone)=>{
    requestAnimationFrame(()=>{ content.scrollTop=0; modal.scrollTop=0; if(dialog) dialog.scrollTop=0; modal.classList.add('open'); modal.querySelector('.detail-close')?.focus(); });
  };
  window.__westerosOpenCityCard=openCard;
- cards.forEach(card=>card.addEventListener('click',e=>{
-   if(e.target.closest('a,button'))return;
-   e.preventDefault(); e.stopPropagation(); openCard(card);
- }));
+ cards.forEach(card=>{
+   if(!card.hasAttribute('tabindex'))card.setAttribute('tabindex','0');
+   if(!card.hasAttribute('role'))card.setAttribute('role','button');
+   if(!card.getAttribute('aria-label'))card.setAttribute('aria-label',`Open ${cardTitle(card)}`);
+   card.addEventListener('click',e=>{
+     if(e.target.closest('a,button'))return;
+     e.preventDefault(); e.stopPropagation(); openCard(card);
+   });
+   card.addEventListener('keydown',e=>{
+     if(e.target.closest('a,button'))return;
+     if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();openCard(card);}
+   });
+ });
  modal.querySelector('.detail-close')?.addEventListener('click',close);
  modal.querySelector('.detail-backdrop')?.addEventListener('click',close);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();trapDetailFocus(e);});
