@@ -1146,3 +1146,8 @@ body.detail-open{overflow:hidden;}
   .home-header .home-tools{gap:12px}
   .home-header .random-discovery-btn{min-width:90px;width:90px}
 }
+/* Expanded House archive details */
+.house-detail-layout .character-meta{grid-template-columns:repeat(3,minmax(0,1fr));}
+.house-members-list{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.75rem}
+.house-member-chip{display:inline-flex;align-items:center;padding:.45rem .7rem;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.05em}
+@media (max-width:700px){.house-detail-layout .character-meta{grid-template-columns:1fr}.house-member-chip{font-size:.68rem}}
