@@ -1920,6 +1920,306 @@ const CHARACTER_CARD_DATA = {
   ]
 };
 
+
+
+
+const DRAGON_CARD_DATA = {
+  "got": {
+    "dragons": [
+      {
+        "id": "dragon-drogon",
+        "color": "black",
+        "name": "Drogon",
+        "rider": "Daenerys Targaryen",
+        "description": "The largest and wildest of the three, black as a moonless sky with scales that catch fire-light like scorched glass. He answered to almost no one — and eventually decided that included empty chairs. Named for Daenerys's late husband, he outlived every other dragon in the story and flew off into the east, never confirmed dead.",
+        "image": "../assets/images/dragons/got/drogon.webp"
+      },
+      {
+        "id": "dragon-rhaegal",
+        "color": "green",
+        "name": "Rhaegal",
+        "rider": "none, formerly Jon Snow",
+        "description": "Green and bronze, named for a prince who never got to see him hatch. Quick in the air and quicker to trust the wrong airspace — a mistake at sea, ambushed by scorpion bolts, that cost him everything mid-flight.",
+        "image": "../assets/images/dragons/got/rhaegal.webp"
+      },
+      {
+        "id": "dragon-viserion",
+        "color": "cream",
+        "name": "Viserion",
+        "rider": "none, formerly Daenerys",
+        "description": "Cream and gold, the gentlest-looking of the three — right up until the night he came back wrong, killed north of the Wall and raised again with ice-blue eyes. What the dead do with a dragon is somehow worse than what the living do.",
+        "image": "../assets/images/dragons/got/viserion.webp"
+      }
+    ]
+  },
+  "hotd": {
+    "dragons": [
+      {
+        "id": "dragon-syrax",
+        "faction": "black",
+        "name": "Syrax",
+        "rider": "Rhaenyra Targaryen",
+        "description": "Rhaenyra Targaryen’s golden dragon and a symbol of her royal identity. Syrax is not known primarily as a battlefield predator, but her bond with Rhaenyra becomes increasingly important as the succession crisis turns into war.",
+        "image": "../assets/images/dragons/hotd/syrax.webp"
+      },
+      {
+        "id": "dragon-caraxes",
+        "faction": "black",
+        "name": "Caraxes",
+        "rider": "Daemon Targaryen",
+        "description": "Known as the Blood Wyrm, Caraxes is a long, red and battle-hardened dragon. His aggressive nature and bond with Daemon make the pair one of the most dangerous forces on the Black side.",
+        "image": "../assets/images/dragons/hotd/caraxes.webp"
+      },
+      {
+        "id": "dragon-vhagar",
+        "faction": "green",
+        "name": "Vhagar",
+        "rider": "Aemond Targaryen",
+        "description": "The oldest and largest living dragon during the Dance. A survivor from the age of Aegon the Conqueror, Vhagar gives Aemond an enormous military advantage and becomes one of the war’s most feared weapons.",
+        "image": "../assets/images/dragons/hotd/vhagar.webp"
+      },
+      {
+        "id": "dragon-meleys",
+        "faction": "black",
+        "name": "Meleys",
+        "rider": "Rhaenys Targaryen",
+        "description": "The Red Queen is an experienced and exceptionally fast dragon ridden by Rhaenys Targaryen. Meleys represents one of the strongest weapons available to Rhaenyra before the civil war begins taking its heaviest toll.",
+        "image": "../assets/images/dragons/hotd/meleys.webp"
+      },
+      {
+        "id": "dragon-sunfyre",
+        "faction": "green",
+        "name": "Sunfyre",
+        "rider": "Aegon II Targaryen",
+        "description": "Aegon II’s famous golden dragon, celebrated for his striking appearance and close bond with the king. Sunfyre is drawn into the brutal fighting of the Dance and suffers serious injuries during the conflict.",
+        "image": "../assets/images/dragons/hotd/sunfyre.webp"
+      },
+      {
+        "id": "dragon-dreamfyre",
+        "faction": "green",
+        "name": "Dreamfyre",
+        "rider": "Helaena Targaryen",
+        "description": "An ancient pale-blue dragon associated with Helaena Targaryen. Dreamfyre reflects the deep dragonriding heritage of the royal family even though Helaena is reluctant to become an active participant in the war.",
+        "image": "../assets/images/dragons/hotd/dreamfyre.webp"
+      },
+      {
+        "id": "dragon-seasmoke",
+        "faction": "black",
+        "name": "Seasmoke",
+        "rider": "Addam of Hull",
+        "description": "A pale-grey dragon formerly ridden by Laenor Velaryon. During the Dance, Seasmoke eventually accepts Addam of Hull as a rider, making the dragon an important part of Rhaenyra’s attempt to strengthen her forces.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-vermax",
+        "faction": "black",
+        "name": "Vermax",
+        "rider": "Jacaerys Velaryon",
+        "description": "Jacaerys Velaryon’s young dragon. Vermax grows alongside his rider and becomes part of Jacaerys’s efforts to carry messages, seek alliances and support Rhaenyra’s claim during the early stages of the war.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-arrax",
+        "faction": "black",
+        "name": "Arrax",
+        "rider": "Lucerys Velaryon",
+        "description": "Lucerys Velaryon’s young dragon. Arrax is much smaller than Vhagar, and the enormous difference in size becomes crucial when Lucerys encounters Aemond and Vhagar at Storm’s End.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-moondancer",
+        "faction": "black",
+        "name": "Moondancer",
+        "rider": "Baela Targaryen",
+        "description": "Baela Targaryen’s swift young dragon. Moondancer is smaller than the great war dragons but fast enough to become an important part of Baela’s role in the later stages of the Dance.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-tyraxes",
+        "faction": "black",
+        "name": "Tyraxes",
+        "rider": "Joffrey Velaryon",
+        "description": "The young dragon associated with Joffrey Velaryon. Tyraxes is still developing during the Dance, reflecting how the Targaryen family’s younger generation is expected to inherit the dangerous tradition of dragonriding.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-stormcloud",
+        "faction": "black",
+        "name": "Stormcloud",
+        "rider": "Aegon the Younger",
+        "description": "A young dragon belonging to Aegon the Younger. Stormcloud becomes significant because even a small dragon can provide a means of escape and survival when the royal family is caught in the chaos of war.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-vermithor",
+        "faction": "black",
+        "name": "Vermithor",
+        "rider": "Hugh Hammer",
+        "description": "Known as the Bronze Fury, Vermithor is one of the oldest and largest unclaimed dragons. His size makes him one of the most valuable targets in Rhaenyra’s search for new dragonriders and dragon power.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-silverwing",
+        "faction": "black",
+        "name": "Silverwing",
+        "rider": "Ulf the White",
+        "description": "An old silver dragon that becomes available to a new rider during the Dance. Silverwing’s long history and ability to carry a dragonseed make her one of the important dragons awakened by the search for additional riders.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-tessarion",
+        "faction": "green",
+        "name": "Tessarion",
+        "rider": "Daeron Targaryen",
+        "description": "Known as the Blue Queen, Tessarion is Daeron Targaryen’s blue dragon. She becomes an important Green military asset as Daeron campaigns in the Reach and the war expands beyond King’s Landing.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-sheepstealer",
+        "faction": "other",
+        "name": "Sheepstealer",
+        "rider": "Nettles",
+        "description": "A wild dragon known for hunting sheep instead of accepting human riders. Nettles eventually earns Sheepstealer’s trust, demonstrating that a rider does not necessarily need to come from the royal family to form a bond with a dragon.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-cannibal",
+        "faction": "other",
+        "name": "Cannibal",
+        "rider": "None known",
+        "description": "The largest and most dangerous of the wild dragons on Dragonstone. Cannibal is feared because he eats other dragons and their eggs, and unlike many Targaryen dragons he never accepts a known rider.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-grey-ghost",
+        "faction": "other",
+        "name": "Grey Ghost",
+        "rider": "None known",
+        "description": "A shy wild dragon that lives around Dragonstone and avoids human contact. His name comes from his pale colouring and elusive behaviour, making him one of the island’s mysterious untamed dragons.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-shrykos",
+        "faction": "green",
+        "name": "Shrykos",
+        "rider": "Jaehaerys Targaryen",
+        "description": "A young dragon belonging to Prince Jaehaerys Targaryen, the firstborn son of Aegon II and Helaena. Shrykos is one of the very young dragons caught up in the violence of the Dance.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-morghul",
+        "faction": "green",
+        "name": "Morghul",
+        "rider": "Jaehaera Targaryen",
+        "description": "A young dragon associated with Princess Jaehaera Targaryen. Morghul is still too young to have been ridden when the Dance begins and is caught up in the tragedy surrounding the royal children.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-balerion",
+        "faction": "historical",
+        "name": "Balerion",
+        "rider": "Aegon I Targaryen / Viserys I Targaryen",
+        "description": "Balerion the Black Dread was the greatest dragon of the Targaryen conquest. Although long dead by the Dance, his skull and legacy remain part of the history and imagery of House of the Dragon.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-meraxes",
+        "faction": "historical",
+        "name": "Meraxes",
+        "rider": "Rhaenys Targaryen",
+        "description": "Meraxes was one of the three dragons used by Aegon the Conqueror and his sisters during the conquest of Westeros. The dragon died generations before the Dance, but remains part of the Targaryen dragon history referenced in the era.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-quicksilver",
+        "faction": "historical",
+        "name": "Quicksilver",
+        "rider": "Aegon the Uncrowned",
+        "description": "Quicksilver was the young dragon of Aegon the Uncrowned. The dragon fought during the Targaryen succession conflict generations before the Dance and is part of the dynasty's earlier dragonriding history.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      },
+      {
+        "id": "dragon-morning",
+        "faction": "post-dance",
+        "name": "Morning",
+        "rider": "Rhaena Targaryen",
+        "description": "Morning is the pink dragon that eventually bonds with Rhaena Targaryen after the Dance. Her survival represents the continuation of the Targaryen dragon line after the civil war.",
+        "image": "../assets/images/dragons/hotd/dragon-generic.svg"
+      }
+    ]
+  }
+};
+
+
+function renderGotDragonsPage() {
+  if (!document.body.classList.contains("page-dragons") || !document.body.classList.contains("got-theme")) return;
+  const row = document.querySelector(".dragons-page .dragon-row");
+  if (!row || !Array.isArray(DRAGON_CARD_DATA.got.dragons)) return;
+
+  row.innerHTML = DRAGON_CARD_DATA.got.dragons.map(dragon => `
+    <article class="dragon-card" data-color="${dragon.color}" data-search-item="" id="${dragon.id}">
+      <div class="dragon-photo">
+        <img alt="${dragon.name}" decoding="async" height="520" loading="lazy" src="${dragon.image}" width="780" />
+      </div>
+      <div class="dragon-flame"></div>
+      <h3>${dragon.name}</h3>
+      <span class="rider">Rider: ${dragon.rider}</span>
+      <p class="desc">${dragon.description}</p>
+      <span class="card-detail-hint">VIEW DETAILS <span>↗</span></span>
+    </article>
+  `).join("");
+}
+
+function renderHotdDragonCards() {
+  if (!document.body.classList.contains("hotd-theme")) return;
+  const characterGrid = document.querySelector(".character-grid");
+  if (!characterGrid || document.getElementById("hotd-character-dragons")) return;
+
+  const section = document.createElement("section");
+  section.id = "hotd-character-dragons";
+  section.className = "character-dragons-section";
+  section.innerHTML = `
+    <div class="section-head">
+      <h2>Dragons of the Dance</h2>
+      <p>Explore the dragons connected to the Targaryen civil war. Dragon cards appear here only on the House of the Dragon character page.</p>
+    </div>
+    <div class="dragon-row character-dragon-row">
+      ${DRAGON_CARD_DATA.hotd.dragons.map(dragon => `
+        <article class="dragon-card" data-faction="${dragon.faction}" data-search-item="" id="${dragon.id}">
+          <div class="dragon-photo">
+            <img alt="${dragon.name}" decoding="async" height="520" loading="lazy" src="${dragon.image}" width="780" />
+          </div>
+          <div class="dragon-flame"></div>
+          <h3>${dragon.name}</h3>
+          <span class="rider">Rider: ${dragon.rider}</span>
+          <p class="desc">${dragon.description}</p>
+          <span class="card-detail-hint">VIEW DETAILS <span>↗</span></span>
+        </article>
+      `).join("")}
+    </div>
+  `;
+  characterGrid.closest("section")?.after(section);
+}
+
+function renderHotdDragonsPage() {
+  if (!document.body.classList.contains("hotd-theme") || !document.body.classList.contains("page-dragons")) return;
+  const grid = document.getElementById("hotd-dragon-grid");
+  if (!grid || !Array.isArray(DRAGON_CARD_DATA.hotd.dragons)) return;
+
+  grid.innerHTML = DRAGON_CARD_DATA.hotd.dragons.map(dragon => `
+    <article class="dragon-card" data-faction="${dragon.faction}" data-search-item="" id="${dragon.id}">
+      <div class="dragon-photo">
+        <img alt="${dragon.name}" decoding="async" height="520" loading="lazy" src="${dragon.image}" width="780" />
+      </div>
+      <div class="dragon-flame"></div>
+      <h3>${dragon.name}</h3>
+      <span class="rider">Rider: ${dragon.rider}</span>
+      <p class="desc">${dragon.description}</p>
+      <span class="card-detail-hint">VIEW DETAILS <span>↗</span></span>
+    </article>
+  `).join("");
+}
+
 function renderCharacterCards() {
   const grid = document.querySelector(".character-grid");
   if (!grid) return;
@@ -1976,9 +2276,11 @@ function renderCharacterCards() {
   }).join("");
 }
 
-renderCharacterCards();
-
 document.addEventListener("DOMContentLoaded",()=>{
+ renderCharacterCards();
+ renderGotDragonsPage();
+ renderHotdDragonCards();
+ renderHotdDragonsPage();
  const nav=document.querySelector(".site-nav"), toggle=document.querySelector(".nav-toggle");
  if(toggle) toggle.addEventListener("click",()=>{nav.classList.toggle("open");toggle.setAttribute("aria-expanded",nav.classList.contains("open"));});
  document.querySelectorAll(".site-nav a").forEach(a=>a.addEventListener("click",()=>nav?.classList.remove("open")));
@@ -2525,6 +2827,24 @@ function initDetailCards(){
     "section": "Dragon",
     "description": "Dreamfyre is an older dragon associated with the Targaryen royal family and ridden by Helaena. She is less prominent as a battlefield weapon than Vhagar or Caraxes, but her existence reflects the deep connection between the royal family and the dwindling population of living dragons."
   },
+  "hotd/dragons/seasmoke": {"section":"Dragon","description":"Seasmoke is a pale-grey dragon formerly bonded to Laenor Velaryon. During the Dance, the dragon accepts Addam of Hull, making Seasmoke an important part of Rhaenyra’s search for experienced dragonriders."},
+  "hotd/dragons/vermax": {"section":"Dragon","description":"Vermax is Jacaerys Velaryon’s dragon. Still young compared with the great war dragons, Vermax is closely associated with Jace’s diplomatic missions and his role as Rhaenyra’s heir."},
+  "hotd/dragons/arrax": {"section":"Dragon","description":"Arrax is Lucerys Velaryon’s young dragon. His encounter with Vhagar at Storm’s End becomes one of the defining tragedies that turns the succession dispute into open vengeance."},
+  "hotd/dragons/moondancer": {"section":"Dragon","description":"Moondancer is Baela Targaryen’s swift young dragon. Though much smaller than Vhagar, her speed gives Baela an important advantage when the war reaches its later stages."},
+  "hotd/dragons/tyraxes": {"section":"Dragon","description":"Tyraxes is the young dragon associated with Joffrey Velaryon. His story reflects the younger generation of Targaryens growing up with dragonriding as part of their inheritance."},
+  "hotd/dragons/stormcloud": {"section":"Dragon","description":"Stormcloud is the young dragon of Aegon the Younger. His ability to carry his rider becomes especially important as members of Rhaenyra’s family struggle to survive the war."},
+  "hotd/dragons/vermithor": {"section":"Dragon","description":"Vermithor, the Bronze Fury, is one of the largest and oldest dragons available during the Dance. His size makes finding a compatible rider a major opportunity for the Blacks."},
+  "hotd/dragons/silverwing": {"section":"Dragon","description":"Silverwing is an ancient silver dragon who becomes one of the dragons claimed during the search for dragonseeds. Her history stretches back to an earlier generation of Targaryen riders."},
+  "hotd/dragons/tessarion": {"section":"Dragon","description":"Tessarion, the Blue Queen, is Daeron Targaryen’s dragon. She becomes an important Green weapon as Daeron campaigns in the Reach and the civil war spreads across Westeros."},
+  "hotd/dragons/sheepstealer": {"section":"Dragon","description":"Sheepstealer is a wild dragon that avoids ordinary Targaryen control and feeds on livestock. Nettles eventually earns the dragon’s trust, creating one of the most unusual rider-and-dragon bonds of the Dance."},
+  "hotd/dragons/cannibal": {"section":"Dragon","description":"Cannibal is the most feared of Dragonstone’s wild dragons. He is known for eating other dragons, their eggs and their remains, and no confirmed rider ever controls him."},
+  "hotd/dragons/grey-ghost": {"section":"Dragon","description":"Grey Ghost is a shy wild dragon that lives around Dragonstone. His pale colouring and avoidance of people give him the name by which the island’s inhabitants remember him."},
+  "hotd/dragons/shrykos": {"section":"Dragon","description":"Shrykos is a young dragon belonging to Prince Jaehaerys Targaryen. Still too young for the role of a mature war dragon, Shrykos represents the vulnerable younger generation caught in the Dance."},
+  "hotd/dragons/morghul": {"section":"Dragon","description":"Morghul is a young dragon associated with Princess Jaehaera Targaryen. Morghul is part of the royal family’s younger generation and is caught up in the violence surrounding the Targaryen succession crisis."},
+  "hotd/dragons/balerion": {"section":"Dragon","description":"Balerion the Black Dread was the enormous dragon ridden by Aegon the Conqueror and later by other Targaryens. Although Balerion died long before the Dance, his legacy remains central to the history of Targaryen power."},
+  "hotd/dragons/meraxes": {"section":"Dragon","description":"Meraxes was one of Aegon the Conqueror’s three great dragons and was ridden by Queen Rhaenys Targaryen. Her death occurred generations before the Dance, but she remains an important part of the dynasty’s earlier dragon history."},
+  "hotd/dragons/quicksilver": {"section":"Dragon","description":"Quicksilver was the young dragon of Aegon the Uncrowned during an earlier Targaryen succession conflict. The dragon’s history shows that disputes over the throne and dragon power existed long before the Dance."},
+  "hotd/dragons/morning": {"section":"Dragon","description":"Morning is a pink dragon that bonds with Rhaena Targaryen after the Dance. Her appearance represents the survival and continuation of the Targaryen dragon line after the civil war."},
   "hotd/cities/king-s-landing": {
     "section": "City",
     "description": "King’s Landing is the center of royal government and the place where the succession crisis becomes a struggle for immediate control. The Red Keep, council chambers and surrounding city all become part of the political battlefield. Whoever controls the capital can claim the appearance of legitimacy, even when the succession itself is disputed."
