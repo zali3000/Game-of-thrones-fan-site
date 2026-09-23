@@ -55,37 +55,20 @@
 <span>
 </span>
 </button>
-<button aria-expanded="false" aria-label="Open menu" class="home-menu-btn" type="button">
-<i>
-</i>
-<i>
-</i>
-<i>
-</i>
-</button>
-</div>
-</header>
-<nav aria-label="Mobile navigation" class="mobile-home-nav">
-<a href="index.html">
-    HOME
-   </a>
-<a data-era-section="houses" href="got/houses.html">
-    HOUSES
-   </a>
-<a data-era-section="characters" href="got/characters.html">
-    CHARACTERS
-   </a>
-<a data-era-section="dragons" href="got/dragons.html">
-    DRAGONS
-   </a>
-<a data-era-section="cities" href="got/cities.html">
-    CITIES
-   </a>
-<a data-era-section="chronicle" href="got/chronicle.html">
-    CHRONICLE
-   </a>
-<a href="got/storyline.html">STORYLINE</a>
-</nav>
+<button aria-expanded="false" aria-label="Open navigation menu" class="home-menu-btn" type="button"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button></div>
+<nav aria-label="Mobile navigation" class="mobile-home-nav" hidden=""><a class="active" href="index.html">
+     HOME
+    </a><a data-era-section="houses" href="got/houses.html">
+     HOUSES
+    </a><a data-era-section="characters" href="got/characters.html">
+     CHARACTERS
+    </a><a data-era-section="dragons" href="got/dragons.html">
+     DRAGONS
+    </a><a data-era-section="cities" href="got/cities.html">
+     CITIES
+    </a><a data-era-section="chronicle" href="got/chronicle.html">
+     CHRONICLE
+    </a><a href="got/storyline.html">STORYLINE</a><a href="compare.html">ERA COMPARISON</a></nav></header>
 <main id="content-start">
 <section class="home-hero">
 <div class="hero-copy">
@@ -140,27 +123,27 @@
 </div>
 </div>
 </section>
-<section class="westeros-map-section unified-section home-map-section" id="westeros-map" aria-labelledby="westeros-map-title">
-  <div class="section-head westeros-map-heading">
-    <span class="map-kicker">THE WORLD AT A GLANCE</span>
-    <h2 id="westeros-map-title">The Westeros &amp; Essos Atlas</h2>
-    <p>Explore the world through a detailed interactive atlas. Switch between Westeros and Essos to change the map, then select any marked city, stronghold, or landmark to reveal its location and lore.</p>
-  </div>
-  <div class="westeros-map" data-westeros-map>
-    <div class="map-toolbar">
-      <div class="map-era-switch map-realm-switch" role="group" aria-label="Map realm">
-        <button type="button" class="map-era-btn map-realm-btn active" data-map-realm="westeros">WESTEROS</button>
-        <button type="button" class="map-era-btn map-realm-btn" data-map-realm="essos">ESSOS</button>
-      </div>
-      <button type="button" class="map-reset" data-map-reset>RESET VIEW</button>
-    </div>
-    <div class="map-stage">
-      <div class="map-art" data-map-art>
-        <div class="map-realistic-base"><img src="assets/westeros-map-realistic.webp" alt="Detailed realistic terrain map of Westeros" draggable="false"></div>
-        <noscript><p>Enable JavaScript to use the interactive location markers.</p></noscript>
-      </div>
-    </div>
-  </div>
+<section aria-labelledby="westeros-map-title" class="westeros-map-section unified-section home-map-section" id="westeros-map">
+<div class="section-head westeros-map-heading">
+<span class="map-kicker">THE WORLD AT A GLANCE</span>
+<h2 id="westeros-map-title">The Westeros &amp; Essos Atlas</h2>
+<p>Explore the world through a detailed interactive atlas. Switch between Westeros and Essos to change the map, then select any marked city, stronghold, or landmark to reveal its location and lore.</p>
+</div>
+<div class="westeros-map" data-westeros-map="">
+<div class="map-toolbar">
+<div aria-label="Map realm" class="map-era-switch map-realm-switch" role="group">
+<button class="map-era-btn map-realm-btn active" data-map-realm="westeros" type="button">WESTEROS</button>
+<button class="map-era-btn map-realm-btn" data-map-realm="essos" type="button">ESSOS</button>
+</div>
+<button class="map-reset" data-map-reset="" type="button">RESET VIEW</button>
+</div>
+<div class="map-stage">
+<div class="map-art" data-map-art="">
+<div class="map-realistic-base"><img alt="Detailed realistic terrain map of Westeros" draggable="false" src="assets/westeros-map-realistic.webp"/></div>
+<noscript><p>Enable JavaScript to use the interactive location markers.</p></noscript>
+</div>
+</div>
+</div>
 </section>
 <section class="home-featured">
 <div class="ornate-heading">

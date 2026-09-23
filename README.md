@@ -22,3 +22,6 @@ This version keeps the original dark Westeros visual identity while restructurin
 - Scroll-reveal timeline behavior
 - Shared CSS/JavaScript instead of repeated inline code
 - Cleaner folder structure and corrected relative navigation paths
+
+
+Updated: all added house cards now have dedicated archive-detail descriptions, and the main Westeros landing-page navigation remains visible at narrower desktop/browser widths via a compact horizontal nav.
