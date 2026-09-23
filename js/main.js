@@ -1,4 +1,415 @@
 /* House cards are data-driven so every GOT/HOTD house uses the same card markup and existing CSS. */
+
+const CITY_CARD_DATA = {
+  "got": {
+    "cities": [
+      {
+        "id": "city-king-s-landing",
+        "name": "King's Landing",
+        "image": "../assets/images/cities/got/kingslanding.webp",
+        "description": "Seven hills, one throne, and a smell that visitors never stop mentioning. The capital where every plot in the realm eventually comes to collect its debts."
+      },
+      {
+        "id": "city-winterfell",
+        "name": "Winterfell",
+        "image": "../assets/images/cities/got/winterfell.webp",
+        "description": "Warmed from below by hot springs and warmed from within by stubbornness. The North's oldest seat has outlasted kings, sieges, and at least one wedding it should never have hosted."
+      },
+      {
+        "id": "city-braavos",
+        "name": "Braavos",
+        "image": "../assets/images/cities/got/braavos.webp",
+        "description": "A city of canals founded by escaped slaves, guarded by a bronze titan, and quietly run by a guild that will kill you for the right price and the right god."
+      },
+      {
+        "id": "city-dragonstone",
+        "name": "Dragonstone",
+        "image": "../assets/images/cities/got/dragonstone.webp",
+        "description": "Black volcanic stone, gargoyles that seem to watch the sea a little too closely, and the ancestral seat of the only family that ever needed a landing pad."
+      },
+      {
+        "id": "city-highgarden",
+        "name": "Highgarden",
+        "image": "../assets/images/cities/got/highgarden.webp",
+        "description": "Terraces, orchards, and more flowers than any war-torn continent has a right to. The Reach's capital looks soft right up until it isn't."
+      },
+      {
+        "id": "city-castle-black",
+        "name": "Castle Black",
+        "image": "../assets/images/cities/got/castleblack.webp",
+        "description": "Home of the Night's Watch, sitting under seven hundred feet of ice with one very large elevator and a job nobody particularly wants."
+      },
+      {
+        "id": "city-meereen",
+        "name": "Meereen",
+        "image": "../assets/images/cities/got/meereen.webp",
+        "description": "A pyramid city in Slaver's Bay that briefly became a foreign queen's accidental capital while she figured out how to actually govern something."
+      },
+      {
+        "id": "city-sunspear",
+        "name": "Sunspear",
+        "image": "../assets/images/cities/got/sunspear.webp",
+        "description": "Dorne's capital, built for heat rather than defense — because the desert around it already does most of the defending."
+      },
+      {
+        "id": "city-riverrun",
+        "name": "Riverrun",
+        "region": "The Riverlands",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "The ancestral seat of House Tully, positioned where the Tumblestone meets the Red Fork."
+      },
+      {
+        "id": "city-harrenhal",
+        "name": "Harrenhal",
+        "region": "The Riverlands",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A colossal ruined castle whose size and strategic position make it a prize in wars across the Riverlands."
+      },
+      {
+        "id": "city-the-eyrie",
+        "name": "The Eyrie",
+        "region": "The Vale",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "The mountain stronghold of House Arryn, reached through the dangerous Mountains of the Moon."
+      },
+      {
+        "id": "city-lannisport",
+        "name": "Lannisport",
+        "region": "The Westerlands",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A wealthy western port beneath Casterly Rock and one of the great commercial cities of Westeros."
+      },
+      {
+        "id": "city-oldtown",
+        "name": "Oldtown",
+        "region": "The Reach",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "One of Westeros’s oldest cities, home to the Citadel and the Hightower."
+      },
+      {
+        "id": "city-storm-s-end",
+        "name": "Storm's End",
+        "region": "The Stormlands",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "The ancient Baratheon stronghold on the eastern coast, famous for its massive walls and stormy seas."
+      },
+      {
+        "id": "city-duskendale",
+        "name": "Duskendale",
+        "region": "The Crownlands",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "An old Crownlands port that becomes important during several royal conflicts."
+      },
+      {
+        "id": "city-driftmark",
+        "name": "Driftmark",
+        "region": "Blackwater Bay",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "The island seat of House Velaryon and a center of naval power."
+      },
+      {
+        "id": "city-pentos",
+        "name": "Pentos",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A wealthy Free City on the western edge of Essos with strong trading connections to Westeros."
+      },
+      {
+        "id": "city-myr",
+        "name": "Myr",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A Free City known for craftsmanship, textiles, lenses and intricate goods."
+      },
+      {
+        "id": "city-tyrosh",
+        "name": "Tyrosh",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A fortified Free City famous for trade, dyes and its position near the disputed Stepstones."
+      },
+      {
+        "id": "city-lys",
+        "name": "Lys",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A wealthy island Free City famed for perfumes, pleasure houses and maritime trade."
+      },
+      {
+        "id": "city-volantis",
+        "name": "Volantis",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "An ancient city on the Rhoyne whose huge walls and old Valyrian traditions make it one of Essos’s great powers."
+      },
+      {
+        "id": "city-qohor",
+        "name": "Qohor",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A forest city famous for its smiths, blacksmithing traditions and the Unsullied defense of its walls."
+      },
+      {
+        "id": "city-norvos",
+        "name": "Norvos",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A religious Free City inland from the eastern coast, known for its bells and bearded priests."
+      },
+      {
+        "id": "city-lorath",
+        "name": "Lorath",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A remote Free City of islands and labyrinthine waterways in the north of Essos."
+      },
+      {
+        "id": "city-astapor",
+        "name": "Astapor",
+        "region": "Slaver’s Bay",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A former slave city known for its Unsullied soldiers and the red brick buildings of Slaver’s Bay."
+      },
+      {
+        "id": "city-yunkai",
+        "name": "Yunkai",
+        "region": "Slaver’s Bay",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A yellow city of Slaver’s Bay whose wealth was built on slavery and trade."
+      },
+      {
+        "id": "city-qarth",
+        "name": "Qarth",
+        "region": "Jade Sea",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A wealthy gateway city between the Red Waste and the Jade Sea, known for merchants and powerful trading families."
+      },
+      {
+        "id": "city-vaes-dothrak",
+        "name": "Vaes Dothrak",
+        "region": "Dothraki Sea",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "The sacred city of the Dothraki, situated beneath the Mother of Mountains."
+      },
+      {
+        "id": "city-mantarys",
+        "name": "Mantarys",
+        "region": "Slaver’s Bay",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A feared city west of the ruins of Old Ghis, associated with strange stories and the devastation of war."
+      },
+      {
+        "id": "city-vaes-tolorro",
+        "name": "Vaes Tolorro",
+        "region": "Red Waste",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A ruined city encountered during the dangerous journey across the Red Waste."
+      },
+      {
+        "id": "city-hesh",
+        "name": "Hesh",
+        "region": "Yi Ti",
+        "image": "../assets/images/cities/got/featured-city.webp",
+        "description": "A major city in the distant lands east of the Bone Mountains."
+      }
+    ]
+  },
+  "hotd": {
+    "cities": [
+      {
+        "id": "city-king-s-landing",
+        "name": "King’s Landing",
+        "image": "../assets/images/cities/hotd/kingslanding.webp",
+        "description": "The capital and seat of the Iron Throne."
+      },
+      {
+        "id": "city-dragonstone",
+        "name": "Dragonstone",
+        "image": "../assets/images/cities/hotd/dragonstone.webp",
+        "description": "The ancestral Targaryen stronghold rising from the sea."
+      },
+      {
+        "id": "city-driftmark",
+        "name": "Driftmark",
+        "image": "../assets/images/cities/hotd/driftmark.webp",
+        "description": "The island seat of House Velaryon and its powerful fleet."
+      },
+      {
+        "id": "city-oldtown",
+        "name": "Oldtown",
+        "image": "../assets/images/cities/hotd/oldtown.webp",
+        "description": "A center of learning, faith and political influence."
+      },
+      {
+        "id": "city-harrenhal",
+        "name": "Harrenhal",
+        "image": "../assets/images/cities/hotd/harrenhal.webp",
+        "description": "A vast ruined castle whose history hangs over the Dance."
+      },
+      {
+        "id": "city-storm-s-end",
+        "name": "Storm’s End",
+        "image": "../assets/images/cities/hotd/storms-end.webp",
+        "description": "A fortress where royal claims collide with ancient loyalties."
+      },
+      {
+        "id": "city-gulltown",
+        "name": "Gulltown",
+        "region": "The Vale",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The principal port of the Vale and the major city nearest the Arryn stronghold."
+      },
+      {
+        "id": "city-white-harbor",
+        "name": "White Harbor",
+        "region": "The North",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The largest city and busiest port in the North, ruled by House Manderly."
+      },
+      {
+        "id": "city-winterfell",
+        "name": "Winterfell",
+        "region": "The North",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The ancient Stark seat and political center of the North."
+      },
+      {
+        "id": "city-riverrun",
+        "name": "Riverrun",
+        "region": "The Riverlands",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The Tully seat at the meeting of the Tumblestone and Red Fork."
+      },
+      {
+        "id": "city-the-eyrie",
+        "name": "The Eyrie",
+        "region": "The Vale",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The high mountain seat of House Arryn in the Mountains of the Moon."
+      },
+      {
+        "id": "city-lannisport",
+        "name": "Lannisport",
+        "region": "The Westerlands",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A wealthy port city beneath Casterly Rock and an important western trading center."
+      },
+      {
+        "id": "city-highgarden",
+        "name": "Highgarden",
+        "region": "The Reach",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The Tyrell seat and one of the richest and most fertile centers of the Reach."
+      },
+      {
+        "id": "city-storm-s-end",
+        "name": "Storm's End",
+        "region": "The Stormlands",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The formidable Baratheon stronghold overlooking Shipbreaker Bay."
+      },
+      {
+        "id": "city-sunspear",
+        "name": "Sunspear",
+        "region": "Dorne",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The seat of House Martell and the political center of Dorne."
+      },
+      {
+        "id": "city-braavos",
+        "name": "Braavos",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A powerful Free City of canals and islands, important to trade and international finance."
+      },
+      {
+        "id": "city-pentos",
+        "name": "Pentos",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A wealthy Free City across the Narrow Sea with longstanding trade ties to Westeros."
+      },
+      {
+        "id": "city-myr",
+        "name": "Myr",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A Free City known for skilled craftsmen, textiles and fine lenses."
+      },
+      {
+        "id": "city-tyrosh",
+        "name": "Tyrosh",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A Free City near the Stepstones with a strong maritime trading tradition."
+      },
+      {
+        "id": "city-lys",
+        "name": "Lys",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "An island Free City famed for perfumes, pleasure houses and commerce."
+      },
+      {
+        "id": "city-volantis",
+        "name": "Volantis",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "An ancient Valyrian city on the Rhoyne and one of the most powerful Free Cities."
+      },
+      {
+        "id": "city-qohor",
+        "name": "Qohor",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A forest city famous for its smiths and the defense of its gates by Unsullied soldiers."
+      },
+      {
+        "id": "city-norvos",
+        "name": "Norvos",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "An inland Free City known for its bells and religious traditions."
+      },
+      {
+        "id": "city-lorath",
+        "name": "Lorath",
+        "region": "Free Cities",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A remote northern Free City spread among islands and narrow waterways."
+      },
+      {
+        "id": "city-astapor",
+        "name": "Astapor",
+        "region": "Slaver’s Bay",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A great slave city of Slaver’s Bay and the traditional home of the Unsullied."
+      },
+      {
+        "id": "city-yunkai",
+        "name": "Yunkai",
+        "region": "Slaver’s Bay",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A yellow-brick slave city whose wealth came from trade and slavery."
+      },
+      {
+        "id": "city-meereen",
+        "name": "Meereen",
+        "region": "Slaver’s Bay",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "The largest of the great slave cities and a major center of power in Slaver’s Bay."
+      },
+      {
+        "id": "city-qarth",
+        "name": "Qarth",
+        "region": "Jade Sea",
+        "image": "../assets/images/cities/hotd/featured-city.webp",
+        "description": "A wealthy eastern gateway city between the Red Waste and the Jade Sea."
+      }
+    ]
+  }
+};
+
 const HOUSE_CARD_DATA={
   "got": [
     {
@@ -2276,7 +2687,772 @@ function renderCharacterCards() {
   }).join("");
 }
 
+
+
+function renderCityCards(era) {
+  const grid = document.querySelector('.unified-city-grid');
+  if (!grid || !CITY_CARD_DATA?.[era]?.cities) return;
+  grid.innerHTML = CITY_CARD_DATA[era].cities.map(city => `
+    <article class="city-card unified-city tilt-card" data-city="${city.id.replace(/^city-/, '')}" data-search-item="" id="${city.id}">
+      <div class="city-photo image-slot">
+        <img alt="${city.name.replace(/"/g, '&quot;')}" decoding="async" loading="lazy" src="${city.image}">
+      </div>
+      <div class="city-card-content">
+        <h3>${city.name}</h3>
+        <p>${city.description}</p>
+      </div>
+      <span class="card-detail-hint">VIEW DETAILS <span>↗</span></span>
+    </article>`).join('');
+}
+
+// Chronicle and Storyline archive cards — kept in chronological order and editable like the other archive data.
+const CHRONICLE_CARD_DATA = {
+  "got": {
+    "events": [
+      {
+        "id": "the-tourney-at-harrenhal",
+        "title": "The Tourney at Harrenhal",
+        "period": "Year 281",
+        "image": "../assets/images/chronicle/got/got-the-king-s-hand-loses-his-head.webp",
+        "summary": "The great tournament at Harrenhal brings together many of the leading nobles of Westeros shortly before Robert’s Rebellion. The gathering exposes political tensions and contributes to the chain of events surrounding Lyanna Stark and Prince Rhaegar Targaryen."
+      },
+      {
+        "id": "bran-s-fall",
+        "title": "Bran’s Fall",
+        "period": "Year 298",
+        "image": "../assets/images/chronicle/got/got-a-king-dies-hunting.webp",
+        "summary": "Bran Stark survives a fall from a tower at Winterfell after witnessing a secret involving Jaime and Cersei Lannister. The injury leaves Bran unable to walk and becomes the first major event that sends the Stark family onto separate paths."
+      },
+      {
+        "id": "a-king-dies-hunting",
+        "title": "A King Dies Hunting",
+        "period": "Year 298",
+        "image": "../assets/images/chronicle/got/got-a-king-dies-hunting.webp",
+        "summary": "Robert Baratheon's death sets off a quiet argument about succession that turns into a five-way war within a season."
+      },
+      {
+        "id": "the-king-s-hand-loses-his-head",
+        "title": "The King's Hand Loses His Head",
+        "period": "Year 298",
+        "image": "../assets/images/chronicle/got/got-the-king-s-hand-loses-his-head.webp",
+        "summary": "Ned Stark discovers a secret worth dying for, then does exactly that, in public, in front of his own daughters."
+      },
+      {
+        "id": "the-whispering-wood",
+        "title": "The Whispering Wood",
+        "period": "Year 299",
+        "image": "../assets/images/chronicle/got/got-wildfire-on-the-blackwater.webp",
+        "summary": "Robb Stark wins a major battle in the Riverlands and captures Jaime Lannister."
+      },
+      {
+        "id": "theon-takes-winterfell",
+        "title": "Theon Takes Winterfell",
+        "period": "Year 299",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "Theon Greyjoy captures Winterfell while Robb is campaigning far to the south."
+      },
+      {
+        "id": "the-red-wedding",
+        "title": "The Red Wedding",
+        "period": "Year 299",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "The Freys betray Robb Stark and kill him, Catelyn and many of their followers."
+      },
+      {
+        "id": "wildfire-on-the-blackwater",
+        "title": "Wildfire on the Blackwater",
+        "period": "Year 299",
+        "image": "../assets/images/chronicle/got/got-wildfire-on-the-blackwater.webp",
+        "summary": "A fleet sails for King's Landing expecting an easy siege and sails into a river that has been quietly rigged to explode."
+      },
+      {
+        "id": "the-purple-wedding",
+        "title": "The Purple Wedding",
+        "period": "Year 300",
+        "image": "../assets/images/chronicle/got/got-the-king-s-hand-loses-his-head.webp",
+        "summary": "Joffrey Baratheon dies at his wedding feast, creating another royal succession crisis."
+      },
+      {
+        "id": "the-north-remembers",
+        "title": "The North Remembers",
+        "period": "Year 299",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "A wedding meant to end a war ends a bloodline instead. The North stops trusting invitations for a generation."
+      },
+      {
+        "id": "the-battle-of-the-fist-of-the-first-men",
+        "title": "The Battle of the Fist of the First Men",
+        "period": "Year 300",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "The Night’s Watch is attacked beyond the Wall by the Army of the Dead. Many brothers are killed, the survivors retreat south, and Jon Snow gains direct experience of the supernatural threat that is gathering beyond the Wall."
+      },
+      {
+        "id": "the-mutiny-at-craster-s-keep",
+        "title": "The Mutiny at Craster’s Keep",
+        "period": "Year 301",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "Members of the Night’s Watch mutiny at Craster’s Keep after the death of Jeor Mormont. The violence destroys the leadership of the expedition and leaves Jon Snow and the surviving brothers facing both the mutineers and the dangers beyond the Wall."
+      },
+      {
+        "id": "the-hound-and-the-brotherhood",
+        "title": "The Hound and the Brotherhood",
+        "period": "Year 302",
+        "image": "../assets/images/chronicle/got/got-two-battles-one-bastard.webp",
+        "summary": "Sandor Clegane’s path crosses repeatedly with the Brotherhood Without Banners as the war leaves the Riverlands filled with displaced people and competing forces. His encounters gradually move him away from the identity of a royal enforcer and toward an uncertain search for purpose."
+      },
+      {
+        "id": "the-battle-of-castle-black",
+        "title": "The Battle of Castle Black",
+        "period": "Year 302",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "Mance Rayder’s army attacks Castle Black while the Night’s Watch attempts to defend the Wall. Jon Snow helps organize the defense, and the battle demonstrates that the Watch can still hold the Wall despite severe losses."
+      },
+      {
+        "id": "hardhome",
+        "title": "Hardhome",
+        "period": "Year 302",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "Jon Snow witnesses the White Walkers overwhelm Hardhome and raise the dead."
+      },
+      {
+        "id": "a-queen-crosses-the-sea",
+        "title": "A Queen Crosses the Sea",
+        "period": "Year 300",
+        "image": "../assets/images/chronicle/got/got-a-queen-crosses-the-sea.webp",
+        "summary": "Three dragons, a growing army, and a very long boat ride finally bring the last Targaryen back toward home."
+      },
+      {
+        "id": "two-battles-one-bastard",
+        "title": "Two Battles, One Bastard",
+        "period": "Year 303",
+        "image": "../assets/images/chronicle/got/got-two-battles-one-bastard.webp",
+        "summary": "The North is won back in the mud outside Winterfell, in a fight decided less by strategy than by who had more men left standing."
+      },
+      {
+        "id": "arya-returns-to-westeros",
+        "title": "Arya Returns to Westeros",
+        "period": "Year 303",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "After years of training in Braavos, Arya Stark returns to Westeros and begins settling old scores. Her return marks the point where the Stark children are no longer simply surviving separately and begins the process of rebuilding the family’s position in the North."
+      },
+      {
+        "id": "daenerys-lands-at-dragonstone",
+        "title": "Daenerys Lands at Dragonstone",
+        "period": "Year 300",
+        "image": "../assets/images/chronicle/got/got-a-queen-crosses-the-sea.webp",
+        "summary": "Daenerys establishes Dragonstone as the base for her campaign in Westeros."
+      },
+      {
+        "id": "jon-s-true-parentage-revealed",
+        "title": "Jon's True Parentage Revealed",
+        "period": "Year 304",
+        "image": "../assets/images/chronicle/got/got-two-battles-one-bastard.webp",
+        "summary": "Bran and Samwell uncover Jon Snow’s Targaryen parentage."
+      },
+      {
+        "id": "the-wall-falls",
+        "title": "The Wall Falls",
+        "period": "Year 304",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "The Night King breaches the Wall, allowing the Army of the Dead into the North."
+      },
+      {
+        "id": "the-dead-walk-south",
+        "title": "The Dead Walk South",
+        "period": "Year 302",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "Everyone who spent two seasons ignoring the North's warnings suddenly has a great deal of ice to deal with."
+      },
+      {
+        "id": "the-battle-of-winterfell",
+        "title": "The Battle of Winterfell",
+        "period": "Year 305",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "The living armies of Westeros gather at Winterfell to face the Army of the Dead. The battle ends with the Night King destroyed and the immediate supernatural threat defeated, but the surviving leaders emerge with heavy losses and a weakened alliance."
+      },
+      {
+        "id": "the-city-burns",
+        "title": "The City Burns",
+        "period": "Year 305",
+        "image": "../assets/images/chronicle/got/got-the-city-burns.webp",
+        "summary": "A war fought in the name of mercy ends with a capital reduced to ash — the kind of victory that leaves the winner with nothing to actually rule."
+      },
+      {
+        "id": "the-throne-melts",
+        "title": "The Throne Melts",
+        "period": "Year 305",
+        "image": "../assets/images/chronicle/got/got-the-throne-melts.webp",
+        "summary": "A war fought over a chair ends with the chair gone, and the Seven Kingdoms deciding — for the first time in centuries — to actually vote on who's next."
+      }
+    ]
+  },
+  "hotd": {
+    "events": [
+      {
+        "id": "the-great-council-at-harrenhal",
+        "title": "The Great Council at Harrenhal",
+        "period": "Year 101 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "The Great Council chooses Viserys as heir, establishing an important succession precedent."
+      },
+      {
+        "id": "aemma-and-baelon-die",
+        "title": "Aemma and Baelon Die",
+        "period": "Year 101 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "Queen Aemma Arryn dies after a failed childbirth attempt, and the infant Prince Baelon dies soon afterward. The losses leave Viserys without the son he expected to inherit and accelerate the succession crisis that will shape the Targaryen dynasty."
+      },
+      {
+        "id": "an-heir-is-named",
+        "title": "An Heir Is Named",
+        "period": "Year 105 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "King Viserys I names his daughter Rhaenyra his heir, breaking with a council's earlier ruling that a son should always inherit over a daughter — a decision half the court quietly never accepts."
+      },
+      {
+        "id": "daemon-and-the-dragon-egg",
+        "title": "Daemon and the Dragon Egg",
+        "period": "Year 105 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Daemon takes a dragon egg to Dragonstone and declares that he intends to establish a new branch of the royal family. Viserys confronts him, forcing Daemon to return the egg and exposing the continuing struggle between the king’s authority and his brother’s ambitions."
+      },
+      {
+        "id": "a-second-marriage-a-second-family",
+        "title": "A Second Marriage, A Second Family",
+        "period": "Year 106–120 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Viserys marries Alicent Hightower, who bears him three children of her own. For the next two decades, two competing households quietly compete for a throne that can only go to one line."
+      },
+      {
+        "id": "daemon-takes-the-stepstones",
+        "title": "Daemon Takes the Stepstones",
+        "period": "Year 106 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Daemon fights the Crabfeeder and helps secure the Stepstones for the Velaryon alliance."
+      },
+      {
+        "id": "rhaenyra-marries-laenor",
+        "title": "Rhaenyra Marries Laenor",
+        "period": "Year 114 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Rhaenyra marries Laenor Velaryon in a political union designed to strengthen the crown’s relationship with House Velaryon. The marriage creates a powerful alliance, but questions about the parentage of Rhaenyra’s children later become a major source of political conflict."
+      },
+      {
+        "id": "laena-velaryon-dies",
+        "title": "Laena Velaryon Dies",
+        "period": "Year 120 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Laena Velaryon dies after complications surrounding childbirth."
+      },
+      {
+        "id": "aemond-claims-vhagar",
+        "title": "Aemond Claims Vhagar",
+        "period": "Year 120 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "After Laena Velaryon dies, Aemond Targaryen secretly approaches Vhagar and succeeds in claiming the ancient dragon. The act gives Aemond enormous military importance and begins a confrontation with the Velaryon children that will remain unresolved."
+      },
+      {
+        "id": "laenor-leaves-westeros",
+        "title": "Laenor Leaves Westeros",
+        "period": "Year 120 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Rhaenyra and Daemon arrange for Laenor Velaryon to disappear from public life, allowing him to leave Westeros while the court believes him dead. The decision clears the way for Rhaenyra and Daemon to marry and changes the political structure of the royal family."
+      },
+      {
+        "id": "rhaenyra-and-daemon-marry",
+        "title": "Rhaenyra and Daemon Marry",
+        "period": "Year 120 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Rhaenyra and Daemon marry at Dragonstone soon after Laena’s funeral. Their marriage joins two powerful Targaryen branches and strengthens Rhaenyra’s faction, while also making the rivalry with Alicent’s family more personal."
+      },
+      {
+        "id": "the-greens-and-blacks-take-shape",
+        "title": "The Greens and Blacks Take Shape",
+        "period": "Year 120 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "The royal court becomes increasingly divided between supporters of Rhaenyra and supporters of Alicent and her sons. The factions are not yet fighting an open war, but their separate households, alliances and political networks establish the structure that will later become the Dance of the Dragons."
+      },
+      {
+        "id": "the-driftmark-succession-crisis",
+        "title": "The Driftmark Succession Crisis",
+        "period": "Year 126 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "A dispute over Driftmark exposes the political danger surrounding Rhaenyra’s sons."
+      },
+      {
+        "id": "the-king-dies",
+        "title": "The King Dies",
+        "period": "Year 129 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-the-king-dies.webp",
+        "summary": "Viserys I dies. His final words are misheard — or reinterpreted — and by the time Rhaenyra learns her father is gone, Alicent's son has already been crowned in the throne room."
+      },
+      {
+        "id": "aegon-is-crowned",
+        "title": "Aegon Is Crowned",
+        "period": "Year 129 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-aegon-is-crowned.jpg",
+        "summary": "Team Green moves fast and decisively — Aegon II is crowned before word even reaches Dragonstone. Rhaenyra learns she's been passed over the same day she learns her father is dead."
+      },
+      {
+        "id": "a-prince-falls-from-the-sky",
+        "title": "A Prince Falls From the Sky",
+        "period": "Year 129 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-prince-falls-from-the-sky.jpg",
+        "summary": "Rhaenyra's young son Lucerys dies in a confrontation above Storm's End when Aemond's dragon, the far larger Vhagar, turns a tense standoff into the war's first death."
+      },
+      {
+        "id": "blood-and-cheese",
+        "title": "Blood and Cheese",
+        "period": "Year 129 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-prince-falls-from-the-sky.jpg",
+        "summary": "A revenge attack in the Red Keep kills young Prince Jaehaerys."
+      },
+      {
+        "id": "the-battle-at-rook-s-rest",
+        "title": "The Battle at Rook's Rest",
+        "period": "Year 129 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-the-battle-above-the-god-s-eye.webp",
+        "summary": "The battle kills Rhaenys and Meleys and leaves Aegon badly wounded."
+      },
+      {
+        "id": "dragonseeds-and-desperation",
+        "title": "Dragonseeds and Desperation",
+        "period": "Year 130 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-dragonseeds-and-desperation.webp",
+        "summary": "Both sides start searching for anyone with even a drop of Targaryen blood who might be able to claim one of the realm's several riderless dragons — a sign of how badly the war has already thinned both sides' ranks."
+      },
+      {
+        "id": "the-battle-of-the-gullet",
+        "title": "The Battle of the Gullet",
+        "period": "Year 130 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-king-s-landing-falls.webp",
+        "summary": "A major naval and dragon battle causes heavy losses on both sides."
+      },
+      {
+        "id": "rhaenyra-takes-king-s-landing",
+        "title": "Rhaenyra Takes King’s Landing",
+        "period": "Year 130 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-king-s-landing-falls.webp",
+        "summary": "Rhaenyra enters King’s Landing after the city’s defenses collapse and takes possession of the Iron Throne. Her occupation gives the Blacks control of the capital, but the war continues elsewhere and the financial and political pressures of ruling the city quickly intensify."
+      },
+      {
+        "id": "the-battle-above-the-god-s-eye",
+        "title": "The Battle Above the God's Eye",
+        "period": "Year 130 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-the-battle-above-the-god-s-eye.webp",
+        "summary": "Three dragons meet in the air over a lake at once — one of the only times in the entire war that dragons fight each other directly rather than striking ground targets, and the losses are catastrophic on every side."
+      },
+      {
+        "id": "the-storming-of-the-dragonpit",
+        "title": "The Storming of the Dragonpit",
+        "period": "Year 130 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-the-war-turns-again.webp",
+        "summary": "A riot in King’s Landing leads to the destruction of several dragons and many lives."
+      },
+      {
+        "id": "the-war-turns-again",
+        "title": "The War Turns Again",
+        "period": "Year 131 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-the-war-turns-again.webp",
+        "summary": "Rhaenyra's hold on the capital collapses almost as fast as it began. The war grinds on with both claimants' fortunes reversing violently, and the human cost climbing far past what either side started the war willing to pay."
+      },
+      {
+        "id": "a-council-ends-what-dragons-couldn-t",
+        "title": "A Council Ends What Dragons Couldn't",
+        "period": "Year 131 AC",
+        "image": "../assets/images/chronicle/hotd/hotd-a-council-ends-what-dragons-couldn-t.webp",
+        "summary": "With both claimants gone and most of the dragons dead, the war finally ends not with a decisive battle but with the surviving lords choosing Rhaenyra and Daemon's young son, Aegon III, as a compromise king — a dynasty that survives, but never quite the same."
+      }
+    ]
+  }
+};
+
+const STORYLINE_CARD_DATA = {
+  "got": {
+    "events": [
+      {
+        "id": "the-tourney-at-harrenhal",
+        "title": "The Tourney at Harrenhal",
+        "period": "ARC 19",
+        "image": "../assets/images/chronicle/got/got-the-king-s-hand-loses-his-head.webp",
+        "summary": "Harrenhal becomes a meeting place for nobles, knights and royal ambitions, but beneath the spectacle Westeros is already divided by suspicion. Prince Rhaegar Targaryen’s actions around Lyanna Stark become the subject of later arguments about honor, love, abduction and rebellion."
+      },
+      {
+        "id": "bran-s-fall",
+        "title": "Bran’s Fall",
+        "period": "ARC 18",
+        "image": "../assets/images/chronicle/got/got-a-king-dies-hunting.webp",
+        "summary": "The story begins with Bran Stark discovering something he was never meant to see. Jaime Lannister pushes him from a tower in an attempt to protect a secret that could destroy the royal family. Bran survives, but his fall…"
+      },
+      {
+        "id": "a-king-dies-hunting",
+        "title": "A King Dies Hunting",
+        "period": "ARC 1",
+        "image": "../assets/images/chronicle/got/got-a-king-dies-hunting.webp",
+        "summary": "Robert Baratheon goes into the kingswood expecting an ordinary hunt, while inside the Red Keep the kingdom is already being pulled apart by secrets. Ned Stark has begun uncovering the truth behind the royal children, Cersei is determined to protect her family, and rival powers are watching the succession closely."
+      },
+      {
+        "id": "the-king-s-hand-loses-his-head",
+        "title": "The King's Hand Loses His Head",
+        "period": "ARC 2",
+        "image": "../assets/images/chronicle/got/got-the-king-s-hand-loses-his-head.webp",
+        "summary": "Ned Stark enters King's Landing believing that loyalty, evidence and the king's authority can still protect the realm. Instead, every discovery places him deeper inside a struggle between the Lannisters, the crown and the people who want to influence the succession."
+      },
+      {
+        "id": "the-whispering-wood",
+        "title": "The Whispering Wood",
+        "period": "ARC 10",
+        "image": "../assets/images/chronicle/got/got-wildfire-on-the-blackwater.webp",
+        "summary": "Robb Stark stops trying to win the war through a single march on King's Landing and begins fighting on his own terms. By dividing his forces and striking the Lannister army at the Whispering Wood, he captures Jaime Lannister and suddenly gains leverage that few expected a young northern king to have."
+      },
+      {
+        "id": "theon-takes-winterfell",
+        "title": "Theon Takes Winterfell",
+        "period": "ARC 11",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "Theon Greyjoy returns to the North believing that taking Winterfell will prove his loyalty to his father. Instead, the capture leaves him isolated inside a castle he once called home."
+      },
+      {
+        "id": "the-red-wedding",
+        "title": "The Red Wedding",
+        "period": "ARC 12",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "Robb Stark enters the Twins hoping to repair the alliance he damaged by breaking his marriage promise. The gathering appears to offer a path back to political stability, but the Freys and their allies have already chosen betrayal."
+      },
+      {
+        "id": "wildfire-on-the-blackwater",
+        "title": "Wildfire on the Blackwater",
+        "period": "ARC 3",
+        "image": "../assets/images/chronicle/got/got-wildfire-on-the-blackwater.webp",
+        "summary": "Stannis Baratheon sails toward King's Landing believing that his claim and his army can finally take the Iron Throne. Inside the city, Tyrion knows that the defenders cannot match Stannis ship for ship, so he prepares a dangerous plan around wildfire."
+      },
+      {
+        "id": "the-purple-wedding",
+        "title": "The Purple Wedding",
+        "period": "ARC 13",
+        "image": "../assets/images/chronicle/got/got-the-king-s-hand-loses-his-head.webp",
+        "summary": "Joffrey's wedding is meant to display the strength of the new royal alliance, but the celebration collapses when the young king dies. Suspicion falls on several people, especially Tyrion, while Sansa is pulled into another dangerous escape."
+      },
+      {
+        "id": "the-north-remembers",
+        "title": "The North Remembers",
+        "period": "ARC 4",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "The Stark cause appears broken after betrayal, defeat and the loss of Winterfell, but the story of the North does not end with Robb's death. Sansa learns to survive by reading the intentions of the people around her, Arya travels through a series of identities while learning how to fight back, and Bran begins a completely different journey beyond the Wall."
+      },
+      {
+        "id": "the-battle-of-the-fist-of-the-first-men",
+        "title": "The Battle of the Fist of the First Men",
+        "period": "ARC 20",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "Jon Snow and the Night’s Watch travel beyond the Wall expecting danger from wildlings, but the scale of the threat becomes far greater than they imagined. At the Fist, the brothers are surrounded by an enemy that does no…"
+      },
+      {
+        "id": "the-mutiny-at-craster-s-keep",
+        "title": "The Mutiny at Craster’s Keep",
+        "period": "ARC 21",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "The Night’s Watch expedition reaches a breaking point at Craster’s Keep. Hunger, fear, resentment and the brutal conditions beyond the Wall have already weakened the brothers when Craster is killed and the mutiny begins.…"
+      },
+      {
+        "id": "the-hound-and-the-brotherhood",
+        "title": "The Hound and the Brotherhood",
+        "period": "ARC 23",
+        "image": "../assets/images/chronicle/got/got-two-battles-one-bastard.webp",
+        "summary": "Sandor Clegane spends much of the war believing that survival means staying close to power and away from weakness. His encounters with the Brotherhood Without Banners challenge that idea."
+      },
+      {
+        "id": "the-battle-of-castle-black",
+        "title": "The Battle of Castle Black",
+        "period": "ARC 22",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "Mance Rayder’s army finally reaches the Wall, forcing Jon Snow to defend the place that has become his home. The battle unfolds on several fronts as the Night’s Watch struggles with limited numbers and the wildlings atta…"
+      },
+      {
+        "id": "hardhome",
+        "title": "Hardhome",
+        "period": "ARC 15",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "Jon Snow travels to Hardhome intending to bring the wildlings south before the White Walkers can reach them. Instead, he witnesses an attack that makes the threat impossible to dismiss as an old legend."
+      },
+      {
+        "id": "a-queen-crosses-the-sea",
+        "title": "A Queen Crosses the Sea",
+        "period": "ARC 5",
+        "image": "../assets/images/chronicle/got/got-a-queen-crosses-the-sea.webp",
+        "summary": "Daenerys spends years building a new identity far from the kingdom her family once ruled. She survives exile, gains the loyalty of people who once saw her as powerless, frees slaves, gathers armies and raises three dragons into living symbols of Targaryen power."
+      },
+      {
+        "id": "two-battles-one-bastard",
+        "title": "Two Battles, One Bastard",
+        "period": "ARC 7",
+        "image": "../assets/images/chronicle/got/got-two-battles-one-bastard.webp",
+        "summary": "Jon Snow's path from an uncertain member of the Night's Watch to a leader of the North is shaped by repeated battles and increasingly difficult choices. At the Wall he learns that leadership requires sacrifice; later, his campaigns against the forces occupying the North force him to make decisions that affect entire armies."
+      },
+      {
+        "id": "arya-returns-to-westeros",
+        "title": "Arya Returns to Westeros",
+        "period": "ARC 24",
+        "image": "../assets/images/chronicle/got/got-the-north-remembers.webp",
+        "summary": "Arya returns from Braavos with a new set of skills and a very different understanding of identity. She is no longer simply the frightened girl who fled King’s Landing; she has learned to hide her intentions, observe her enemies and act decisively."
+      },
+      {
+        "id": "daenerys-lands-at-dragonstone",
+        "title": "Daenerys Lands at Dragonstone",
+        "period": "ARC 14",
+        "image": "../assets/images/chronicle/got/got-a-queen-crosses-the-sea.webp",
+        "summary": "After years of exile and conquest across Essos, Daenerys finally steps onto Westerosi soil at Dragonstone. She now has dragons, armies and advisers who believe she can take the throne, but returning home also forces her to confront a country that has changed while she was away."
+      },
+      {
+        "id": "jon-s-true-parentage-revealed",
+        "title": "Jon's True Parentage Revealed",
+        "period": "ARC 17",
+        "image": "../assets/images/chronicle/got/got-two-battles-one-bastard.webp",
+        "summary": ""
+      },
+      {
+        "id": "the-wall-falls",
+        "title": "The Wall Falls",
+        "period": "ARC 16",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "The Wall has protected the kingdoms for thousands of years, so its destruction changes the scale of the story immediately. After the Night King gains an undead dragon, the Army of the Dead attacks the ancient barrier and breaks through."
+      },
+      {
+        "id": "the-dead-walk-south",
+        "title": "The Dead Walk South",
+        "period": "ARC 6",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "For much of the story, the political war makes the threat beyond the Wall seem distant and almost unbelievable. Jon Snow and the Night's Watch gradually discover that the legends are real, while the White Walkers gather an army of the dead."
+      },
+      {
+        "id": "the-battle-of-winterfell",
+        "title": "The Battle of Winterfell",
+        "period": "ARC 25",
+        "image": "../assets/images/chronicle/got/got-the-dead-walk-south.webp",
+        "summary": "The armies gathered at Winterfell know that they cannot retreat forever, so former enemies prepare to fight together against the dead. Jon and Daenerys struggle with leadership, Sansa protects the people inside the castle, Arya searches for a way to strike at the enemy, and Bran becomes the center of the Night King’s pursuit."
+      },
+      {
+        "id": "the-city-burns",
+        "title": "The City Burns",
+        "period": "ARC 8",
+        "image": "../assets/images/chronicle/got/got-the-city-burns.webp",
+        "summary": "After the Army of the Dead is defeated and Cersei's rule is broken, Daenerys finally stands close to the throne she has spent years pursuing. But victory has cost her many of the people who once guided her, and her trust in those around her is weakening."
+      },
+      {
+        "id": "the-throne-melts",
+        "title": "The Throne Melts",
+        "period": "ARC 9",
+        "image": "../assets/images/chronicle/got/got-the-throne-melts.webp",
+        "summary": "The final conflict is no longer about defeating an army; it is about deciding what kind of government can exist after years of war. Jon's decision to stop Daenerys leaves the surviving leaders facing the consequences of everything that came before."
+      }
+    ]
+  },
+  "hotd": {
+    "events": [
+      {
+        "id": "the-great-council-at-harrenhal",
+        "title": "The Great Council at Harrenhal",
+        "period": "ARC 11",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "The Great Council is called to settle the question of who should inherit after the death of King Jaehaerys's son. Viserys is chosen over Rhaenys, establishing a political expectation that favors the male line."
+      },
+      {
+        "id": "aemma-and-baelon-die",
+        "title": "Aemma and Baelon Die",
+        "period": "ARC 19",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "Viserys believes the birth of a healthy son will secure the future of his dynasty, but the birth instead becomes a devastating loss. Aemma dies and the infant Baelon survives for only a short time, leaving Viserys grieving and the realm suddenly without the male heir he expected."
+      },
+      {
+        "id": "an-heir-is-named",
+        "title": "An Heir Is Named",
+        "period": "ARC 1",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "After the death of Queen Aemma and the failure of the male succession he expected, Viserys Targaryen chooses his daughter Rhaenyra as heir to the Iron Throne. The decision gives Rhaenyra a place in history, but it also places an enormous expectation on a young woman in a court where many nobles still assume a man should rule."
+      },
+      {
+        "id": "daemon-and-the-dragon-egg",
+        "title": "Daemon and the Dragon Egg",
+        "period": "ARC 20",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Daemon attempts to create a new royal reality at Dragonstone by taking a valuable dragon egg and presenting himself as a rival center of power. His actions force Viserys to confront a problem he repeatedly struggles with: how to control a brother he loves while still protecting the authority of the crown."
+      },
+      {
+        "id": "a-second-marriage-a-second-family",
+        "title": "A Second Marriage, A Second Family",
+        "period": "ARC 2",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Viserys marries Alicent Hightower, believing the marriage will strengthen the crown and give the realm stability. Instead, it creates a second royal family whose children have Targaryen blood and their own supporters."
+      },
+      {
+        "id": "daemon-takes-the-stepstones",
+        "title": "Daemon Takes the Stepstones",
+        "period": "ARC 12",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Daemon Targaryen grows frustrated with the limits of court life and turns his attention to the Stepstones, where the Triarchy threatens trade across the narrow sea. His campaign becomes a chance to prove that he can win a war rather than merely create trouble at court."
+      },
+      {
+        "id": "rhaenyra-marries-laenor",
+        "title": "Rhaenyra Marries Laenor",
+        "period": "ARC 21",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Rhaenyra’s marriage to Laenor Velaryon is presented as a solution to several political problems at once. It strengthens the Velaryon alliance, gives the crown a powerful naval connection and reassures nobles who want the succession surrounded by established families."
+      },
+      {
+        "id": "laena-velaryon-dies",
+        "title": "Laena Velaryon Dies",
+        "period": "ARC 13",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Laena Velaryon's death leaves Daemon facing another personal loss while the Velaryon family continues to carry enormous political importance. Her final moments underline how fragile even the most powerful families are in a world where childbirth, succession and dragonfire can change the future overnight."
+      },
+      {
+        "id": "aemond-claims-vhagar",
+        "title": "Aemond Claims Vhagar",
+        "period": "ARC 22",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "Aemond has grown up surrounded by dragons but without one of his own, and Vhagar represents a chance to change that. After Laena’s death, he approaches the enormous ancient dragon and succeeds where others might have failed."
+      },
+      {
+        "id": "laenor-leaves-westeros",
+        "title": "Laenor Leaves Westeros",
+        "period": "ARC 23",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Rhaenyra and Daemon decide that the safest way to reshape the royal family is to remove Laenor from the political board without truly killing him. The plan allows Laenor to escape with the person he loves while the court believes he is dead."
+      },
+      {
+        "id": "rhaenyra-and-daemon-marry",
+        "title": "Rhaenyra and Daemon Marry",
+        "period": "ARC 24",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "Rhaenyra and Daemon’s marriage joins two people who have repeatedly challenged the expectations placed on them. Their union strengthens the Black faction, but it also alarms Alicent because the marriage connects Rhaenyra directly to one of the most unpredictable Targaryens in the realm."
+      },
+      {
+        "id": "the-greens-and-blacks-take-shape",
+        "title": "The Greens and Blacks Take Shape",
+        "period": "ARC 25",
+        "image": "../assets/images/chronicle/hotd/hotd-a-second-marriage-a-second-family.webp",
+        "summary": "The court gradually stops functioning as one royal household. Alicent’s family develops its own network of supporters, while Rhaenyra and Daemon build alliances around Dragonstone and House Velaryon. The names Green and …"
+      },
+      {
+        "id": "the-driftmark-succession-crisis",
+        "title": "The Driftmark Succession Crisis",
+        "period": "ARC 14",
+        "image": "../assets/images/chronicle/hotd/hotd-an-heir-is-named.webp",
+        "summary": "When Corlys Velaryon is thought to be near death, the question of who will inherit Driftmark becomes a public test of Rhaenyra's family. Vaemond Velaryon refuses to accept Lucerys as heir and openly challenges the legitimacy of Rhaenyra's sons."
+      },
+      {
+        "id": "the-king-dies",
+        "title": "The King Dies",
+        "period": "ARC 3",
+        "image": "../assets/images/chronicle/hotd/hotd-the-king-dies.webp",
+        "summary": "Viserys dies after years of trying to keep his family and his succession together. While Rhaenyra is away from King's Landing, the Green faction moves quickly to secure the crown for Aegon."
+      },
+      {
+        "id": "aegon-is-crowned",
+        "title": "Aegon Is Crowned",
+        "period": "ARC 4",
+        "image": "../assets/images/chronicle/hotd/hotd-aegon-is-crowned.jpg",
+        "summary": "Aegon's coronation transforms a disputed succession into a direct contest between two crowned claims. The Greens present Aegon as the male heir who can preserve the realm's traditions, while the Blacks insist that Viserys named Rhaenyra and that his decision must be honored."
+      },
+      {
+        "id": "a-prince-falls-from-the-sky",
+        "title": "A Prince Falls From the Sky",
+        "period": "ARC 5",
+        "image": "../assets/images/chronicle/hotd/hotd-a-prince-falls-from-the-sky.jpg",
+        "summary": "Rhaenyra sends Lucerys to Storm's End hoping diplomacy can win the support of House Baratheon. There he encounters Aemond, whose anger over the past has never disappeared."
+      },
+      {
+        "id": "blood-and-cheese",
+        "title": "Blood and Cheese",
+        "period": "ARC 15",
+        "image": "../assets/images/chronicle/hotd/hotd-a-prince-falls-from-the-sky.jpg",
+        "summary": "Lucerys's death creates a demand for revenge that even political calculation struggles to contain. Daemon secretly arranges for assassins to enter the Red Keep, where they are told to take revenge for the prince's death."
+      },
+      {
+        "id": "the-battle-at-rook-s-rest",
+        "title": "The Battle at Rook's Rest",
+        "period": "ARC 16",
+        "image": "../assets/images/chronicle/hotd/hotd-the-battle-above-the-god-s-eye.webp",
+        "summary": ""
+      },
+      {
+        "id": "dragonseeds-and-desperation",
+        "title": "Dragonseeds and Desperation",
+        "period": "ARC 6",
+        "image": "../assets/images/chronicle/hotd/hotd-dragonseeds-and-desperation.webp",
+        "summary": "As the Dance consumes experienced riders and dragons, Rhaenyra's side begins searching for people who might claim the remaining beasts. The dragonseeds offer a desperate possibility because some people with Valyrian ancestry may be able to bond with dragons even if they were born far from the royal court."
+      },
+      {
+        "id": "the-battle-of-the-gullet",
+        "title": "The Battle of the Gullet",
+        "period": "ARC 17",
+        "image": "../assets/images/chronicle/hotd/hotd-king-s-landing-falls.webp",
+        "summary": "The war expands beyond castles and armies when the Gullet becomes a battlefield for ships, soldiers and dragons. The Blacks fight to protect vital routes and supplies while the Greens and their allies seek to disrupt them."
+      },
+      {
+        "id": "rhaenyra-takes-king-s-landing",
+        "title": "Rhaenyra Takes King’s Landing",
+        "period": "ARC 26",
+        "image": "../assets/images/chronicle/hotd/hotd-king-s-landing-falls.webp",
+        "summary": "Rhaenyra’s forces finally enter King’s Landing and seize the symbol she has spent her life believing was promised to her. The victory appears to validate the Black claim, but ruling the capital proves more difficult than…"
+      },
+      {
+        "id": "the-battle-above-the-god-s-eye",
+        "title": "The Battle Above the God's Eye",
+        "period": "ARC 7",
+        "image": "../assets/images/chronicle/hotd/hotd-the-battle-above-the-god-s-eye.webp",
+        "summary": "Daemon and Aemond eventually meet above the God's Eye after years of rivalry, insult and violence. Their confrontation is more than another battle between dragonriders: both men have become symbols of the extremes of the two factions."
+      },
+      {
+        "id": "the-storming-of-the-dragonpit",
+        "title": "The Storming of the Dragonpit",
+        "period": "ARC 18",
+        "image": "../assets/images/chronicle/hotd/hotd-the-war-turns-again.webp",
+        "summary": "Fear and anger in King's Landing eventually turn against the dragons themselves. Crowds storm the Dragonpit, and the creatures that once made the Targaryens nearly untouchable are suddenly trapped by the people they were supposed to rule."
+      },
+      {
+        "id": "the-war-turns-again",
+        "title": "The War Turns Again",
+        "period": "ARC 9",
+        "image": "../assets/images/chronicle/hotd/hotd-the-war-turns-again.webp",
+        "summary": "The Dance becomes a cycle in which every victory creates another crisis. Dragons die, riders disappear, armies change direction and leaders who once seemed secure suddenly lose their positions."
+      },
+      {
+        "id": "a-council-ends-what-dragons-couldn-t",
+        "title": "A Council Ends What Dragons Couldn't",
+        "period": "ARC 10",
+        "image": "../assets/images/chronicle/hotd/hotd-a-council-ends-what-dragons-couldn-t.webp",
+        "summary": "By the end of the Dance, the Targaryens have lost so much that neither faction can simply force the old conflict to continue. Dragons have been killed, riders have fallen, King's Landing has suffered, and the royal family has been reduced to a fraction of its former strength."
+      }
+    ]
+  }
+};
+
+
+const archiveEscapeHTML=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+function renderArchiveTimeline(){
+  const host=document.querySelector('.timeline-data-render[data-archive-era][data-archive-page]');
+  if(!host)return;
+  const era=host.dataset.archiveEra;
+  const page=host.dataset.archivePage;
+  const source=page==='chronicle'?CHRONICLE_CARD_DATA:STORYLINE_CARD_DATA;
+  const events=source?.[era]?.events||[];
+  host.innerHTML=events.map((event,index)=>{
+    const reverse=index%2===1?' reverse':'';
+    const period=page==='storyline'?`ARC ${index+1}`:event.period;
+    return `<div class="timeline-item reveal${reverse}"><div class="timeline-dot"></div><div class="timeline-card" data-search-item id="${archiveEscapeHTML(page+'-'+event.id)}"><div class="timeline-photo image-slot"><img alt="${archiveEscapeHTML(event.title)}" decoding="async" height="675" loading="lazy" src="${archiveEscapeHTML(event.image)}" width="1200"/></div><span class="timeline-year${page==='storyline'?' storyline-label':''}">${archiveEscapeHTML(period)}</span><h3>${archiveEscapeHTML(event.title)}</h3><p>${archiveEscapeHTML(event.summary)}</p><span class="card-detail-hint">VIEW DETAILS <span>↗</span></span></div></div>`;
+  }).join('');
+  host.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
+  // Render Chronicle/Storyline first so archive pages remain populated even if another optional initializer fails.
+  try { renderArchiveTimeline(); } catch (error) { console.error("Archive timeline render failed:", error); }
+
+  const currentEra = location.pathname.includes('/hotd/') ? 'hotd' : location.pathname.includes('/got/') ? 'got' : null;
+  if (currentEra && document.querySelector('.unified-city-grid')) renderCityCards(currentEra);
+
  renderCharacterCards();
  renderGotDragonsPage();
  renderHotdDragonCards();
@@ -2572,7 +3748,9 @@ function initFavorites(){
 function initDetailCards(){
  const cards=[...document.querySelectorAll('.westeros-page [data-search-item], [data-search-item]')];
  if(!cards.length)return;
- const DETAILS={
+ 
+
+const DETAILS={
   "got/houses/house-stark": {
     "section": "House",
     "description": "The Starks are the old northern house of Winterfell, known for duty, endurance and a deep connection to the North. Their words, “Winter Is Coming,” are less a slogan than a warning: survival requires preparation, loyalty and the ability to endure hardship."
@@ -2909,84 +4087,148 @@ function initDetailCards(){
     "section": "Chronicle",
     "description": "After the greatest violence of the Dance, a political council helps bring the conflict toward an end. The settlement demonstrates an important truth of the civil war: dragons can win battles, but they cannot create lasting legitimacy or peace. Westeros must eventually return to negotiation and political compromise."
   }
+  ,"got/chronicle/the-whispering-wood": {"section":"Chronicle","description":"Robb Stark divides his army and strikes the Lannister forces in the Riverlands. The victory at the Whispering Wood captures Jaime Lannister and gives Robb a major military advantage while confirming that the northern campaign has become a serious threat to the crown."}
+  ,"got/chronicle/theon-takes-winterfell": {"section":"Chronicle","description":"Theon Greyjoy captures Winterfell while Robb is campaigning in the south. The seizure of the Stark stronghold fractures northern authority and forces the remaining Stark allies to deal with a crisis behind their own lines."}
+  ,"got/chronicle/the-red-wedding": {"section":"Chronicle","description":"Robb Stark, Catelyn Stark and many of their followers are killed at the Twins after House Frey and its allies turn against them. The massacre destroys the main Stark military campaign and dramatically changes control of the Riverlands and North."}
+  ,"got/chronicle/the-purple-wedding": {"section":"Chronicle","description":"Joffrey Baratheon dies during his wedding feast to Margaery Tyrell. The death creates another succession crisis in King's Landing and leads to Tyrion Lannister being accused of the murder."}
+  ,"got/chronicle/hardhome": {"section":"Chronicle","description":"Jon Snow witnesses the scale of the White Walker threat at Hardhome when the settlement is attacked and thousands of people are killed or raised among the dead. The encounter provides direct evidence that the supernatural threat is moving south."}
+  ,"got/chronicle/daenerys-lands-at-dragonstone": {"section":"Chronicle","description":"Daenerys Targaryen reaches Dragonstone and establishes her base for the campaign in Westeros. The return of a Targaryen claimant with dragons, Unsullied and Dothraki turns the struggle for the Iron Throne into a new phase."}
+  ,"got/chronicle/the-wall-falls": {"section":"Chronicle","description":"The Army of the Dead breaches the Wall at Eastwatch after the Night King gains the undead Viserion. The ancient barrier that had separated Westeros from the White Walkers is no longer intact, allowing the army to move into the North."}
+  ,"got/chronicle/jons-true-parentage-revealed": {"section":"Chronicle","description":"Evidence from Bran Stark and Samwell Tarly establishes that Jon Snow is the son of Rhaegar Targaryen and Lyanna Stark. The revelation changes the succession question by giving Jon a Targaryen identity and a claim connected to the royal line."}
+  ,"hotd/chronicle/the-great-council-at-harrenhal": {"section":"Chronicle","description":"The Great Council at Harrenhal chooses Viserys Targaryen to succeed King Jaehaerys I. The decision establishes an important precedent in the succession debate because the lords choose a male claimant over the elder female line represented by Rhaenys."}
+  ,"hotd/chronicle/daemon-takes-the-stepstones": {"section":"Chronicle","description":"Daemon Targaryen joins the campaign against the Crabfeeder and the Triarchy in the Stepstones. After years of pressure, the conflict ends with Daemon defeating Craghas Drahar and strengthening his reputation as a military commander."}
+  ,"hotd/chronicle/laena-velaryon-dies": {"section":"Chronicle","description":"Laena Velaryon dies after complications surrounding the birth of her child. Her death leaves Daemon without his second wife and creates another major loss for House Velaryon and the wider Targaryen family."}
+  ,"hotd/chronicle/the-driftmark-succession-crisis": {"section":"Chronicle","description":"A dispute over the inheritance of Driftmark brings questions about Lucerys Velaryon's parentage into the royal court. Vaemond Velaryon challenges the succession and is killed after directly questioning the legitimacy of Rhaenyra's sons."}
+  ,"hotd/chronicle/blood-and-cheese": {"section":"Chronicle","description":"Following Lucerys's death, Daemon arranges a revenge attack inside the Red Keep. Blood and Cheese locate Aegon and Helaena's children and kill Prince Jaehaerys, deepening the cycle of retaliation between the two branches of the royal family."}
+  ,"hotd/chronicle/the-battle-at-rooks-rest": {"section":"Chronicle","description":"The Greens attack Rhaenys Targaryen and her dragon Meleys at Rook's Rest. A coordinated assault involving Aegon and Aemond leaves Meleys and Rhaenys dead and Aegon badly injured, while the battle demonstrates the destructive cost of using dragons in open war."}
+  ,"hotd/chronicle/the-battle-of-the-gullet": {"section":"Chronicle","description":"A major naval and dragon battle erupts in the Gullet as the Blacks attempt to protect vital shipping and supply routes. The fighting causes heavy losses among fleets, soldiers and dragons and further weakens the Targaryen forces."}
+  ,"hotd/chronicle/the-storming-of-the-dragonpit": {"section":"Chronicle","description":"Crowds in King's Landing turn against the remaining dragons and storm the Dragonpit. Several dragons and many people die in the chaos, marking a catastrophic loss of the creatures that had defined Targaryen power for generations."}
+  ,"got/chronicle/brans-fall": {"section":"Chronicle","description":"Bran Stark survives a fall from a tower at Winterfell after witnessing a secret involving Jaime and Cersei Lannister. The injury leaves Bran unable to walk and becomes the first major event that sends the Stark family onto separate paths."}
+  ,"got/chronicle/the-tourney-at-harrenhal": {"section":"Chronicle","description":"The great tournament at Harrenhal brings together many of the leading nobles of Westeros shortly before Robert’s Rebellion. The gathering exposes political tensions and contributes to the chain of events surrounding Lyanna Stark and Prince Rhaegar Targaryen."}
+  ,"got/chronicle/battle-of-the-fist": {"section":"Chronicle","description":"The Night’s Watch is attacked beyond the Wall by the Army of the Dead. Many brothers are killed, the survivors retreat south, and Jon Snow gains direct experience of the supernatural threat that is gathering beyond the Wall."}
+  ,"got/chronicle/mutiny-at-crasters-keep": {"section":"Chronicle","description":"Members of the Night’s Watch mutiny at Craster’s Keep after the death of Jeor Mormont. The violence destroys the leadership of the expedition and leaves Jon Snow and the surviving brothers facing both the mutineers and the dangers beyond the Wall."}
+  ,"got/chronicle/battle-of-castle-black": {"section":"Chronicle","description":"Mance Rayder’s army attacks Castle Black while the Night’s Watch attempts to defend the Wall. Jon Snow helps organize the defense, and the battle demonstrates that the Watch can still hold the Wall despite severe losses."}
+  ,"got/chronicle/the-hound-and-the-brotherhood": {"section":"Chronicle","description":"Sandor Clegane’s path crosses repeatedly with the Brotherhood Without Banners as the war leaves the Riverlands filled with displaced people and competing forces. His encounters gradually move him away from the identity of a royal enforcer and toward an uncertain search for purpose."}
+  ,"got/chronicle/arya-returns-to-westeros": {"section":"Chronicle","description":"After years of training in Braavos, Arya Stark returns to Westeros and begins settling old scores. Her return marks the point where the Stark children are no longer simply surviving separately and begins the process of rebuilding the family’s position in the North."}
+  ,"got/chronicle/the-battle-of-winterfell": {"section":"Chronicle","description":"The living armies of Westeros gather at Winterfell to face the Army of the Dead. The battle ends with the Night King destroyed and the immediate supernatural threat defeated, but the surviving leaders emerge with heavy losses and a weakened alliance."}
+  ,"hotd/chronicle/aemma-and-baelon-die": {"section":"Chronicle","description":"Queen Aemma Arryn dies after a failed childbirth attempt, and the infant Prince Baelon dies soon afterward. The losses leave Viserys without the son he expected to inherit and accelerate the succession crisis that will shape the Targaryen dynasty."}
+  ,"hotd/chronicle/daemon-and-the-dragon-egg": {"section":"Chronicle","description":"Daemon takes a dragon egg to Dragonstone and declares that he intends to establish a new branch of the royal family. Viserys confronts him, forcing Daemon to return the egg and exposing the continuing struggle between the king’s authority and his brother’s ambitions."}
+  ,"hotd/chronicle/rhaenyra-marries-laenor": {"section":"Chronicle","description":"Rhaenyra marries Laenor Velaryon in a political union designed to strengthen the crown’s relationship with House Velaryon. The marriage creates a powerful alliance, but questions about the parentage of Rhaenyra’s children later become a major source of political conflict."}
+  ,"hotd/chronicle/aemond-claims-vhagar": {"section":"Chronicle","description":"After Laena Velaryon dies, Aemond Targaryen secretly approaches Vhagar and succeeds in claiming the ancient dragon. The act gives Aemond enormous military importance and begins a confrontation with the Velaryon children that will remain unresolved."}
+  ,"hotd/chronicle/laenor-leaves-westeros": {"section":"Chronicle","description":"Rhaenyra and Daemon arrange for Laenor Velaryon to disappear from public life, allowing him to leave Westeros while the court believes him dead. The decision clears the way for Rhaenyra and Daemon to marry and changes the political structure of the royal family."}
+  ,"hotd/chronicle/rhaenyra-and-daemon-marry": {"section":"Chronicle","description":"Rhaenyra and Daemon marry at Dragonstone soon after Laena’s funeral. Their marriage joins two powerful Targaryen branches and strengthens Rhaenyra’s faction, while also making the rivalry with Alicent’s family more personal."}
+  ,"hotd/chronicle/the-greens-and-blacks-form": {"section":"Chronicle","description":"The royal court becomes increasingly divided between supporters of Rhaenyra and supporters of Alicent and her sons. The factions are not yet fighting an open war, but their separate households, alliances and political networks establish the structure that will later become the Dance of the Dragons."}
+  ,"hotd/chronicle/rhaenyra-takes-kings-landing": {"section":"Chronicle","description":"Rhaenyra enters King’s Landing after the city’s defenses collapse and takes possession of the Iron Throne. Her occupation gives the Blacks control of the capital, but the war continues elsewhere and the financial and political pressures of ruling the city quickly intensify."}
 };
- const STORYLINE_DETAILS={
+ const STORYLINE_DETAILS = {
   "got/storyline/a-king-dies-hunting": {
     "section": "Storyline",
-    "description": "Robert Baratheon’s death removes the fragile protection that had kept rival ambitions under control. Ned Stark’s investigation, Cersei’s fear of exposure and the question of succession all collide in this moment. What looks like an accident becomes the opening move of the political chain that eventually tears the realm apart."
+    "description": "Robert Baratheon goes into the kingswood expecting an ordinary hunt, while inside the Red Keep the kingdom is already being pulled apart by secrets. Ned Stark has begun uncovering the truth behind the royal children, Cersei is determined to protect her family, and rival powers are watching the succession closely. When Robert is fatally wounded, the last barrier holding those interests together disappears. Ned tries to honor Robert's wishes, but his attempt to act lawfully collides with Cersei's determination to keep the crown in her family's hands. The king's death therefore becomes more than a personal tragedy: it opens the chain of choices that sends the Seven Kingdoms toward war."
   },
   "got/storyline/the-king-s-hand-loses-his-head": {
     "section": "Storyline",
-    "description": "Ned Stark’s execution changes the story from a court investigation into a continent-wide struggle. Robb’s decision to march south, Arya’s escape and Sansa’s captivity all grow out of the same shock. The event proves that even a respected lord can be sacrificed when competing claims to power become more important than law."
+    "description": "Ned Stark enters King's Landing believing that loyalty, evidence and the king's authority can still protect the realm. Instead, every discovery places him deeper inside a struggle between the Lannisters, the crown and the people who want to influence the succession. When Ned is imprisoned, his children are scattered: Sansa remains trapped at court, Arya escapes into the city, and Robb gathers the North to demand justice. Joffrey's decision to execute Ned destroys the possibility of a peaceful settlement. From that moment, the conflict stops being a dispute at court and becomes a war fought across the kingdoms, with the Stark family forced to survive in very different ways."
   },
   "got/storyline/wildfire-on-the-blackwater": {
     "section": "Storyline",
-    "description": "The Blackwater is where King’s Landing nearly falls before Tyrion’s preparations help save it. The battle strengthens the Lannister position, damages Stannis’s campaign and establishes Tyrion as a serious political and military thinker. It also shows how one carefully prepared weapon can alter the outcome of a much larger attack."
+    "description": "Stannis Baratheon sails toward King's Landing believing that his claim and his army can finally take the Iron Throne. Inside the city, Tyrion knows that the defenders cannot match Stannis ship for ship, so he prepares a dangerous plan around wildfire. As the attack begins, the Blackwater turns into a desperate fight between an invading army and a city trying to hold its walls. The wildfire destroys much of Stannis's fleet, but the victory is not Tyrion's alone: Tywin arrives with reinforcements and the Tyrell alliance changes the balance of power. The battle leaves King's Landing in Lannister hands and turns Tyrion's success into another struggle for influence at court."
   },
   "got/storyline/the-north-remembers": {
     "section": "Storyline",
-    "description": "After the Stark cause suffers devastating losses, the North does not simply disappear from the story. Hidden loyalties, surviving members of House Stark and resistance movements keep the idea of independence alive. The storyline gradually turns survival into restoration, showing that political power can be lost without loyalty being forgotten."
+    "description": "The Stark cause appears broken after betrayal, defeat and the loss of Winterfell, but the story of the North does not end with Robb's death. Sansa learns to survive by reading the intentions of the people around her, Arya travels through a series of identities while learning how to fight back, and Bran begins a completely different journey beyond the Wall. Meanwhile, northern families remember what happened to the Starks and quietly resist the powers that tried to replace them. The storyline becomes one of survival rather than open victory: scattered characters and loyal houses preserve the Stark name until the opportunity to reclaim the North finally appears."
   },
   "got/storyline/a-queen-crosses-the-sea": {
     "section": "Storyline",
-    "description": "Daenerys finally brings the Targaryen struggle back to Westeros after building power across the Narrow Sea. Her dragons and armies give her a realistic path to the throne, but her arrival also creates a clash between inherited claim and the support of the people and leaders already living in Westeros."
+    "description": "Daenerys spends years building a new identity far from the kingdom her family once ruled. She survives exile, gains the loyalty of people who once saw her as powerless, frees slaves, gathers armies and raises three dragons into living symbols of Targaryen power. By the time she crosses the Narrow Sea, she is no longer simply the last daughter of a fallen dynasty; she has become a conqueror with followers of her own. Yet Westeros does not greet her as a simple returning heir. She arrives to find another ruler on the throne, rival claims, frightened nobles and a people who know her family mostly through stories. Her return begins the final collision between her vision of rule and the political reality of Westeros."
   },
   "got/storyline/the-dead-walk-south": {
     "section": "Storyline",
-    "description": "The Wall’s fall changes the scale of the entire story. The political struggle becomes secondary to humanity’s survival as the Army of the Dead moves south. Characters who spent years fighting each other are forced to cooperate, while Jon and Daenerys must convince skeptical leaders that an ancient threat is now real."
+    "description": "For much of the story, the political war makes the threat beyond the Wall seem distant and almost unbelievable. Jon Snow and the Night's Watch gradually discover that the legends are real, while the White Walkers gather an army of the dead. When the Wall finally falls, the threat becomes impossible for the kingdoms to ignore. Jon and Daenerys must bring former enemies together, even though many of them have spent years fighting one another. The resulting alliance is uneasy because old loyalties do not disappear simply because a greater danger arrives. The battle against the dead therefore becomes both a military struggle and a test of whether the people of Westeros can stop fighting each other long enough to survive."
   },
   "got/storyline/two-battles-one-bastard": {
     "section": "Storyline",
-    "description": "Jon Snow’s rise is tied to battles that make him increasingly important to the future of the North. His leadership earns respect, but his victories also attract attention from people who question his identity and authority. The storyline builds toward the revelation that Jon’s place in the world is far more complicated than he believed."
+    "description": "Jon Snow's path from an uncertain member of the Night's Watch to a leader of the North is shaped by repeated battles and increasingly difficult choices. At the Wall he learns that leadership requires sacrifice; later, his campaigns against the forces occupying the North force him to make decisions that affect entire armies. The victory at the Battle of the Bastards helps restore Winterfell to the Starks, but it also brings Jon into a position of political responsibility that he never sought. At the same time, his growing connection to Daenerys and the discovery of his true parentage complicate everything he believes about himself. His story becomes a conflict between the man he has chosen to be and the identity others say he was born to inherit."
   },
   "got/storyline/the-city-burns": {
     "section": "Storyline",
-    "description": "The fall of King’s Landing should have been the final step toward victory, but the destruction of the city changes the meaning of that victory. The surviving leaders realize that defeating an enemy is not enough if the methods used make peaceful rule impossible. Former allies begin to reconsider who should hold power."
+    "description": "After the Army of the Dead is defeated and Cersei's rule is broken, Daenerys finally stands close to the throne she has spent years pursuing. But victory has cost her many of the people who once guided her, and her trust in those around her is weakening. When King's Landing surrenders, the battle should be over. Instead, the city is destroyed, turning Daenerys's victory into a moment of horror for those who had supported her. Tyrion and the surviving leaders are forced to confront a question they had avoided throughout the war: can a ruler who wins through overwhelming destruction create the peaceful kingdom they claimed to want? The answer changes the final struggle for power."
   },
   "got/storyline/the-throne-melts": {
     "section": "Storyline",
-    "description": "The destruction of the Iron Throne ends the object that motivated generations of conquest. With the symbol of absolute monarchy gone, the surviving leaders experiment with a different way of choosing a ruler. After so much violence, the future depends less on possessing a chair and more on reaching an agreement."
+    "description": "The final conflict is no longer about defeating an army; it is about deciding what kind of government can exist after years of war. Jon's decision to stop Daenerys leaves the surviving leaders facing the consequences of everything that came before. The Iron Throne itself is destroyed, removing the physical symbol that encouraged generations of rulers to fight for absolute power. Instead of choosing another king through conquest, the surviving lords and representatives agree to a different method of succession. Bran becomes king, Sansa secures an independent North, Arya chooses a life beyond the known shores, and Jon returns to the far North. The story closes not with one family simply winning, but with Westeros trying to build a political order after the old one has been broken."
   },
   "hotd/storyline/an-heir-is-named": {
     "section": "Storyline",
-    "description": "Rhaenyra’s appointment as heir gives Viserys’s reign a clear direction, but it also creates a promise that must survive future changes at court. The storyline follows how that declaration shapes Rhaenyra’s identity, her supporters and the expectations of the realm. Years later, everyone must decide whether the king’s word still controls the succession."
+    "description": "After the death of Queen Aemma and the failure of the male succession he expected, Viserys Targaryen chooses his daughter Rhaenyra as heir to the Iron Throne. The decision gives Rhaenyra a place in history, but it also places an enormous expectation on a young woman in a court where many nobles still assume a man should rule. Rhaenyra grows from a grieving princess into a political figure who understands that her claim depends on more than her father's affection. Around her, lords begin choosing what they believe the future should look like. The promise Viserys makes to Rhaenyra therefore becomes the foundation of the entire succession crisis, because everyone eventually has to decide whether that promise survives the changing royal family."
   },
   "hotd/storyline/a-second-marriage-a-second-family": {
     "section": "Storyline",
-    "description": "Viserys’s marriage to Alicent creates a second branch of the royal family, and the political consequences grow with every child born from it. A king can love his family without being able to give every member a place in the line of succession. That tension eventually becomes impossible to contain."
+    "description": "Viserys marries Alicent Hightower, believing the marriage will strengthen the crown and give the realm stability. Instead, it creates a second royal family whose children have Targaryen blood and their own supporters. As Aegon, Helaena, Aemond and Daeron grow older, the question of succession becomes harder to separate from family relationships. Rhaenyra's position remains the king's declared choice, but the existence of male heirs gives ambitious courtiers a different future to imagine. Alicent and Rhaenyra, once close companions, become increasingly divided by duty, fear and the people surrounding them. What begins as a marriage intended to secure the dynasty quietly creates the two sides that will eventually tear it apart."
   },
   "hotd/storyline/the-king-dies": {
     "section": "Storyline",
-    "description": "Viserys’s death removes the barrier between the Green and Black factions. The speed with which the Greens act shows that the succession has been planned for years, while Rhaenyra’s absence from the capital gives them an immediate advantage. The story now shifts from family disagreement to a war in which every decision carries irreversible consequences."
+    "description": "Viserys dies after years of trying to keep his family and his succession together. While Rhaenyra is away from King's Landing, the Green faction moves quickly to secure the crown for Aegon. Councillors debate, hesitate and calculate, but the decision is driven by years of preparation and fear about what will happen if Rhaenyra rules. Meanwhile, Rhaenyra learns of her father's death and the coronation of her half-brother, forcing her to decide whether she will accept the decision or defend the inheritance Viserys gave her. The private family dispute becomes an open political crisis, and once armies and dragons are summoned, there is no easy way back to reconciliation."
   },
   "hotd/storyline/aegon-is-crowned": {
     "section": "Storyline",
-    "description": "Aegon’s coronation creates a direct challenge to Rhaenyra’s inheritance and gives the Greens control of the symbols of royal authority. Once the crown is placed on his head, compromise becomes much harder because both factions can point to a crowned monarch as proof of legitimacy. The ceremony becomes a political weapon as much as a celebration."
+    "description": "Aegon's coronation transforms a disputed succession into a direct contest between two crowned claims. The Greens present Aegon as the male heir who can preserve the realm's traditions, while the Blacks insist that Viserys named Rhaenyra and that his decision must be honored. The crown gives Aegon immediate control of King's Landing, the royal treasury and much of the machinery of government, but it does not erase Rhaenyra's supporters. Across Westeros, lords begin declaring for one side or the other. The ceremony therefore marks the moment when the realm stops waiting for the succession to resolve itself and begins choosing sides for war."
   },
   "hotd/storyline/a-prince-falls-from-the-sky": {
     "section": "Storyline",
-    "description": "Lucerys’s death is the emotional point where the conflict between the young members of the two families becomes a blood feud. Aemond’s pursuit and Vhagar’s power produce a death that neither side can easily undo. From here, grief and revenge begin driving the war as strongly as questions of inheritance."
+    "description": "Rhaenyra sends Lucerys to Storm's End hoping diplomacy can win the support of House Baratheon. There he encounters Aemond, whose anger over the past has never disappeared. When Lucerys leaves on Arrax, Aemond follows on Vhagar, intending to frighten rather than deliberately kill him, but the dragons cannot be controlled as easily as their riders might wish. Vhagar kills Arrax and Lucerys, turning a succession dispute into a personal blood feud. Rhaenyra's grief and Daemon's response make revenge unavoidable, and the war changes character: from this point onward, the deaths of family members increasingly drive decisions that might once have been made for political reasons."
   },
   "hotd/storyline/dragonseeds-and-desperation": {
     "section": "Storyline",
-    "description": "The Blacks’ search for new dragonriders shows how quickly the war consumes the advantages that once made the Targaryens powerful. Recruiting dragonseeds expands the number of people who can influence the conflict, but it also introduces uncertainty because dragons cannot simply be treated like ordinary military equipment. The gamble becomes necessary because the old generation is disappearing."
+    "description": "As the Dance consumes experienced riders and dragons, Rhaenyra's side begins searching for people who might claim the remaining beasts. The dragonseeds offer a desperate possibility because some people with Valyrian ancestry may be able to bond with dragons even if they were born far from the royal court. The search brings new riders into a war that had once been controlled by a small group of Targaryens. Addam of Hull, Hugh Hammer and Ulf White demonstrate both the potential and the danger of this strategy: new riders can change the balance of power, but they also bring ambitions that cannot always be controlled by the faction that recruited them."
   },
   "hotd/storyline/the-battle-above-the-god-s-eye": {
     "section": "Storyline",
-    "description": "Daemon and Aemond carry years of resentment into a confrontation that represents the personal side of the Dance. Their dragons turn a family rivalry into one of the most destructive duels of the war. The tragedy is symmetrical: two powerful Targaryens destroy each other while fighting for a throne neither can truly keep."
+    "description": "Daemon and Aemond eventually meet above the God's Eye after years of rivalry, insult and violence. Their confrontation is more than another battle between dragonriders: both men have become symbols of the extremes of the two factions. Caraxes and Vhagar tear into one another while their riders continue a personal struggle that has outgrown the original question of succession. Daemon's sacrifice brings Aemond down with him, but the victory offers no real reward. Two of the most dangerous figures in the war are gone, while the realm they fought over remains wounded and unstable."
   },
   "hotd/storyline/king-s-landing-falls": {
     "section": "Storyline",
-    "description": "When Rhaenyra takes King’s Landing, the Blacks finally possess the capital they have fought to control. Yet the victory reveals a central weakness of the war: holding the throne does not guarantee obedience. Financial pressure, political opposition and continuing military threats mean that Rhaenyra inherits not a peaceful kingdom but a capital surrounded by enemies."
+    "description": "Rhaenyra's forces finally take King's Landing, giving the Blacks the capital and the Iron Throne they have spent so long trying to secure. For a moment, the victory seems to prove that the war can still be won. Yet ruling the capital is harder than capturing it. The treasury is strained, the people are frightened, rival forces remain outside the city, and Rhaenyra's decisions increasingly divide the people who brought her to power. The fall of King's Landing therefore becomes a lesson in the difference between possession and legitimacy: a ruler can occupy the throne and still struggle to make the kingdom accept her rule."
   },
   "hotd/storyline/the-war-turns-again": {
     "section": "Storyline",
-    "description": "The Dance repeatedly changes direction as dragons die, armies switch sides and political decisions create unexpected consequences. No victory is permanent. This part of the story emphasizes exhaustion: the factions keep fighting even as the original reasons for the conflict become buried beneath grief, revenge and the need to survive."
+    "description": "The Dance becomes a cycle in which every victory creates another crisis. Dragons die, riders disappear, armies change direction and leaders who once seemed secure suddenly lose their positions. The Greens and Blacks continue fighting even as their original arguments become buried beneath revenge and fear. The longer the war lasts, the less it resembles a controlled succession dispute and the more it resembles a catastrophe consuming the dynasty itself. The surviving members of the royal family inherit fewer dragons, fewer allies and fewer reasons to believe that victory will restore what existed before the war."
   },
   "hotd/storyline/a-council-ends-what-dragons-couldn-t": {
     "section": "Storyline",
-    "description": "The final political settlement demonstrates the limits of military power. After the deaths of so many dragons and members of the royal family, the remaining leaders need a solution that can outlast the battlefield. The council represents a return to negotiation and succession politics, proving that even a dynasty built on dragons ultimately depends on people agreeing to recognize its ruler."
+    "description": "By the end of the Dance, the Targaryens have lost so much that neither faction can simply force the old conflict to continue. Dragons have been killed, riders have fallen, King's Landing has suffered, and the royal family has been reduced to a fraction of its former strength. The final settlement therefore comes through political agreement rather than another dragon battle. The council's decision to recognize Aegon the Younger shows that succession can be decided through negotiation after military power has exhausted itself. The war ends without a clean victory for either side, leaving a damaged dynasty and a kingdom that must rebuild around the survivors."
   }
+  ,"got/storyline/the-whispering-wood": {"section":"Storyline","description":"Robb Stark stops trying to win the war through a single march on King's Landing and begins fighting on his own terms. By dividing his forces and striking the Lannister army at the Whispering Wood, he captures Jaime Lannister and suddenly gains leverage that few expected a young northern king to have. The victory gives Robb confidence, but it also creates a new problem: every battlefield success raises the political stakes of keeping his allies united."}
+  ,"got/storyline/theon-takes-winterfell": {"section":"Storyline","description":"Theon Greyjoy returns to the North believing that taking Winterfell will prove his loyalty to his father. Instead, the capture leaves him isolated inside a castle he once called home. Bran and Rickon are forced into hiding, northern forces are pulled in different directions, and Theon's attempt to win respect becomes another tragedy in the Stark family's collapse."}
+  ,"got/storyline/the-red-wedding": {"section":"Storyline","description":"Robb Stark enters the Twins hoping to repair the alliance he damaged by breaking his marriage promise. The gathering appears to offer a path back to political stability, but the Freys and their allies have already chosen betrayal. Robb, Catelyn and their followers are murdered, turning a military campaign into a family catastrophe. The Red Wedding changes the story because survival, not victory, becomes the immediate concern for the scattered Stark children."}
+  ,"got/storyline/the-purple-wedding": {"section":"Storyline","description":"Joffrey's wedding is meant to display the strength of the new royal alliance, but the celebration collapses when the young king dies. Suspicion falls on several people, especially Tyrion, while Sansa is pulled into another dangerous escape. The event shifts the political story again: the crown must manage a succession crisis while its enemies and rivals look for an opening."}
+  ,"got/storyline/hardhome": {"section":"Storyline","description":"Jon Snow travels to Hardhome intending to bring the wildlings south before the White Walkers can reach them. Instead, he witnesses an attack that makes the threat impossible to dismiss as an old legend. The dead rise after the battle, and the Night King reveals a power capable of turning every battlefield into a source of new soldiers. Jon returns knowing that the conflict between the living and the dead will eventually matter more than the political wars of Westeros."}
+  ,"got/storyline/daenerys-lands-at-dragonstone": {"section":"Storyline","description":"After years of exile and conquest across Essos, Daenerys finally steps onto Westerosi soil at Dragonstone. She now has dragons, armies and advisers who believe she can take the throne, but returning home also forces her to confront a country that has changed while she was away. Her arrival begins a new chapter in which her claim must compete with leaders who have their own reasons for resisting another Targaryen ruler."}
+  ,"got/storyline/the-wall-falls": {"section":"Storyline","description":"The Wall has protected the kingdoms for thousands of years, so its destruction changes the scale of the story immediately. After the Night King gains an undead dragon, the Army of the Dead attacks the ancient barrier and breaks through. Jon and the surviving defenders can no longer treat the threat as something that can be contained in the far North. The final political struggle is now tied directly to a fight for survival."}
+  ,"got/storyline/jons-true-parentage-revealed": {"section":"Storyline","description":"For much of his life Jon Snow believes he is the illegitimate son of Ned Stark. Bran and Samwell eventually uncover a different history: Jon was born to Rhaegar Targaryen and Lyanna Stark, making his identity far more complicated than the name he has carried. The revelation changes how Jon sees himself and creates a new political tension because his existence could challenge Daenerys's claim. A secret about his birth therefore becomes one of the final pieces in the struggle over who should rule."}
+  ,"hotd/storyline/the-great-council-at-harrenhal": {"section":"Storyline","description":"The Great Council is called to settle the question of who should inherit after the death of King Jaehaerys's son. Viserys is chosen over Rhaenys, establishing a political expectation that favors the male line. Years later, that decision hangs over the kingdom when Viserys names Rhaenyra his heir. The council therefore becomes more than an old succession dispute: it forms part of the precedent that every side invokes when the Targaryen family finally fractures."}
+  ,"hotd/storyline/daemon-takes-the-stepstones": {"section":"Storyline","description":"Daemon Targaryen grows frustrated with the limits of court life and turns his attention to the Stepstones, where the Triarchy threatens trade across the narrow sea. His campaign becomes a chance to prove that he can win a war rather than merely create trouble at court. The fighting also strengthens his connection to Corlys Velaryon and places Daemon at the center of events far from King's Landing."}
+  ,"hotd/storyline/laena-velaryon-dies": {"section":"Storyline","description":"Laena Velaryon's death leaves Daemon facing another personal loss while the Velaryon family continues to carry enormous political importance. Her final moments underline how fragile even the most powerful families are in a world where childbirth, succession and dragonfire can change the future overnight. The loss also helps set the stage for the later generation that will inherit the consequences of the royal family's divisions."}
+  ,"hotd/storyline/the-driftmark-succession-crisis": {"section":"Storyline","description":"When Corlys Velaryon is thought to be near death, the question of who will inherit Driftmark becomes a public test of Rhaenyra's family. Vaemond Velaryon refuses to accept Lucerys as heir and openly challenges the legitimacy of Rhaenyra's sons. What might have been a local inheritance dispute becomes a royal confrontation because the truth about the boys' parentage is already an open secret at court. The crisis exposes how private family questions can become weapons in the succession struggle."}
+  ,"hotd/storyline/blood-and-cheese": {"section":"Storyline","description":"Lucerys's death creates a demand for revenge that even political calculation struggles to contain. Daemon secretly arranges for assassins to enter the Red Keep, where they are told to take revenge for the prince's death. The murder of young Jaehaerys shocks the royal family and deepens Helaena's grief. From this point, the Dance becomes increasingly difficult to separate from personal vengeance, because every new death gives the surviving family members another reason to retaliate."}
+  ,"hotd/storyline/the-battle-at-rooks-rest": {"section":"Storyline","description":"The Greens need a military victory and choose Rook's Rest as the place to draw a Black force into battle. Rhaenys arrives on Meleys and finds herself facing more than one royal dragon. The battle leaves Rhaenys dead and Aegon severely wounded, while Aemond's actions reveal how quickly cooperation between the Green leaders can become complicated by ambition. The result changes the balance of the war without bringing either side closer to peace."}
+  ,"hotd/storyline/the-battle-of-the-gullet": {"section":"Storyline","description":"The war expands beyond castles and armies when the Gullet becomes a battlefield for ships, soldiers and dragons. The Blacks fight to protect vital routes and supplies while the Greens and their allies seek to disrupt them. The scale of the fighting shows that the Dance is no longer a dispute centered on the royal family alone: ordinary soldiers, sailors and cities are now caught inside the struggle. The losses further reduce the resources both factions need to continue the war."}
+  ,"hotd/storyline/the-storming-of-the-dragonpit": {"section":"Storyline","description":"Fear and anger in King's Landing eventually turn against the dragons themselves. Crowds storm the Dragonpit, and the creatures that once made the Targaryens nearly untouchable are suddenly trapped by the people they were supposed to rule. Several dragons die in the chaos, along with many of the people who attack them. The event becomes a turning point because the dynasty loses much of the living power that once made its rule different from that of every other house."}
+  ,"got/storyline/brans-fall": {"section":"Storyline","description":"The story begins with Bran Stark discovering something he was never meant to see. Jaime Lannister pushes him from a tower in an attempt to protect a secret that could destroy the royal family. Bran survives, but his fall changes the direction of the entire Stark household. Catelyn becomes convinced that the Lannisters are responsible, Ned is drawn deeper into the political crisis in King’s Landing, and Bran’s recovery eventually opens a completely different path for him. What first looks like a family tragedy becomes the first visible crack in the peace between the Starks and Lannisters."}
+  ,"got/storyline/the-tourney-at-harrenhal": {"section":"Storyline","description":"Harrenhal becomes a meeting place for nobles, knights and royal ambitions, but beneath the spectacle Westeros is already divided by suspicion. Prince Rhaegar Targaryen’s actions around Lyanna Stark become the subject of later arguments about honor, love, abduction and rebellion. Years afterward, the memories of the tournament matter because different characters interpret the same events in completely different ways. For Ned Stark, Robert Baratheon and others, Harrenhal becomes part of the history that explains why the old dynasty fell and why Robert’s reign begins with unresolved wounds."}
+  ,"got/storyline/battle-of-the-fist": {"section":"Storyline","description":"Jon Snow and the Night’s Watch travel beyond the Wall expecting danger from wildlings, but the scale of the threat becomes far greater than they imagined. At the Fist, the brothers are surrounded by an enemy that does not fight like ordinary men. The attack leaves the Watch scattered and frightened, while Jon begins to understand that the stories he heard as a child were not myths. The retreat also changes his priorities: surviving the expedition becomes inseparable from understanding what is moving through the darkness beyond the Wall."}
+  ,"got/storyline/mutiny-at-crasters-keep": {"section":"Storyline","description":"The Night’s Watch expedition reaches a breaking point at Craster’s Keep. Hunger, fear, resentment and the brutal conditions beyond the Wall have already weakened the brothers when Craster is killed and the mutiny begins. Jeor Mormont’s death removes one of the Watch’s strongest leaders, while Jon is separated from the main group. The event shows that the Watch can be destroyed from within as easily as it can be attacked from outside, and Jon’s later choices are shaped by the lesson that loyalty cannot survive on orders alone."}
+  ,"got/storyline/battle-of-castle-black": {"section":"Storyline","description":"Mance Rayder’s army finally reaches the Wall, forcing Jon Snow to defend the place that has become his home. The battle unfolds on several fronts as the Night’s Watch struggles with limited numbers and the wildlings attack from both sides of the Wall. Jon’s leadership grows through the crisis, but victory comes with personal loss and leaves him confronting the political consequences of what happened. The battle also complicates his relationship with the wildlings: enemies he once feared become people whose lives he now understands."}
+  ,"got/storyline/the-hound-and-the-brotherhood": {"section":"Storyline","description":"Sandor Clegane spends much of the war believing that survival means staying close to power and away from weakness. His encounters with the Brotherhood Without Banners challenge that idea. The people he meets in the Riverlands force him to see the damage caused by armies and rulers who rarely experience the suffering they create. His journey gradually becomes less about serving a king and more about deciding whether he can become something other than the man he was trained to be."}
+  ,"got/storyline/arya-returns-to-westeros": {"section":"Storyline","description":"Arya returns from Braavos with a new set of skills and a very different understanding of identity. She is no longer simply the frightened girl who fled King’s Landing; she has learned to hide her intentions, observe her enemies and act decisively. Her return reconnects her with the Stark struggle, but it also creates tension because Arya’s methods are increasingly unlike those of the family she wants to protect. Her storyline becomes a meeting point between revenge and the possibility of rebuilding a home."}
+  ,"got/storyline/the-battle-of-winterfell": {"section":"Storyline","description":"The armies gathered at Winterfell know that they cannot retreat forever, so former enemies prepare to fight together against the dead. Jon and Daenerys struggle with leadership, Sansa protects the people inside the castle, Arya searches for a way to strike at the enemy, and Bran becomes the center of the Night King’s pursuit. The battle costs the living thousands of soldiers and leaves the surviving leaders exhausted. Even after the dead are defeated, the alliance begins to fracture because the political war that existed before the supernatural threat has not disappeared."}
+  ,"hotd/storyline/aemma-and-baelon-die": {"section":"Storyline","description":"Viserys believes the birth of a healthy son will secure the future of his dynasty, but the birth instead becomes a devastating loss. Aemma dies and the infant Baelon survives for only a short time, leaving Viserys grieving and the realm suddenly without the male heir he expected. The tragedy changes Rhaenyra’s position overnight. She is no longer simply the king’s daughter; she becomes the person Viserys chooses to represent the continuity of his family, creating a promise that later generations will interpret in very different ways."}
+  ,"hotd/storyline/daemon-and-the-dragon-egg": {"section":"Storyline","description":"Daemon attempts to create a new royal reality at Dragonstone by taking a valuable dragon egg and presenting himself as a rival center of power. His actions force Viserys to confront a problem he repeatedly struggles with: how to control a brother he loves while still protecting the authority of the crown. Rhaenyra becomes involved in the confrontation, giving her an early lesson in the difference between family loyalty and political responsibility. The dispute ends without open war, but it reveals how quickly Targaryen family disagreements can become matters of state."}
+  ,"hotd/storyline/rhaenyra-marries-laenor": {"section":"Storyline","description":"Rhaenyra’s marriage to Laenor Velaryon is presented as a solution to several political problems at once. It strengthens the Velaryon alliance, gives the crown a powerful naval connection and reassures nobles who want the succession surrounded by established families. Yet the marriage does not remove the tension surrounding Rhaenyra’s position. As children are born, questions about their appearance and parentage become political weapons, turning what should have been a stabilizing marriage into another source of suspicion between the royal factions."}
+  ,"hotd/storyline/aemond-claims-vhagar": {"section":"Storyline","description":"Aemond has grown up surrounded by dragons but without one of his own, and Vhagar represents a chance to change that. After Laena’s death, he approaches the enormous ancient dragon and succeeds where others might have failed. The achievement gives the Greens a powerful future rider and gives Aemond a confidence that shapes his later choices. His confrontation with the Velaryon children after claiming Vhagar also shows how quickly personal humiliation and family rivalry can become attached to military power."}
+  ,"hotd/storyline/laenor-leaves-westeros": {"section":"Storyline","description":"Rhaenyra and Daemon decide that the safest way to reshape the royal family is to remove Laenor from the political board without truly killing him. The plan allows Laenor to escape with the person he loves while the court believes he is dead. For Rhaenyra, the decision creates freedom to marry Daemon; for the Velaryons, it changes the family structure surrounding Driftmark. The episode is important because it shows that the factions are already making secret, morally complicated decisions long before the Dance officially begins."}
+  ,"hotd/storyline/rhaenyra-and-daemon-marry": {"section":"Storyline","description":"Rhaenyra and Daemon’s marriage joins two people who have repeatedly challenged the expectations placed on them. Their union strengthens the Black faction, but it also alarms Alicent because the marriage connects Rhaenyra directly to one of the most unpredictable Targaryens in the realm. Their relationship is both personal and strategic: they share a family, children and a claim to the throne, while also creating a partnership built around the possibility of war. The marriage therefore changes the succession struggle from a dispute between generations into a rivalry between households."}
+  ,"hotd/storyline/the-greens-and-blacks-form": {"section":"Storyline","description":"The court gradually stops functioning as one royal household. Alicent’s family develops its own network of supporters, while Rhaenyra and Daemon build alliances around Dragonstone and House Velaryon. The names Green and Black become shorthand for competing political futures, but the division is also personal: old friendships have become grudges, marriages have become alliances, and children inherit conflicts they did not create. By the time Viserys dies, the factions are already organized enough that his death can trigger war almost immediately."}
+  ,"hotd/storyline/rhaenyra-takes-kings-landing": {"section":"Storyline","description":"Rhaenyra’s forces finally enter King’s Landing and seize the symbol she has spent her life believing was promised to her. The victory appears to validate the Black claim, but ruling the capital proves more difficult than taking it. Food shortages, fear, political resistance and the cost of the war begin to erode her authority. Rhaenyra’s time on the throne becomes a study in how quickly victory can become isolation when a ruler inherits a city damaged by years of conflict."}
 };
  let modal=document.querySelector('.detail-modal');
  if(!modal){
@@ -3007,6 +4249,7 @@ function initDetailCards(){
    return {era,page};
  };
  const escapeHTML=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
  const CHARACTER_PROFILES={
   "got/characters/jon-snow":{house:"Stark",role:"King in the North",known:"Jon Snow",profile:"A reluctant leader whose identity, loyalty and sense of duty place him at the center of the struggle for the North and the war against the dead.",traits:"Duty • Loyalty • Leadership • Resilience",importance:"Jon connects the political conflict of Westeros with the existential threat beyond the Wall. His choices repeatedly force him to choose between personal loyalty and the survival of the realm."},
   "got/characters/daenerys-targaryen":{house:"Targaryen",role:"Mother of Dragons",known:"Daenerys Stormborn",profile:"An exiled princess who grows into a powerful queen, building an army and returning to Westeros with three dragons and a claim to the Iron Throne.",traits:"Ambition • Compassion • Power • Determination",importance:"Daenerys represents the return of Targaryen power and dragons. Her journey also explores how the desire to liberate others can become complicated when absolute power is within reach."},
