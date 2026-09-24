@@ -479,84 +479,84 @@ const HOUSE_CARD_DATA={
       "id": "bolton",
       "category": "north",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-bolton.svg",
+      "image": "../assets/images/houses/got/got-house-bolton.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Bolton\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Bolton</h3><p class=\"motto\">\"Our Blades Are Sharp\"</p><p class=\"region\">The North</p><p class=\"lore\">An ancient northern house whose history is marked by rivalry with the Starks. The Boltons are feared for their ruthless reputation and their pursuit of power in the North.</p><span class=\"seat\">Seat: The Dreadfort</span></div>"
     },
     {
       "id": "mormont",
       "category": "north",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-mormont.svg",
+      "image": "../assets/images/houses/got/got-house-mormont.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Mormont\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Mormont</h3><p class=\"motto\">\"Here We Stand\"</p><p class=\"region\">The North</p><p class=\"lore\">The Mormonts of Bear Island are a small but fiercely independent northern house. Their strength comes from loyalty, resilience and a willingness to defend their home against overwhelming odds.</p><span class=\"seat\">Seat: Bear Island</span></div>"
     },
     {
       "id": "karstark",
       "category": "north",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-karstark.svg",
+      "image": "../assets/images/houses/got/got-house-karstark.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Karstark\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Karstark</h3><p class=\"motto\">\"The Sun of Winter\"</p><p class=\"region\">The North</p><p class=\"lore\">A powerful northern branch descended from the Starks. The Karstarks become important during Robb Stark’s campaign and are drawn into the difficult choices that divide the northern cause.</p><span class=\"seat\">Seat: Karhold</span></div>"
     },
     {
       "id": "frey",
       "category": "riverlands",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-frey.svg",
+      "image": "../assets/images/houses/got/got-house-frey.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Frey\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Frey</h3><p class=\"motto\">\"We Stand Together\"</p><p class=\"region\">The Riverlands</p><p class=\"lore\">House Frey controls the strategic crossing at the Twins and uses marriages and alliances to expand its influence. Their position makes them a crucial political player during the wars of the Five Kings.</p><span class=\"seat\">Seat: The Twins</span></div>"
     },
     {
       "id": "blackwood",
       "category": "riverlands",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-blackwood.svg",
+      "image": "../assets/images/houses/got/got-house-blackwood.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Blackwood\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Blackwood</h3><p class=\"motto\">\"A Rising Tide\"</p><p class=\"region\">The Riverlands</p><p class=\"lore\">One of the oldest houses of the Riverlands, the Blackwoods are known for their long feud with House Bracken and their enduring loyalty to their chosen allies.</p><span class=\"seat\">Seat: Raventree Hall</span></div>"
     },
     {
       "id": "bracken",
       "category": "riverlands",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-bracken.svg",
+      "image": "../assets/images/houses/got/got-house-bracken.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Bracken\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Bracken</h3><p class=\"motto\">\"No Foe May Pass\"</p><p class=\"region\">The Riverlands</p><p class=\"lore\">An ancient Riverlands house and traditional rival of the Blackwoods. The Brackens have survived centuries of conflict by defending their lands and pursuing their own interests.</p><span class=\"seat\">Seat: Stone Hedge</span></div>"
     },
     {
       "id": "royce",
       "category": "vale",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-royce.svg",
+      "image": "../assets/images/houses/got/got-house-royce.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Royce\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Royce</h3><p class=\"motto\">\"We Remember\"</p><p class=\"region\">The Vale</p><p class=\"lore\">A prominent house of the Vale with a long history of service and independence. The Royces remain influential through their lands, warriors and close ties to the politics of the Vale.</p><span class=\"seat\">Seat: Runestone</span></div>"
     },
     {
       "id": "dayne",
       "category": "dorne",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-dayne.svg",
+      "image": "../assets/images/houses/got/got-house-dayne.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Dayne\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Dayne</h3><p class=\"motto\">\"None\"</p><p class=\"region\">Dorne</p><p class=\"lore\">A famous Dornish house whose ancestral sword Dawn and legendary warriors give it a distinctive place in Westerosi history. Starfall stands on the Torrentine in western Dorne.</p><span class=\"seat\">Seat: Starfall</span></div>"
     },
     {
       "id": "tarly",
       "category": "reach",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-tarly.svg",
+      "image": "../assets/images/houses/got/got-house-tarly.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Tarly\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Tarly</h3><p class=\"motto\">\"First in Battle\"</p><p class=\"region\">The Reach</p><p class=\"lore\">A powerful Reach house known for its military tradition. The Tarlys value discipline and martial skill and hold lands around Horn Hill in the Reach.</p><span class=\"seat\">Seat: Horn Hill</span></div>"
     },
     {
       "id": "hightower",
       "category": "reach",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-hightower.svg",
+      "image": "../assets/images/houses/got/got-house-hightower.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Hightower\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Hightower</h3><p class=\"motto\">\"We Light the Way\"</p><p class=\"region\">The Reach</p><p class=\"lore\">One of the richest and most influential houses of the Reach, the Hightowers rule from Oldtown and wield influence through trade, learning, wealth and royal connections.</p><span class=\"seat\">Seat: Oldtown</span></div>"
     },
     {
       "id": "florent",
       "category": "reach",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-florent.svg",
+      "image": "../assets/images/houses/got/got-house-florent.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Florent\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Florent</h3><p class=\"motto\">\"Ever Vigilant\"</p><p class=\"region\">The Reach</p><p class=\"lore\">A noble Reach house with extensive family connections. The Florents become involved in the struggle for the Iron Throne through their alliances and marriages.</p><span class=\"seat\">Seat: Brightwater Keep</span></div>"
     },
     {
       "id": "reed",
       "category": "north",
       "faction": "",
-      "image": "../assets/images/houses/got/got-house-reed.svg",
+      "image": "../assets/images/houses/got/got-house-reed.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Reed\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Reed</h3><p class=\"motto\">\"We Remember\"</p><p class=\"region\">The North</p><p class=\"lore\">The crannogmen of the Neck are led by House Reed, a small but strategically important family whose knowledge of the marshes makes them valuable allies to the Starks.</p><span class=\"seat\">Seat: Greywater Watch</span></div>"
     }
   ],
@@ -586,105 +586,105 @@ const HOUSE_CARD_DATA={
       "id": "strong",
       "category": "",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-strong.jpg",
+      "image": "../assets/images/houses/hotd/hotd-house-strong.webp",
       "innerHTML": "\n<div class=\"house-card-inner tilt-card-inner\">\n<div class=\"house-photo image-slot\">\n<img alt=\"House Strong\" decoding=\"async\" height=\"432\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"708\"/>\n</div>\n<svg class=\"sigil\" viewbox=\"0 0 100 100\">\n<path d=\"M50 15 L60 45 L90 45 L65 62 L75 90 L50 72 L25 90 L35 62 L10 45 L40 45 Z\" fill=\"currentColor\">\n</path>\n</svg>\n<h3>\n       House Strong\n      </h3>\n<p class=\"motto\">\n       Loyal to the crown they served\n      </p>\n<p class=\"region\">\n       The Riverlands\n      </p>\n<p class=\"lore\">\n       A smaller house whose fate becomes tangled directly in the royal succession — their name follows Rhaenyra's own children through a controversy that Team Green never lets anyone forget.\n      </p>\n<span class=\"seat\">\n       Seat: Harrenhal\n      </span>\n</div>\n"
     },
     {
       "id": "stark",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-stark.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-stark.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Stark\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Stark</h3><p class=\"motto\">\"Winter is Coming\"</p><p class=\"region\">The North</p><p class=\"lore\">House Stark is an ancient northern dynasty. During the Dance, the Starks eventually commit northern strength to the cause of Rhaenyra Targaryen.</p><span class=\"seat\">Seat: Winterfell</span></div>"
     },
     {
       "id": "arryn",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-arryn.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-arryn.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Arryn\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Arryn</h3><p class=\"motto\">\"As High as Honor\"</p><p class=\"region\">The Vale</p><p class=\"lore\">House Arryn rules the Vale and is connected to the Targaryen succession through family ties. The Vale becomes an important source of support for Rhaenyra.</p><span class=\"seat\">Seat: The Eyrie</span></div>"
     },
     {
       "id": "baratheon",
       "category": "green",
       "faction": "green",
-      "image": "../assets/images/houses/hotd/hotd-house-baratheon.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-baratheon.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Baratheon\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Baratheon</h3><p class=\"motto\">\"Ours is the Fury\"</p><p class=\"region\">The Stormlands</p><p class=\"lore\">House Baratheon controls the Stormlands. Its support becomes strategically important during the succession crisis because the great houses of the realm are forced to choose between competing claims.</p><span class=\"seat\">Seat: Storm’s End</span></div>"
     },
     {
       "id": "blackwood",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-blackwood.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-blackwood.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Blackwood\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Blackwood</h3><p class=\"motto\">\"A Rising Tide\"</p><p class=\"region\">The Riverlands</p><p class=\"lore\">House Blackwood is one of the ancient Riverlands families and supports Rhaenyra. Its longstanding feud with House Bracken adds another layer to the regional conflict.</p><span class=\"seat\">Seat: Raventree Hall</span></div>"
     },
     {
       "id": "bracken",
       "category": "green",
       "faction": "green",
-      "image": "../assets/images/houses/hotd/hotd-house-bracken.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-bracken.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Bracken\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Bracken</h3><p class=\"motto\">\"No Foe May Pass\"</p><p class=\"region\">The Riverlands</p><p class=\"lore\">House Bracken is the traditional rival of the Blackwoods. During the Dance, the Brackens support the Green cause while their old enemies support Rhaenyra.</p><span class=\"seat\">Seat: Stone Hedge</span></div>"
     },
     {
       "id": "celtigar",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-celtigar.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-celtigar.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Celtigar\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Celtigar</h3><p class=\"motto\">\"None\"</p><p class=\"region\">The Crownlands</p><p class=\"lore\">House Celtigar is an old Valyrian house of the Crownlands. Its location and heritage connect it to the wider network of families surrounding Dragonstone and the Targaryen royal line.</p><span class=\"seat\">Seat: Claw Isle</span></div>"
     },
     {
       "id": "beesbury",
       "category": "green",
       "faction": "green",
-      "image": "../assets/images/houses/hotd/hotd-house-beesbury.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-beesbury.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Beesbury\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Beesbury</h3><p class=\"motto\">\"Beware Our Sting\"</p><p class=\"region\">The Reach</p><p class=\"lore\">A Reach house whose lord serves on the royal council. House Beesbury becomes involved in the succession crisis at the very moment the realm is deciding who should inherit the throne.</p><span class=\"seat\">Seat: Honeyholt</span></div>"
     },
     {
       "id": "mooton",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-mooton.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-mooton.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Mooton\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Mooton</h3><p class=\"motto\">\"Wisdom and Courage\"</p><p class=\"region\">The Riverlands</p><p class=\"lore\">House Mooton is a prominent Riverlands family based at Maidenpool. Its position makes it relevant to the shifting military and political alliances during the Dance.</p><span class=\"seat\">Seat: Maidenpool</span></div>"
     },
     {
       "id": "cole",
       "category": "green",
       "faction": "green",
-      "image": "../assets/images/houses/hotd/hotd-house-cole.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-cole.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Cole\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Cole</h3><p class=\"motto\">\"First in Battle\"</p><p class=\"region\">The Crownlands</p><p class=\"lore\">House Cole is a lesser Crownlands house whose most famous member, Criston Cole, rises to become a major military and political figure during the succession crisis.</p><span class=\"seat\">Seat: Stone Hedge</span></div>"
     },
     {
       "id": "westerling",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-westerling.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-westerling.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Westerling\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Westerling</h3><p class=\"motto\">\"Honor, Not Honours\"</p><p class=\"region\">The Westerlands</p><p class=\"lore\">House Westerling is an old Westerlands house. Its members serve the crown and become connected to the broader network of noble families surrounding the Targaryen succession.</p><span class=\"seat\">Seat: The Crag</span></div>"
     },
     {
       "id": "massey",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-massey.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-massey.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Massey\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Massey</h3><p class=\"motto\">\"None\"</p><p class=\"region\">The Crownlands</p><p class=\"lore\">House Massey is a Crownlands house with lands close to Dragonstone. Its position makes its loyalty valuable to the Black faction during the Dance.</p><span class=\"seat\">Seat: Stonedance</span></div>"
     },
     {
       "id": "darklyn",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-darklyn.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-darklyn.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Darklyn\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Darklyn</h3><p class=\"motto\">\"None\"</p><p class=\"region\">The Crownlands</p><p class=\"lore\">House Darklyn is an ancient Crownlands family based at Duskendale. Its history is tied closely to the crown and the politics of the lands around King’s Landing.</p><span class=\"seat\">Seat: Duskendale</span></div>"
     },
     {
       "id": "royce",
       "category": "black",
       "faction": "black",
-      "image": "../assets/images/houses/hotd/hotd-house-royce.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-royce.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Royce\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Royce</h3><p class=\"motto\">\"We Remember\"</p><p class=\"region\">The Vale</p><p class=\"lore\">House Royce is one of the Vale’s most prominent families. Its military strength and ancient lineage make it an important component of the Vale’s support for Rhaenyra.</p><span class=\"seat\">Seat: Runestone</span></div>"
     },
     {
       "id": "swann",
       "category": "green",
       "faction": "green",
-      "image": "../assets/images/houses/hotd/hotd-house-swann.svg",
+      "image": "../assets/images/houses/hotd/hotd-house-swann.webp",
       "innerHTML": "<div class=\"house-card-inner tilt-card-inner\"><div class=\"house-photo image-slot\"><img alt=\"House Swann\" decoding=\"async\" height=\"675\" loading=\"lazy\" src=\"__HOUSE_IMAGE__\" width=\"1200\"/></div><svg class=\"sigil\" viewbox=\"0 0 100 100\"><path d=\"M50 15 L60 40 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 40 Z\" fill=\"currentColor\"></path></svg><h3>House Swann</h3><p class=\"motto\">\"None\"</p><p class=\"region\">The Stormlands</p><p class=\"lore\">House Swann is a notable Stormlands house. Its position in the southern realm places it within the network of noble families whose loyalties matter during the civil war.</p><span class=\"seat\">Seat: Stonehelm</span></div>"
     }
   ]
